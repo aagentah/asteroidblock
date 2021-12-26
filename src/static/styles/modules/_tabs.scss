@@ -1,0 +1,19 @@
+.tab-nav__item {
+  margin-left: -1px;
+  transition: color 0.2s ease-in, background-color 0.2s ease-in,
+    border-color 0.2s ease-in;
+}
+
+.tab-nav__item.is-active {
+  color: #fff;
+  background-color: palette(black);
+  border-color: palette(black);
+}
+
+.tab__item {
+  display: none;
+}
+
+.tab__item.is-active {
+  display: block;
+}

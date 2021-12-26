@@ -1,0 +1,60 @@
+// Hero or marketing titles
+
+.f-headline {
+  font-size: 6rem;
+}
+
+.f-subheadline {
+  font-size: 5rem;
+}
+
+// Type Scale
+
+.f1 {
+  font-size: 3rem;
+}
+.f2 {
+  font-size: 2.25rem;
+}
+.f3 {
+  font-size: 1.5rem;
+}
+.f4 {
+  font-size: 1.25rem;
+}
+.f5 {
+  font-size: 1rem;
+}
+.f6 {
+  font-size: 0.875rem;
+}
+.f7 {
+  font-size: 0.75rem;
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .f1-#{$infix} {
+      font-size: 3rem;
+    }
+    .f2-#{$infix} {
+      font-size: 2.25rem;
+    }
+    .f3-#{$infix} {
+      font-size: 1.5rem;
+    }
+    .f4-#{$infix} {
+      font-size: 1.25rem;
+    }
+    .f5-#{$infix} {
+      font-size: 1rem;
+    }
+    .f6-#{$infix} {
+      font-size: 0.875rem;
+    }
+    .f7-#{$infix} {
+      font-size: 0.75rem;
+    }
+  }
+}

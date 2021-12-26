@@ -1,0 +1,41 @@
+[class^='col'],
+[class*=' col'] {
+  flex-grow: 1;
+  // flex-shrink: 0;
+  flex-basis: auto;
+  max-width: 100%;
+}
+
+@for $i from 1 through $columns {
+  .col-#{$i} {
+    flex: 0 0 percentage($i / $columns);
+    max-width: percentage($i / $columns);
+  }
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    @for $i from 1 through $columns {
+      .col-#{$i}-#{$infix} {
+        flex: 0 0 percentage($i / $columns);
+        max-width: percentage($i / $columns);
+      }
+    }
+  }
+}
+
+// @for $i from 1 through $columns {
+//   .push-#{$i} { left: percentage($i / $columns); }
+//   .pull-#{$i} { right: percentage($i / $columns); }
+// }
+//
+// @each $modifier, $breakpoint in $grid-breakpoints {
+//   $infix: breakpoint-infix($modifier, $grid-breakpoints);
+//   @include breakpoint-up($modifier, $grid-breakpoints) {
+//     @for $i from 1 through $columns {
+//       .push-#{$i}-#{$infix} { left: percentage($i / $columns); }
+//       .pull-#{$i}-#{$infix} { right: percentage($i / $columns); }
+//     }
+//   }
+// }

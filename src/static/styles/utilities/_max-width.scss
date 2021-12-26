@@ -1,0 +1,28 @@
+@each $i, $value in $max-widths {
+  .mw#{$i} {
+    max-width: $value;
+  }
+}
+
+@for $i from 1 through 10 {
+  .mw-#{$i}0 {
+    max-width: #{$i} + 0%;
+  }
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    @each $i, $value in $max-widths {
+      .mw#{$i}-#{$infix} {
+        max-width: $value;
+      }
+    }
+
+    @for $i from 1 through 10 {
+      .mw-#{$i}0-#{$infix} {
+        max-width: #{$i}+ 0%;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  cursor: default !important;
+}
+
+// Loading state
+
+.btn__loader {
+  top: 50%;
+  left: 50%;
+  width: 26px;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.is-loading .btn__label {
+  opacity: 0;
+}
+
+.is-loading .btn__loader {
+  opacity: 1;
+}
+
+.btn-video-play {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// @include breakpoint-up(sm) {
+//   .btn {
+//
+//   }
+// }

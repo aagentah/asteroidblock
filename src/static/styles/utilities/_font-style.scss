@@ -1,0 +1,18 @@
+.fs-normal {
+  font-style: normal;
+}
+.fs-italic {
+  font-style: italic;
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .fs-normal-#{$infix} {
+      font-style: normal;
+    }
+    .fs-italic-#{$infix} {
+      font-style: italic;
+    }
+  }
+}

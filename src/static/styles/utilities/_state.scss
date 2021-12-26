@@ -1,0 +1,13 @@
+.is-hidden {
+  display: none;
+}
+
+.is-invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+[data-src] {
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}

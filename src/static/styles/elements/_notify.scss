@@ -1,0 +1,11 @@
+.notify {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0s ease-in 0.2s, transform 0.2s ease-in;
+}
+
+.notify.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0s ease-in, transform 0.2s ease-in;
+}

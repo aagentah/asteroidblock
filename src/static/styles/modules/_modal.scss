@@ -1,0 +1,36 @@
+.modal-canvas {
+  background-color: rgba(palette(black), 0);
+  overflow-y: scroll;
+  transform: translateY(-100%);
+  transition: background-color 0.3s ease-in-out, transform 0s ease-in-out 0.3s;
+}
+
+.modal-canvas.is-active {
+  background-color: rgba(palette(black), 0.5);
+  transform: translateY(0);
+  transition: background-color 0.3s ease-in-out, transform 0s ease-in-out;
+}
+
+.modal {
+  max-width: 48rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.modal-canvas.is-active .modal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in-out 0.2s, transform 0.3s ease-in-out 0.1s;
+}
+
+.modal__close {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.modal__close:hover {
+  opacity: 0.75;
+}

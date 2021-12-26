@@ -1,0 +1,50 @@
+{% extends './_layouts/master.html' %}
+
+{% set bodyClass = 'page-home' %}
+
+{% block content %}
+
+  <section>
+    <div class="flex  flex-wrap">
+      <div class="col-4  ba  bc-grey">
+        <div id="notes"></div>
+      </div>
+      <div class="col-16">
+        <div id="sequencer"></div>
+      </div>
+      <div class="col-4">
+        <div class="flex  flex-wrap">
+          <div class="col-24">
+            <div id="tempo"></div>
+          </div>
+        </div>
+
+        <div id="controls" class="flex  flex-wrap">
+          <div class="col-6">
+            <button id="open" class="">
+              Open
+            </button>
+          </div>
+          <div class="col-6">
+            <button id="start" class="">
+              Start
+            </button>
+          </div>
+          <div class="col-6">
+            <button id="stop" class="">
+              Stop
+            </button>
+          </div>
+          <div class="col-6">
+            <button id="reset" class="">
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+{% endblock %}

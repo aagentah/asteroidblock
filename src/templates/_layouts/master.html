@@ -1,0 +1,45 @@
+{% set settings = settings | default({}) | merge({
+  siteName: 'Front',
+  siteDesc: 'Frontend build system for internal use.',
+  version: '1.5.1',
+  helper: true
+}) %}
+
+<!doctype html>
+
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{{settings.siteDesc}}">
+    <title>{% if title is defined %}{{title}} &mdash; {{settings.siteName}}{% else %}{{settings.siteName}}{% endif %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-title" content="{{settings.siteName}}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    {% include '../_partials/favicon.html' %}
+
+    <link rel="stylesheet" href="/static/styles/main.css">
+  </head>
+
+  <body{% if bodyClass is defined %} class="{{bodyClass}}"{% endif %}>
+    <div class="app  relative  flex  flex-column  mvh-100">
+
+      <main role="main">
+        {% block content %}
+          <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+          <p>See Twig&rsquo;s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance" target="_blank" rel="noopener">Template Inheritance</a> documentation for an explanation.</p>
+        {% endblock %}
+      </main>
+
+      {% if settings.helper == true %}
+        {% include '../_partials/helper.html' with { grid: true, cols: '24', width: '1' } %}
+      {% endif %}
+    </div>
+
+    <script src="/static/scripts/vendor.js"></script>
+    <script async src="/static/scripts/bundle.js"></script>
+  </body>
+</html>

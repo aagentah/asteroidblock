@@ -1,0 +1,34 @@
+<section
+  class="modal-canvas  fixed  top  left  z9  flex  align-center  justify-center  w-100  h-100"
+  data-modal="1"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal__background  absolute  top  left  w-100  h-100"></div>
+  <div class="modal  relative  w-100  pa1  bg-white">
+    <header class="modal__header  relative  pa3">
+      <h1 class="modal__title  f5  fw7  lh-title  black  mb0">
+        Modal
+      </h1>
+
+      <div class="modal__close  absolute">
+        <button
+          class="btn  pa2  bg-transparent  bn  cp"
+          type="button"
+          data-modal-target="1"
+          disabled
+        >
+          {% include './ui.html' with { src: 'close' } %}
+        </button>
+      </div>
+    </header>
+
+    <div class="aspect-ratio  aspect-ratio--16x9">
+      <div class="aspect-ratio__object  flex  align-center  justify-center  bg-almost-white">
+        <span class="f-headline  fw7">
+          1
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

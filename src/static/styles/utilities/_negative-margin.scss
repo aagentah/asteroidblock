@@ -1,0 +1,32 @@
+@each $i, $value in $spacings {
+  .nl#{$i} {
+    margin-left: -$value;
+  }
+  .nr#{$i} {
+    margin-right: -$value;
+  }
+
+  .nh#{$i} {
+    margin-left: -$value;
+    margin-right: -$value;
+  }
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    @each $i, $value in $spacings {
+      .nl#{$i}-#{$infix} {
+        margin-left: -$value;
+      }
+      .nr#{$i}-#{$infix} {
+        margin-right: -$value;
+      }
+
+      .nh#{$i}-#{$infix} {
+        margin-left: -$value;
+        margin-right: -$value;
+      }
+    }
+  }
+}

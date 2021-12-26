@@ -1,0 +1,32 @@
+.tal {
+  text-align: left;
+}
+.tar {
+  text-align: right;
+}
+.tac {
+  text-align: center;
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .tal-#{$infix} {
+      text-align: left;
+    }
+    .tar-#{$infix} {
+      text-align: right;
+    }
+    .tac-#{$infix} {
+      text-align: center;
+    }
+  }
+}
+
+.srt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}

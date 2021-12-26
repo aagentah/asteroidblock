@@ -1,0 +1,26 @@
+<figure class="lazy-load">
+  <img
+    {% if class %}
+      class="{{class}}"
+    {% endif %}
+    {% if width and height %}
+      src="data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{width}} {{height}}'></svg>"
+    {% endif %}
+    {% if src %}
+      data-src="{{src}}"
+    {% endif %}
+    alt="{{alt}}"
+  />
+
+  <noscript>
+    <img
+      {% if class %}
+        class="{{class}}"
+      {% endif %}
+      {% if src %}
+        src="{{src}}"
+      {% endif %}
+      alt="{{alt}}"
+    />
+  </noscript>
+</figure>

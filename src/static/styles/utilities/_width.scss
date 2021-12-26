@@ -1,0 +1,32 @@
+.w1 {
+  width: 1rem;
+}
+.w2 {
+  width: 2rem;
+}
+.w3 {
+  width: 4rem;
+}
+.w4 {
+  width: 8rem;
+}
+.w5 {
+  width: 16rem;
+}
+
+@for $i from 1 through 10 {
+  .w-#{$i}0 {
+    width: #{$i}+ 0%;
+  }
+}
+
+// @each $modifier, $breakpoint in $grid-breakpoints {
+//   $infix: breakpoint-infix($modifier, $grid-breakpoints);
+//   @include breakpoint-up($modifier, $grid-breakpoints) {
+//     @for $i from 1 through 10 {
+//       .w-#{$i}0-#{$infix} {
+//         width: #{$i};
+//       }
+//     }
+//   }
+// }

@@ -1,0 +1,76 @@
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.static {
+  position: static;
+}
+
+.sticky {
+  position: sticky;
+}
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .relative-#{$infix} {
+      position: relative;
+    }
+
+    .absolute-#{$infix} {
+      position: absolute;
+    }
+
+    .fixed-#{$infix} {
+      position: fixed;
+    }
+
+    .static-#{$infix} {
+      position: static;
+    }
+
+    .sticky-#{$infix} {
+      position: sticky;
+    }
+  }
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-x {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center-y {
+  left: 50%;
+  transform: translateX(-50%);
+}

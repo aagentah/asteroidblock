@@ -1,0 +1,43 @@
+.dn {
+  display: none;
+}
+.db {
+  display: block;
+}
+.di {
+  display: inline;
+}
+.dib {
+  display: inline-block;
+}
+.dif {
+  display: inline-flex;
+}
+// .dit { display: inline-table; }
+// .dt { display: table; }
+// .dtc { display: table-cell; }
+// .dt-row { display: table-row; }
+// .dt-row-g { display: table-row-group; }
+// .dt-col { display: table-column; }
+// .dt-col-g { display: table-column-group; }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .dn-#{$infix} {
+      display: none;
+    }
+    .db-#{$infix} {
+      display: block;
+    }
+    .di-#{$infix} {
+      display: inline;
+    }
+    .dib-#{$infix} {
+      display: inline-block;
+    }
+    .dif-#{$infix} {
+      display: inline-flex;
+    }
+  }
+}
