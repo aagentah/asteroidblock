@@ -4,7 +4,7 @@ import Nexus from 'nexusui';
 import * as Tone from 'tone';
 import _ from 'lodash';
 
-import Sequencer from './Sequencer';
+import Controls from './Controls';
 
 const Audio = {
   chorus: {
@@ -17,7 +17,8 @@ const Audio = {
   },
 
   play(notes) {
-    const chorus = new Tone.Chorus(4, 2.5, 0.5).start();
+    const chorus = new Tone.Chorus(4, 2.5, 0.5);
+    chorus.start();
     const reverb = new Tone.JCReverb(0.8);
     // const filter = new Tone.AutoFilter(8).start();
 
@@ -25,7 +26,7 @@ const Audio = {
     synth.chain(chorus, reverb, Tone.Destination);
 
     // const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-    synth.triggerAttackRelease(notes, Sequencer.noteLength / 1000);
+    synth.triggerAttackRelease(notes, Controls.noteLength / 1000);
   }
 };
 
