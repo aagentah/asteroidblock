@@ -13,7 +13,9 @@ const Sequencer = {
   resetEl: document.querySelector('#reset'),
   notesEl: document.querySelector('#notes'),
   controlsEl: document.querySelector('#controls'),
+  sequencerWrapperEl: document.querySelector('.sequencer__wrapper'),
   notes: ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'],
+  hasOpened: false,
   isRunning: false,
   sequencer: null,
   columns: 8,
@@ -35,50 +37,50 @@ const Sequencer = {
     }
   },
 
+  playSequencer: async () => {
+    if (Sequencer.isRunning) {
+      return;
+    }
+
+    await Tone.start();
+    Nexus.context.resume();
+    Sequencer.isRunning = true;
+    Sequencer.sequencer.start(Sequencer.noteLength);
+  },
+
+  stopSequencer() {
+    if (!Sequencer.isRunning) {
+      return;
+    }
+
+    Sequencer.isRunning = false;
+    Sequencer.sequencer.stop();
+
+    for (let i = 0; i < 10; i++) {
+      if (Sequencer.sequencer.stepper.value !== 0) {
+        Sequencer.sequencer.next();
+      }
+    }
+  },
+
+  resetSequencer() {
+    const emptySequence = [];
+    let emptyRow = [];
+
+    for (let i = 0; i < Sequencer.rows; i++) {
+      emptyRow = [];
+
+      for (let ii = 0; ii < Sequencer.columns; ii++) {
+        emptyRow.push(0);
+      }
+
+      emptySequence.push(emptyRow);
+    }
+
+    Sequencer.sequencer.matrix.set.all(emptySequence);
+  },
+
   renderControls() {
-    const playSequencer = async () => {
-      if (Sequencer.isRunning) {
-        return;
-      }
-
-      await Tone.start();
-      Nexus.context.resume();
-      Sequencer.isRunning = true;
-      Sequencer.sequencer.start(Sequencer.noteLength);
-    };
-
-    const stopSequencer = async () => {
-      if (!Sequencer.isRunning) {
-        return;
-      }
-
-      Sequencer.isRunning = false;
-      Sequencer.sequencer.stop();
-
-      for (let i = 0; i < 10; i++) {
-        if (Sequencer.sequencer.stepper.value !== 0) {
-          Sequencer.sequencer.next();
-        }
-      }
-    };
-
-    const resetSequencer = async () => {
-      const emptySequence = [];
-      let emptyRow = [];
-
-      for (let i = 0; i < Sequencer.rows; i++) {
-        emptyRow = [];
-
-        for (let ii = 0; ii < Sequencer.columns; ii++) {
-          emptyRow.push(0);
-        }
-
-        emptySequence.push(emptyRow);
-      }
-
-      Sequencer.sequencer.matrix.set.all(emptySequence);
-    };
-
     const number = new Nexus.Number('#tempo', {
       size: [60, 30],
       value: Sequencer.tempo,
@@ -87,10 +89,25 @@ const Sequencer = {
       step: 1
     });
 
-    number.on('change', v => Sequencer.updateTempo(v));
-    Sequencer.startEl.addEventListener('click', () => playSequencer(), false);
-    Sequencer.stopEl.addEventListener('click', () => stopSequencer(), false);
-    Sequencer.resetEl.addEventListener('click', () => resetSequencer(), false);
+    number.on('change', v => {
+      Sequencer.updateTempo(v);
+    });
+
+    Sequencer.startEl.addEventListener(
+      'click',
+      () => Sequencer.playSequencer(),
+      false
+    );
+    Sequencer.stopEl.addEventListener(
+      'click',
+      () => Sequencer.stopSequencer(),
+      false
+    );
+    Sequencer.resetEl.addEventListener(
+      'click',
+      () => Sequencer.resetSequencer(),
+      false
+    );
   },
 
   renderNotes() {
@@ -105,7 +122,7 @@ const Sequencer = {
 
   renderSequence() {
     Sequencer.sequencer = new Nexus.Sequencer('#sequencer', {
-      size: [500, 400],
+      size: [Sequencer.sequencerWrapperEl.offsetWidth, 400],
       mode: 'toggle',
       rows: Sequencer.rows,
       columns: Sequencer.columns,
@@ -133,9 +150,15 @@ const Sequencer = {
     Sequencer.openEl.addEventListener(
       'click',
       () => {
+        if (Sequencer.hasOpened) {
+          return;
+        }
+
         Sequencer.renderNotes();
         Sequencer.renderSequence();
         Sequencer.renderControls();
+
+        Sequencer.hasOpened = true;
       },
       false
     );
