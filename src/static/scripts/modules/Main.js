@@ -2,6 +2,7 @@
 
 import Sequencer from './Sequencer';
 import Controls from './Controls';
+import Effects from './Effects';
 
 const Main = {
   openEl: document.querySelector('#open'),
@@ -12,6 +13,8 @@ const Main = {
   },
 
   render() {
+    Effects.render();
+
     Main.openEl.addEventListener(
       'click',
       () => {

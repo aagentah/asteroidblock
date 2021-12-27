@@ -25,7 +25,7 @@
     "js-cookie": "^2.2.0",
     "lodash": "4.17.10",
     "nexusui": "2.1.6",
-    "tone": "14.7.77",
+    "tone": "14.8.35",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

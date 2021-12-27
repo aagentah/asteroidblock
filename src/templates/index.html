@@ -6,25 +6,53 @@
 
   <section>
     <div class="flex  flex-wrap">
+      <!-- Notes -->
       <div class="col-4  ba  bc-grey">
         <div id="notes"></div>
       </div>
+      <!-- Sequencer -->
       <div class="col-16  sequencer__wrapper">
         <div id="sequencer"></div>
       </div>
+      <!-- Effects -->
       <div class="col-4">
         <div class="flex  flex-wrap">
-          <div class="col-24">
-            <div id="tempo"></div>
-          </div>
+          Chorus:
         </div>
-
         <div class="flex  flex-wrap">
-          controls
+          <div id="effect-chorus">
+            <div class="col-24  flex  flex-wrap  pa2">
+              <div class="col-8">
+                <div class="db">
+                  <div nexus-ui="dial" id="frequency"></div>
+                </div>
+                <div class="tac  f7  db  pt2">
+                  Freq
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="db">
+                  <div nexus-ui="dial" id="delayTime"></div>
+                </div>
+                <div class="tac  f7  db  pt2">
+                  Delay
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="db">
+                  <div nexus-ui="dial" id="depth"></div>
+                </div>
+                <div class="tac  f7  db  pt2">
+                  Dry/Wet
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Controls -->
     <div class="flex  flex-wrap">
       <div class="col-4">
         <div id="tempo"></div>
@@ -52,6 +80,8 @@
       </div>
     </div>
   </section>
+
+
 
 
 
