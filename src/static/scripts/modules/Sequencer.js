@@ -48,8 +48,6 @@ const Sequencer = {
         if (arr[i] === 1) activeInStep.push(Sequencer.notes[i]);
       }
 
-      console.log('activeInStep', activeInStep);
-
       if (activeInStep.length) Audio.play(activeInStep);
     });
   }

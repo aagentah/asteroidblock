@@ -7,22 +7,28 @@ import Controls from './Controls';
 import Audio from './Audio';
 
 const Effects = {
-  data: {
-    chorus: {
-      frequency: {
-        value: 2,
-        range: [1, 3]
-      },
-      delayTime: {
-        value: 8,
-        range: [2, 10]
-      },
-      depth: {
-        value: 0,
-        range: [0, 0.5]
-      }
+  data: [
+    {
+      name: 'Chorus',
+      paramaters: [
+        {
+          name: 'frequency',
+          value: 2,
+          range: [1, 3]
+        },
+        {
+          name: 'delayTime',
+          value: 8,
+          range: [2, 10]
+        },
+        {
+          name: 'depth',
+          value: 0,
+          range: [0, 0.5]
+        }
+      ]
     }
-  },
+  ],
 
   percentageInRangeGivenValue(value, range) {
     // Calculates a given values' percentage within a relative range
@@ -50,41 +56,37 @@ const Effects = {
     );
   },
 
-  updateEffectVal(effectName, paramaterName, value) {
+  updateEffectVal(effectIt, paramIt, value) {
     const percentage = value * 100;
-    const effect = Effects.data[effectName][paramaterName];
-
+    const effect = Effects.data[effectIt].paramaters[paramIt];
     const val = Effects.valueInRangeFromPercentage(percentage, effect.range);
-    Effects.data[effectName][paramaterName].value = val;
+
+    Effects.data[effectIt].paramaters[paramIt].value = val;
   },
 
   init() {
     this.render();
   },
 
-  chorus() {
-    const chorus = new Nexus.Rack('#effect-chorus');
-
-    // Set default values
-    chorus.frequency.value = Effects.calcDial(Effects.data.chorus.frequency);
-    chorus.delayTime.value = Effects.calcDial(Effects.data.chorus.delayTime);
-    chorus.depth.value = Effects.calcDial(Effects.data.chorus.depth);
-
-    chorus.frequency.on('change', v => {
-      Effects.updateEffectVal('chorus', 'frequency', v);
-    });
-
-    chorus.delayTime.on('change', v => {
-      Effects.updateEffectVal('chorus', 'delayTime', v);
-    });
-
-    chorus.depth.on('change', v => {
-      Effects.updateEffectVal('chorus', 'depth', v);
-    });
-  },
-
   render() {
-    Effects.chorus();
+    let nex, effect, params;
+
+    for (let i = 0; i < Effects.data.length; i++) {
+      effect = Effects.data[i];
+      nex = new Nexus.Rack(`#effect-${effect.name}`);
+
+      for (let ii = 0; ii < effect.paramaters.length; ii++) {
+        params = effect.paramaters[ii];
+
+        // Set default values
+        nex[params.name].value = Effects.calcDial(params);
+
+        // Set event listener to update object store
+        nex[`${params.name}`].on('change', v => {
+          Effects.updateEffectVal(i, ii, v);
+        });
+      }
+    }
   }
 };
 
