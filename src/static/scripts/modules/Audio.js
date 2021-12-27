@@ -10,21 +10,20 @@ import Effects from './Effects';
 const Audio = {
   play: async notes => {
     let effects = [];
-    let effectParams = [];
+    let effectParams = {};
     let effect, toneEffect, param;
 
     // Creates all Tone Effects based on Effects.js data object
     for (let i = 0; i < Effects.data.length; i++) {
-      effects = [];
       effectParams = [];
       effect = Effects.data[i];
 
       for (let ii = 0; ii < effect.paramaters.length; ii++) {
         param = effect.paramaters[ii];
-        effectParams.push(param.value);
+        effectParams[param.name] = param.value;
       }
 
-      toneEffect = new Tone[effect.name](...effectParams);
+      toneEffect = new Tone[effect.name]({ ...effectParams });
 
       if (i === 0) toneEffect.start();
       effects.push(toneEffect);
@@ -35,7 +34,7 @@ const Audio = {
     synth.chain(...effects, Tone.Destination);
     await Tone.start();
     Nexus.context.resume();
-    synth.triggerAttackRelease(notes, Controls.noteLength / 1000);
+    synth.triggerAttackRelease(notes, Controls.noteLength / 10000);
 
     // Clean up
     setTimeout(() => {
@@ -46,7 +45,7 @@ const Audio = {
 
       synth.disconnect();
       synth.dispose();
-    }, 5000);
+    }, 3000);
   }
 };
 

@@ -23,8 +23,64 @@ const Effects = {
         },
         {
           name: 'depth',
+          value: 0.25,
+          range: [0, 0.5]
+        },
+        {
+          name: 'wet',
+          value: 0,
+          range: [0, 1]
+        }
+      ]
+    },
+    {
+      name: 'Reverb',
+      paramaters: [
+        {
+          name: 'decay',
+          value: 50,
+          range: [20, 200]
+        },
+        {
+          name: 'wet',
           value: 0,
           range: [0, 0.5]
+        }
+      ]
+    },
+    {
+      name: 'BitCrusher',
+      paramaters: [
+        {
+          name: 'bits',
+          value: 8,
+          range: [1, 8]
+        },
+
+        {
+          name: 'wet',
+          value: 0,
+          range: [0, 1]
+        }
+      ]
+    },
+    {
+      name: 'PingPongDelay',
+      paramaters: [
+        {
+          name: 'delayTime',
+          value: 500,
+          range: [20, 1000]
+        },
+        {
+          name: 'feedback',
+          value: 0.5,
+          range: [0, 1]
+        },
+        {
+          name: 'wet',
+          value: 0,
+          range: [0, 1]
         }
       ]
     }
