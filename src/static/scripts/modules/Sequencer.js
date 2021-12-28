@@ -1,7 +1,6 @@
 /* eslint-disable new-cap, no-unused-vars */
 
 import Nexus from 'nexusui';
-import * as Tone from 'tone';
 import _ from 'lodash';
 
 import Audio from './Audio';

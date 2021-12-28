@@ -11,7 +11,7 @@ const Audio = {
   play: async notes => {
     let effects = [];
     let effectParams = {};
-    let effect, toneEffect, param;
+    let effect, param;
 
     // Creates all Tone Effects based on Effects.js data object
     for (let i = 0; i < Effects.data.length; i++) {
@@ -23,17 +23,18 @@ const Audio = {
         effectParams[param.name] = param.value;
       }
 
-      toneEffect = new Tone[effect.name]({ ...effectParams });
-
-      if (i === 0) toneEffect.start();
-      effects.push(toneEffect);
+      if (i === 0) {
+        effects.push(new Tone[effect.name]({ ...effectParams }).start());
+      } else {
+        effects.push(new Tone[effect.name]({ ...effectParams }));
+      }
     }
 
     // Play tone
     const synth = new Tone.PolySynth(Tone.Synth);
     synth.chain(...effects, Tone.Destination);
-    await Tone.start();
-    Nexus.context.resume();
+    // await Tone.start();
+    // Nexus.context.resume();
     synth.triggerAttackRelease(notes, Controls.noteLength / 10000);
 
     // Clean up
