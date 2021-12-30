@@ -70,3 +70,8 @@
 //   height: 80vh;
 //   width: 100vw;
 // }
+
+.sequencer__notes__wrapper {
+  overflow-y: scroll;
+  max-height: 100vh;
+}

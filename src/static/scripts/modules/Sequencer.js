@@ -9,17 +9,24 @@ import Controls from './Controls';
 const Sequencer = {
   notesEl: document.querySelector('#notes'),
   sequencerWrapperEl: document.querySelector('.sequencer__wrapper'),
-  notes: ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'],
+  notes: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
+  octaves: 7,
   isRunning: false,
   sequencer: null,
   columns: 8,
-  rows: 8,
 
   renderNotes() {
+    let octave;
     let notesItems = '';
 
-    for (let i = 0; i < Sequencer.notes.length; i++) {
-      notesItems += `<div style='height: 50px;'>${Sequencer.notes[i]}</div>`;
+    for (let i = 0; i < Sequencer.octaves; i++) {
+      octave = i;
+
+      for (let ii = 0; ii < Sequencer.notes.length; ii++) {
+        notesItems += `<div style='height: 50px;'>${
+          Sequencer.notes[ii]
+        }${octave + 1}</div>`;
+      }
     }
 
     Sequencer.notesEl.insertAdjacentHTML('beforeend', notesItems);
@@ -27,9 +34,9 @@ const Sequencer = {
 
   renderSequence() {
     Sequencer.sequencer = new Nexus.Sequencer('#sequencer', {
-      size: [Sequencer.sequencerWrapperEl.offsetWidth, 400],
+      size: [Sequencer.sequencerWrapperEl.offsetWidth, 4200],
       mode: 'toggle',
-      rows: Sequencer.rows,
+      rows: Sequencer.notes.length * Sequencer.octaves,
       columns: Sequencer.columns,
       paddingRow: 0,
       paddingColumn: 0
@@ -42,9 +49,18 @@ const Sequencer = {
 
       const arr = _.reverse(v);
       const activeInStep = [];
+      let octave;
+      let key;
+      let multitude;
 
       for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === 1) activeInStep.push(Sequencer.notes[i]);
+        if (arr[i] === 1) {
+          octave = Math.floor(i / 12);
+          multitude = octave * 12;
+          key = i - multitude;
+
+          activeInStep.push(`${Sequencer.notes[key]}${octave + 1}`);
+        }
       }
 
       if (activeInStep.length) Audio.play(activeInStep);
