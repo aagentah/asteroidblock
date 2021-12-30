@@ -22,10 +22,7 @@ const Controls = {
 
     Controls.tempo = tempo;
     Controls.noteLength = fullNote;
-
-    if (Sequencer.isRunning) {
-      Sequencer.sequencer.start(Controls.noteLength);
-    }
+    if (Sequencer.isRunning) Sequencer.interval.ms(Controls.noteLength);
   },
 
   playControls: async () => {
@@ -36,7 +33,7 @@ const Controls = {
     await Tone.start();
     Nexus.context.resume();
     Sequencer.isRunning = true;
-    Sequencer.sequencer.start(Controls.noteLength);
+    Sequencer.interval.start();
   },
 
   stopControls() {
@@ -45,12 +42,10 @@ const Controls = {
     }
 
     Sequencer.isRunning = false;
-    Sequencer.sequencer.stop();
+    Sequencer.interval.stop();
 
     for (let i = 0; i < 10; i++) {
-      if (Sequencer.sequencer.stepper.value !== 0) {
-        Sequencer.sequencer.next();
-      }
+      if (Sequencer.sequencer.stepper.value !== 0) Sequencer.sequencer.next();
     }
   },
 

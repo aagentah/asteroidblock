@@ -9,12 +9,12 @@ import Controls from './Controls';
 const Sequencer = {
   notesEl: document.querySelector('#notes'),
   sequencerWrapperEl: document.querySelector('.sequencer__wrapper'),
-  // notes: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
   notes: ['B', 'A#', 'A', 'G#', 'G', 'F#', 'F', 'E', 'D#', 'D', 'C#', 'C'],
   octaves: 7,
   isRunning: false,
   sequencer: null,
   columns: 8,
+  interval: null,
 
   renderNotes() {
     let octave;
@@ -34,16 +34,19 @@ const Sequencer = {
   },
 
   renderSequence() {
+    const notesInt = Sequencer.notes.length * Sequencer.octaves;
+
     Sequencer.sequencer = new Nexus.Sequencer('#sequencer', {
-      size: [
-        Sequencer.sequencerWrapperEl.offsetWidth,
-        Sequencer.notes.length * Sequencer.octaves * 48
-      ],
+      size: [Sequencer.sequencerWrapperEl.offsetWidth, notesInt * 48],
       mode: 'toggle',
-      rows: Sequencer.notes.length * Sequencer.octaves,
+      rows: notesInt,
       columns: Sequencer.columns,
       paddingRow: 0,
       paddingColumn: 0
+    });
+
+    Sequencer.interval = new Nexus.Interval(Controls.noteLength, () => {
+      Sequencer.sequencer.next();
     });
 
     Sequencer.sequencer.on('step', v => {
