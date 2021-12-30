@@ -134,13 +134,15 @@ const Effects = {
       for (let ii = 0; ii < effect.paramaters.length; ii++) {
         params = effect.paramaters[ii];
 
-        // Set default values
-        nex[params.name].value = Effects.calcDial(params);
+        if (nex[params.name]) {
+          // Set default values
+          nex[params.name].value = Effects.calcDial(params);
 
-        // Set event listener to update object store
-        nex[`${params.name}`].on('change', v => {
-          Effects.updateEffectVal(i, ii, v);
-        });
+          // Set event listener to update object store
+          nex[`${params.name}`].on('change', v => {
+            Effects.updateEffectVal(i, ii, v);
+          });
+        }
       }
     }
   }

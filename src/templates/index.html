@@ -6,9 +6,9 @@
 
   <section>
     <div class="flex  flex-wrap">
-      <div class="col-18  flex  flex-wrap  sequencer__notes__wrapper">
+      <div class="col-20  flex  flex-wrap  sequencer__notes__wrapper">
         <!-- Notes -->
-        <div class="col-2  ba  bc-grey">
+        <div class="col-2  notes__wrapper">
           <div id="notes"></div>
         </div>
         <!-- Sequencer -->
@@ -16,92 +16,82 @@
           <div id="sequencer"></div>
         </div>
       </div>
-      <!-- Effects -->
-      <div class="col-6">
-        <div class="flex  flex-wrap">
-          <div class="db">Chorus:</div>
 
-          <div id="effect-Chorus">
-            <div class="col-24  flex  flex-wrap  pa2">
-              <div class="col-6">
-                <div class="db">
+      <!-- Effects -->
+      <div class="col-4  effects__wrapper">
+        <div class="flex  flex-wrap  effect__wrapper">
+          <div class="col-24  effect__title">Chorus:</div>
+          <div class="db  w-100" id="effect-Chorus">
+            <div class="col-24  flex  flex-wrap">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="frequency"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Freq
                 </div>
               </div>
-              <div class="col-6">
-                <div class="db">
-                  <div nexus-ui="dial" id="delayTime"></div>
-                </div>
-                <div class="tac  f7  db  pt2">
-                  Delay
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="db">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="depth"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Depth
                 </div>
               </div>
-              <div class="col-6">
-                <div class="db">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="wet"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Wet
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flex  flex-wrap">
-          <div class="db">Reverb:</div>
 
-          <div id="effect-Reverb">
-            <div class="col-24  flex  flex-wrap  pa2">
-              <div class="col-8">
-                <div class="db">
+        <div class="flex  flex-wrap  effect__wrapper">
+          <div class="col-24  effect__title">Reverb:</div>
+          <div class="db  w-100" id="effect-Reverb">
+            <div class="col-24  flex  flex-wrap">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="decay"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Decay
                 </div>
               </div>
-
-              <div class="col-8">
-                <div class="db">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="wet"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Wet
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flex  flex-wrap">
-          <div class="db">BitCrusher:</div>
 
-          <div id="effect-BitCrusher">
-            <div class="col-24  flex  flex-wrap  pa2">
-              <div class="col-8">
-                <div class="db">
+        <div class="flex  flex-wrap  effect__wrapper">
+          <div class="col-24  effect__title">BitCrusher:</div>
+          <div class="db  w-100" id="effect-BitCrusher">
+            <div class="col-24  flex  flex-wrap">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="bits"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Bits
                 </div>
               </div>
-
-              <div class="col-8">
-                <div class="db">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="wet"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Wet
                 </div>
               </div>
@@ -109,47 +99,44 @@
           </div>
         </div>
 
-        <div class="flex  flex-wrap">
-          <div class="db">PingPongDelay:</div>
-
-          <div id="effect-PingPongDelay">
-            <div class="col-24  flex  flex-wrap  pa2">
-              <div class="col-8">
-                <div class="db">
+        <div class="flex  flex-wrap  effect__wrapper">
+          <div class="col-24  effect__title">PingPongDelay:</div>
+          <div class="db  w-100" id="effect-PingPongDelay">
+            <div class="col-24  flex  flex-wrap">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="delayTime"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Delay
                 </div>
               </div>
 
-              <div class="col-8">
-                <div class="db">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="feedback"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Feedback
                 </div>
               </div>
 
-              <div class="col-8">
-                <div class="db">
+              <div class="col-8  flex  flex-wrap  justify-center  relative">
+                <div class="col-24  flex  justify-center">
                   <div nexus-ui="dial" id="wet"></div>
                 </div>
-                <div class="tac  f7  db  pt2">
+                <div class="col-24  effect__label">
                   Wet
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
 
     <!-- Controls -->
-    <div class="flex  flex-wrap">
+    <div class="flex  flex-wrap  controls__wrapper">
       <div class="col-4">
         <div id="tempo"></div>
       </div>
@@ -176,9 +163,6 @@
       </div>
     </div>
   </section>
-
-
-
 
 
 {% endblock %}

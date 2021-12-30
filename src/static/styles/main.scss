@@ -83,3 +83,34 @@
   @extend .align-center;
   @extend .justify-center;
 }
+
+.effects__wrapper {
+  @extend .ph2;
+}
+
+.effect__wrapper {
+  @extend .pb4;
+  @extend .bb;
+  @extend .bc-black;
+}
+
+.effect__title {
+  @extend .f6;
+  @extend .pa1;
+  @extend .mv2;
+}
+
+.effect__label {
+  position: absolute;
+  margin: 0 auto;
+  bottom: -15px;
+  text-align: center;
+  color: black;
+  background: white;
+  pointer-events: none;
+
+  @extend .ba;
+  @extend .bc-black;
+  @extend .f7;
+  @extend .pa1;
+}
