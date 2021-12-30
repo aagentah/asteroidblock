@@ -89,12 +89,20 @@
 }
 
 .effect__wrapper {
+  @extend .relative;
+  @extend .mt3;
+  @extend .pt3;
   @extend .pb4;
-  @extend .bb;
+  @extend .bt;
   @extend .bc-black;
 }
 
 .effect__title {
+  position: absolute;
+  top: -22px;
+  left: 0px;
+  background: white;
+
   @extend .f6;
   @extend .pa1;
   @extend .mv2;
