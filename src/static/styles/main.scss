@@ -73,5 +73,13 @@
 
 .sequencer__notes__wrapper {
   overflow-y: scroll;
-  max-height: 100vh;
+  height: calc(48 * 12) + px;
+  max-height: calc(100vh - 100px);
+}
+
+.notes__item {
+  border-bottom: 2px solid black;
+  @extend .flex;
+  @extend .align-center;
+  @extend .justify-center;
 }

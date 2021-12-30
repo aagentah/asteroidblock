@@ -35,7 +35,7 @@ const Audio = {
     synth.chain(...effects, Tone.Destination);
     // await Tone.start();
     // Nexus.context.resume();
-    synth.triggerAttackRelease(notes, Controls.noteLength / 10000);
+    synth.triggerAttackRelease(notes, Controls.noteLength / 1000);
 
     // Clean up
     setTimeout(() => {
