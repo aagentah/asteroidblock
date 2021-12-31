@@ -54,6 +54,9 @@ const Sequencer = {
       paddingColumn: 0
     });
 
+    Sequencer.sequencer.colorize('accent', '#505483');
+    Sequencer.sequencer.colorize('fill', '#6f7396');
+
     const handleStep = matrix => {
       if (!Sequencer.isRunning) {
         return;
@@ -78,6 +81,7 @@ const Sequencer = {
     };
 
     Sequencer.interval = new Nexus.Interval(Controls.noteLength, () => {
+      console.log('Controls.noteLength', Controls.noteLength);
       const matrix = [];
 
       for (let i = 0; i < Sequencer.sequencer.matrix.pattern.length; i++) {

@@ -130,6 +130,8 @@ const Effects = {
     for (let i = 0; i < Effects.data.length; i++) {
       effect = Effects.data[i];
       nex = new Nexus.Rack(`#effect-${effect.name}`);
+      nex.colorize('accent', '#505483');
+      nex.colorize('fill', '#fafafa');
 
       for (let ii = 0; ii < effect.paramaters.length; ii++) {
         params = effect.paramaters[ii];

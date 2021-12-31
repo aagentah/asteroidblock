@@ -11,7 +11,7 @@ import Signal from './Signal';
 const Audio = {
   lookAhead: 0.5,
   instruments: {},
-  effetcs: {},
+  effect: {},
 
   setContext() {
     const context = new Tone.Context({
@@ -48,11 +48,11 @@ const Audio = {
       }
 
       if (i === 0) {
-        Audio.effetcs[effect.name] = new Tone[effect.name]({
+        Audio.effect[effect.name] = new Tone[effect.name]({
           ...effectParams
         }).start();
       } else {
-        Audio.effetcs[effect.name] = new Tone[effect.name]({
+        Audio.effect[effect.name] = new Tone[effect.name]({
           ...effectParams
         });
       }
@@ -73,7 +73,7 @@ const Audio = {
         effectParams[param.name] = param.value;
       }
 
-      Audio.effetcs[effect.name].set({ ...effectParams });
+      Audio.effect[effect.name].set({ ...effectParams });
     }
 
     // Play tone
@@ -88,7 +88,7 @@ const Audio = {
     const envelope = { attack: attackSecs, release: releaseSecs };
     const attackRelease = attackSecs + holdSecs + releaseSecs;
 
-    synth.chain(..._.values(Audio.effetcs), Tone.getContext().destination);
+    synth.chain(..._.values(Audio.effect), Tone.getContext().destination);
     synth.set({ envelope });
     synth.triggerAttackRelease(notes, attackRelease);
 

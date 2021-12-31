@@ -32,30 +32,21 @@ const Signal = {
 
   renderEnvelope() {
     const attackDial = new Nexus.Dial('#envelopeAttack', {
-      size: [50, 50],
-      interaction: 'radial',
-      mode: 'relative',
       value: 0.25
     });
 
     const releaseDial = new Nexus.Dial('#envelopeRelease', {
-      size: [50, 50],
-      interaction: 'radial',
-      mode: 'relative',
       value: 0.75
     });
 
     const holdDial = new Nexus.Dial('#envelopeHold', {
-      size: [50, 50],
-      interaction: 'radial',
-      mode: 'relative',
       min: 0.3,
       max: 4,
       value: 1
     });
 
     const envelope = new Nexus.Envelope('#envelope', {
-      size: [Signal.envelopeWrapper.offsetWidth, 170],
+      size: [Signal.envelopeWrapper.offsetWidth, 125],
       noNewPoints: false,
       points: [
         { x: 0.0, y: 0 },
@@ -64,6 +55,18 @@ const Signal = {
         { x: 1, y: 0 }
       ]
     });
+
+    attackDial.colorize('accent', '#505483');
+    attackDial.colorize('fill', '#fafafa');
+
+    releaseDial.colorize('accent', '#505483');
+    releaseDial.colorize('fill', '#fafafa');
+
+    holdDial.colorize('accent', '#505483');
+    holdDial.colorize('fill', '#fafafa');
+
+    envelope.colorize('accent', '#505483');
+    envelope.colorize('fill', '#fafafa');
 
     const setEnvelopeVals = e => {
       const attack = e[1].x;

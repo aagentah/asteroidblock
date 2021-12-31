@@ -22,7 +22,7 @@ const Controls = {
 
     Controls.tempo = tempo;
     Controls.noteLength = fullNote;
-    if (Sequencer.isRunning) Sequencer.interval.ms(Controls.noteLength);
+    Sequencer.interval.ms(Controls.noteLength);
   },
 
   playControls: async () => {
@@ -71,9 +71,12 @@ const Controls = {
       size: [60, 30],
       value: Controls.tempo,
       min: 30,
-      max: 200,
+      max: 1000,
       step: 1
     });
+
+    number.colorize('accent', '#505483');
+    number.colorize('fill', '#d8dada');
 
     number.on('change', v => {
       Controls.updateTempo(v);

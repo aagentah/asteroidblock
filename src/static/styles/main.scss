@@ -71,6 +71,45 @@
 //   width: 100vw;
 // }
 
+$purple-light: #6f7396;
+$purple-medium: #5b628d;
+$purple-dark: #505483;
+
+$almost-white: #fafafa;
+$grey-light: #d8dada;
+$grey-medium: #828484;
+$grey-dark: #6a6b6b;
+
+// Layout
+
+main,
+html,
+body {
+  background-color: $grey-light;
+}
+
+.wrapper {
+  background-color: $grey-light;
+}
+
+.controls__wrapper {
+  border-right: 3px solid $purple-dark;
+  @extend .pv3;
+  @extend .ph3;
+}
+
+.effects__wrapper {
+  border-left: 3px solid $purple-dark;
+  @extend .ph3;
+}
+
+.signal__wrapper {
+  border-top: 3px solid $purple-dark;
+  @extend .pv3;
+}
+
+//
+
 .sequencer__notes__wrapper {
   overflow-y: scroll;
   height: calc(48 * 12) + px;
@@ -78,30 +117,25 @@
 }
 
 .notes__item {
-  border-bottom: 2px solid black;
+  color: $grey-dark;
+  border-bottom: 3px solid $purple-dark;
+  background-color: $almost-white;
   @extend .flex;
   @extend .align-center;
   @extend .justify-center;
 }
 
-.effects__wrapper {
-  @extend .ph2;
-}
-
 .effect__wrapper {
   @extend .relative;
-  @extend .mt3;
-  @extend .pt3;
-  @extend .pb4;
-  @extend .bt;
-  @extend .bc-black;
+  @extend .pt2;
+  @extend .pb2;
 }
 
 .effect__title {
   position: absolute;
   top: -22px;
   left: 0px;
-  background: white;
+  color: $grey-dark;
 
   @extend .f6;
   @extend .pa1;
@@ -113,8 +147,8 @@
   margin: 0 auto;
   bottom: -15px;
   text-align: center;
-  color: black;
-  background: white;
+  color: $purple-dark;
+  background: $grey-light;
   pointer-events: none;
 
   @extend .ba;
@@ -126,6 +160,7 @@
 .envelope__wrapper {
   position: relative;
   text-align: center;
+
   @extend .flex;
   @extend .justify-center;
 }
@@ -136,4 +171,22 @@
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+
+.control__button {
+  width: 100%;
+  height: 50px;
+  background: $almost-white;
+  color: $purple-dark;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+
+  @extend .mb2;
+  @extend .br2;
+  @extend .shadow2;
+}
+
+.envelope__param__label {
+  color: $purple-dark;
 }

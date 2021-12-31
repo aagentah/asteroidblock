@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  <section>
+  <section class="wrapper">
     <div class="flex  flex-wrap">
       <!-- Controls -->
       <div class="col-4  controls__wrapper">
@@ -13,22 +13,22 @@
         </div>
 
         <div class="col-24">
-          <button id="open" class="">
+          <button id="open" class="control__button">
             Open
           </button>
         </div>
         <div class="col-24">
-          <button id="start" class="">
+          <button id="start" class="control__button">
             Start
           </button>
         </div>
         <div class="col-24">
-          <button id="stop" class="">
+          <button id="stop" class="control__button">
             Stop
           </button>
         </div>
         <div class="col-24">
-          <button id="reset" class="">
+          <button id="reset" class="control__button">
             Reset
           </button>
         </div>
@@ -46,8 +46,8 @@
       </div>
 
       <!-- Effects -->
-      <div class="col-4  effects__wrapper">
-        <div class="flex  flex-wrap  effect__wrapper">
+      <div class="col-4  flex  flex-wrap  align-center  effects__wrapper">
+        <div class="col-24  flex  flex-wrap  effect__wrapper">
           <div class="col-24  effect__title">Chorus</div>
           <div class="db  w-100  pt2" id="effect-Chorus">
             <div class="col-24  flex  flex-wrap">
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <div class="flex  flex-wrap  effect__wrapper">
+        <div class="col-24  flex  flex-wrap  effect__wrapper">
           <div class="col-24  effect__title">Reverb</div>
           <div class="db  w-100  pt2" id="effect-Reverb">
             <div class="col-24  flex  flex-wrap">
@@ -103,7 +103,7 @@
           </div>
         </div>
 
-        <div class="flex  flex-wrap  effect__wrapper">
+        <div class="col-24  flex  flex-wrap  effect__wrapper">
           <div class="col-24  effect__title">BitCrusher</div>
           <div class="db  w-100  pt2" id="effect-BitCrusher">
             <div class="col-24  flex  flex-wrap">
@@ -127,7 +127,7 @@
           </div>
         </div>
 
-        <div class="flex  flex-wrap  effect__wrapper">
+        <div class="col-24  flex  flex-wrap  effect__wrapper">
           <div class="col-24  effect__title">PingPongDelay</div>
           <div class="db  w-100  pt2" id="effect-PingPongDelay">
             <div class="col-24  flex  flex-wrap">
@@ -163,42 +163,40 @@
       </div>
     </div>
 
-    <div class="flex  flex-wrap">
+    <div class="flex  flex-wrap  signal__wrapper">
       <!-- Signal -->
-      <div class="col-12">
+      <div class="col-14">
         <div id="instrument"></div>
       </div>
-      <div class="col-12">
-        <div class="flex  flex-wrap">
-          <div class="col-12  envelope__wrapper">
-            <div id="envelope"></div>
-            <div class="envelope__hold__label"></div>
+
+      <div class="col-6  envelope__wrapper  ph3">
+        <div id="envelope"></div>
+        <div class="envelope__hold__label"></div>
+      </div>
+
+      <div class="col-4  flex  flex-wrap  ph3">
+        <div class="col-8  flex  flex-wrap">
+          <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
+            Attack
           </div>
-          <div class="col-12  pv2  ph3">
-            <div class="flex  flex-wrap  pb2">
-              <div class="col-24  f7  pb2">
-                Attack
-              </div>
-              <div class="col-24">
-                <div id="envelopeAttack"></div>
-              </div>
-            </div>
-            <div class="flex  flex-wrap  pb2">
-              <div class="col-24  f7  pb2">
-                Hold
-              </div>
-              <div class="col-24">
-                <div id="envelopeHold"></div>
-              </div>
-            </div>
-            <div class="flex  flex-wrap  pb2">
-              <div class="col-24  f7  pb2">
-                Release
-              </div>
-              <div class="col-24">
-                <div id="envelopeRelease"></div>
-              </div>
-            </div>
+          <div class="col-24  flex  justify-center">
+            <div id="envelopeAttack"></div>
+          </div>
+        </div>
+        <div class="col-8  flex  flex-wrap">
+          <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
+            Hold
+          </div>
+          <div class="col-24  flex  justify-center">
+            <div id="envelopeHold"></div>
+          </div>
+        </div>
+        <div class="col-8  flex  flex-wrap">
+          <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
+            Release
+          </div>
+          <div class="col-24  flex  justify-center">
+            <div id="envelopeRelease"></div>
           </div>
         </div>
       </div>
