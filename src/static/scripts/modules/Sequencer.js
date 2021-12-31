@@ -55,7 +55,7 @@ const Sequencer = {
     });
 
     Sequencer.sequencer.colorize('accent', '#505483');
-    Sequencer.sequencer.colorize('fill', '#6f7396');
+    Sequencer.sequencer.colorize('fill', '#b5b7c9');
 
     const handleStep = matrix => {
       if (!Sequencer.isRunning) {

@@ -71,7 +71,7 @@
 //   width: 100vw;
 // }
 
-$purple-light: #6f7396;
+$purple-light: #b5b7c9;
 $purple-medium: #5b628d;
 $purple-dark: #505483;
 
@@ -85,27 +85,53 @@ $grey-dark: #6a6b6b;
 main,
 html,
 body {
-  background-color: $grey-light;
+  background-color: $almost-white;
 }
 
-.wrapper {
-  background-color: $grey-light;
-}
+// .wrapper {
+//   background-color: $grey-light;
+// }
 
 .controls__wrapper {
-  border-right: 3px solid $purple-dark;
+  @extend .pa3;
+}
+
+.controls {
+  background-color: $grey-light;
+
+  @extend .w-100;
   @extend .pv3;
   @extend .ph3;
+  @extend .br4;
+  @extend .shadow2;
 }
 
 .effects__wrapper {
-  border-left: 3px solid $purple-dark;
+  @extend .pa3;
+}
+
+.effects {
+  background-color: $grey-light;
+
+  @extend .w-100;
+  @extend .pv3;
   @extend .ph3;
+  @extend .br4;
+  @extend .shadow2;
 }
 
 .signal__wrapper {
-  border-top: 3px solid $purple-dark;
+  @extend .pa3;
+}
+
+.signal {
+  background-color: $grey-light;
+
+  @extend .w-100;
   @extend .pv3;
+  @extend .ph3;
+  @extend .br4;
+  @extend .shadow2;
 }
 
 //
