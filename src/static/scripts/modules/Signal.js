@@ -8,7 +8,13 @@ import Nexus from 'nexusui';
 
 const Signal = {
   currentInstrument: 'AMSynth',
-  instrumentTypes: ['AMSynth', 'FMSynth', 'DuoSynth'],
+  instrumentTypes: [
+    'AMSynth',
+    'FMSynth',
+    'DuoSynth',
+    'MetalSynth',
+    'MembraneSynth'
+  ],
   envelopeWrapper: document.querySelector('.envelope__wrapper'),
   envelopeHoldLabel: document.querySelector('.envelope__hold__label'),
   envAttack: null,
@@ -21,7 +27,7 @@ const Signal = {
 
   renderInstrument() {
     const select = new Nexus.Select('#instrument', {
-      size: [150, 30],
+      size: [180, 30],
       options: Signal.instrumentTypes
     });
 

@@ -232,9 +232,17 @@ body {
   outline: 0;
   cursor: pointer;
 
+  @extend .flex;
+  @extend .justify-center;
+  @extend .align-center;
   @extend .mb2;
   @extend .br2;
   @extend .shadow2;
+
+  svg,
+  svg * {
+    fill: $purple-dark;
+  }
 }
 
 .envelope__param__label {

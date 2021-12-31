@@ -28,7 +28,7 @@ const Effects = {
         },
         {
           name: 'wet',
-          value: 0,
+          value: 0.5,
           range: [0, 1]
         }
       ]

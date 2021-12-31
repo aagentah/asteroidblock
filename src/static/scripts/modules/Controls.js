@@ -68,7 +68,7 @@ const Controls = {
 
   renderControls() {
     const number = new Nexus.Number('#tempo', {
-      size: [60, 30],
+      size: [120, 30],
       value: Controls.tempo,
       min: 30,
       max: 1000,
