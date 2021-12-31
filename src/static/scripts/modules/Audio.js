@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import Controls from './Controls';
 import Effects from './Effects';
+import Signal from './Signal';
 
 const Audio = {
   play: async notes => {
@@ -31,11 +32,14 @@ const Audio = {
     }
 
     // Play tone
-    const synth = new Tone.PolySynth(Tone.Synth);
+    const synth = new Tone.PolySynth(Tone[Signal.instrument]);
+    const envelope = { attack: 0.5, release: 0.5 };
+
     synth.chain(...effects, Tone.Destination);
-    // await Tone.start();
-    // Nexus.context.resume();
-    synth.triggerAttackRelease(notes, Controls.noteLength / 1000);
+    synth.set({ envelope: envelope });
+
+    // note length = Controls.noteLength / 1000
+    synth.triggerAttackRelease(notes, envelope.attack + envelope.release);
 
     // Clean up
     setTimeout(() => {

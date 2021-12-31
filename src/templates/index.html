@@ -6,7 +6,35 @@
 
   <section>
     <div class="flex  flex-wrap">
-      <div class="col-20  flex  flex-wrap  sequencer__notes__wrapper">
+      <!-- Controls -->
+      <div class="col-4  controls__wrapper">
+        <div class="col-24">
+          <div id="tempo"></div>
+        </div>
+
+        <div class="col-24">
+          <button id="open" class="">
+            Open
+          </button>
+        </div>
+        <div class="col-24">
+          <button id="start" class="">
+            Start
+          </button>
+        </div>
+        <div class="col-24">
+          <button id="stop" class="">
+            Stop
+          </button>
+        </div>
+        <div class="col-24">
+          <button id="reset" class="">
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <div class="col-16  flex  flex-wrap  sequencer__notes__wrapper">
         <!-- Notes -->
         <div class="col-2  notes__wrapper">
           <div id="notes"></div>
@@ -135,31 +163,13 @@
       </div>
     </div>
 
-    <!-- Controls -->
-    <div class="flex  flex-wrap  controls__wrapper">
-      <div class="col-4">
-        <div id="tempo"></div>
+    <div class="flex  flex-wrap">
+      <!-- Signal -->
+      <div class="col-12">
+        <div id="instrument"></div>
       </div>
-
-      <div class="col-4">
-        <button id="open" class="">
-          Open
-        </button>
-      </div>
-      <div class="col-4">
-        <button id="start" class="">
-          Start
-        </button>
-      </div>
-      <div class="col-4">
-        <button id="stop" class="">
-          Stop
-        </button>
-      </div>
-      <div class="col-4">
-        <button id="reset" class="">
-          Reset
-        </button>
+      <div class="col-12">
+        <div id="envelope"></div>
       </div>
     </div>
   </section>

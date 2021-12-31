@@ -2,6 +2,7 @@
 
 import Sequencer from './Sequencer';
 import Controls from './Controls';
+import Signal from './Signal';
 import Effects from './Effects';
 
 const Main = {
@@ -14,6 +15,7 @@ const Main = {
 
   render() {
     Effects.render();
+    Signal.render();
 
     Main.openEl.addEventListener(
       'click',
