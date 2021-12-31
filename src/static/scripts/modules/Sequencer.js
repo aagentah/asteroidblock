@@ -11,7 +11,7 @@ const Sequencer = {
   notesEl: document.querySelector('#notes'),
   sequencerWrapperEl: document.querySelector('.sequencer__wrapper'),
   notes: ['B', 'A#', 'A', 'G#', 'G', 'F#', 'F', 'E', 'D#', 'D', 'C#', 'C'],
-  octaves: 7,
+  octaves: 5,
   rows: null,
   isRunning: false,
   sequencer: null,
@@ -28,9 +28,13 @@ const Sequencer = {
 
       for (let ii = 0; ii < Sequencer.notes.length; ii++) {
         if (ii === 11) {
-          notesItems += `<div class="notes__item" style='height: 48px; border-bottom: 1px solid red;'>${
+          notesItems += `<div class="notes__item" style='height: 48px;'>${
             Sequencer.notes[ii]
-          }${octave + 1}</div>`;
+          }${octave + 1}</div>
+          <div class="notes__item__octave" style="width: ${
+            Sequencer.sequencerWrapperEl.offsetWidth
+          }px"></div>
+          `;
         } else {
           notesItems += `<div class="notes__item" style='height: 48px;'>${
             Sequencer.notes[ii]
@@ -56,6 +60,7 @@ const Sequencer = {
 
     Sequencer.sequencer.colorize('accent', '#505483');
     Sequencer.sequencer.colorize('fill', '#b5b7c9');
+    Sequencer.sequencer.colorize('mediumLight', '#61669e');
 
     const handleStep = matrix => {
       if (!Sequencer.isRunning) {

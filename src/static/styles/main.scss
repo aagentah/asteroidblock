@@ -140,12 +140,27 @@ body {
 }
 
 .notes__item {
+  position: relative;
   color: $grey-dark;
   border-bottom: 3px solid $purple-dark;
   background-color: $almost-white;
   @extend .flex;
   @extend .align-center;
   @extend .justify-center;
+}
+
+.notes__item__octave {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 85px;
+    width: 100%;
+    border-bottom: 3px solid $purple-dark;
+    z-index: 999;
+  }
 }
 
 .effect__wrapper {

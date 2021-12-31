@@ -49,9 +49,9 @@ const Signal = {
       size: [Signal.envelopeWrapper.offsetWidth, 125],
       noNewPoints: false,
       points: [
-        { x: 0.0, y: 0 },
-        { x: 0.25, y: 0.75 },
-        { x: 0.75, y: 0.75 },
+        { x: 0, y: 0 },
+        { x: 0.25, y: 0.5 },
+        { x: 0.75, y: 0.5 },
         { x: 1, y: 0 }
       ]
     });
@@ -82,13 +82,13 @@ const Signal = {
     const attackChange = v => {
       const releaseVal = envelope.points[2].x;
       if (v >= releaseVal) attackDial.value = releaseVal;
-      envelope.movePoint(1, v, 0.75);
+      envelope.movePoint(1, v, 0.5);
     };
 
     const releaseChange = v => {
       const attackVal = envelope.points[1].x;
       if (v <= attackVal) releaseDial.value = attackVal;
-      envelope.movePoint(2, v, 0.75);
+      envelope.movePoint(2, v, 0.5);
     };
 
     const holdChange = v => {
