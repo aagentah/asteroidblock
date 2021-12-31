@@ -33,13 +33,27 @@ const Audio = {
 
     // Play tone
     const synth = new Tone.PolySynth(Tone[Signal.instrument]);
-    const envelope = { attack: 0.5, release: 0.5 };
+
+    const durationSecs = Controls.noteLength / 1000;
+
+    const divideBy = (divide, by) => {
+      return divide / by;
+    };
+
+    const attackSecs = divideBy(Signal.envAttack, 1) * durationSecs;
+    const holdSecs = divideBy(Signal.envSustain, 1) * durationSecs;
+    const releaseSecs = divideBy(Signal.envRelease, 1) * durationSecs;
+
+    const envelope = {
+      attack: attackSecs,
+      release: releaseSecs
+    };
 
     synth.chain(...effects, Tone.Destination);
     synth.set({ envelope: envelope });
+    synth.triggerAttackRelease(notes, attackSecs + holdSecs + releaseSecs);
 
-    // note length = Controls.noteLength / 1000
-    synth.triggerAttackRelease(notes, envelope.attack + envelope.release);
+    console.log('a', attackSecs + holdSecs + releaseSecs);
 
     // Clean up
     setTimeout(() => {
@@ -50,7 +64,7 @@ const Audio = {
 
       synth.disconnect();
       synth.dispose();
-    }, 3000);
+    }, Controls.noteLength * 10);
   }
 };
 
