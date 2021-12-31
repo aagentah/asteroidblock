@@ -1,9 +1,11 @@
 /* eslint-disable new-cap, no-unused-vars */
+import Nexus from 'nexusui';
 
 import Sequencer from './Sequencer';
 import Controls from './Controls';
 import Signal from './Signal';
 import Effects from './Effects';
+import Audio from './Audio';
 
 const Main = {
   openEl: document.querySelector('#open'),
@@ -14,6 +16,7 @@ const Main = {
   },
 
   render() {
+    Audio.setContext();
     Effects.render();
     Signal.render();
 

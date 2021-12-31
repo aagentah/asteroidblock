@@ -50,7 +50,7 @@ const Signal = {
       size: [50, 50],
       interaction: 'radial',
       mode: 'relative',
-      min: 1,
+      min: 0.3,
       max: 4,
       value: 2
     });
@@ -75,8 +75,6 @@ const Signal = {
 
       Signal.envAttack = attackVal;
       Signal.envRelease = releaseVal;
-      Signal.envHold = Controls.noteLength / 1000;
-      Signal.envelopeHoldLabel.innerHTML = `${Signal.envHold.toFixed(2)}s`;
     };
 
     const attackChange = v => {
@@ -104,6 +102,9 @@ const Signal = {
     releaseDial.on('change', releaseDialThrottle);
     holdDial.on('change', holdDialThrottle);
     envelope.on('change', setEnvelopeVals);
+
+    Signal.envHold = holdDial.value;
+    Signal.envelopeHoldLabel.innerHTML = `${Signal.envHold.toFixed(2)}s`;
 
     setEnvelopeVals(envelope.points);
   },

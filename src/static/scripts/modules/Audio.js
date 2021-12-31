@@ -9,6 +9,18 @@ import Effects from './Effects';
 import Signal from './Signal';
 
 const Audio = {
+  lookAhead: 0.5,
+
+  setContext() {
+    const context = new Tone.Context({
+      latencyHint: 'playback',
+      lookAhead: Audio.lookAhead,
+      sampleRate: 8000
+    });
+
+    Tone.setContext(context);
+  },
+
   play: async notes => {
     let effects = [];
     let effectParams = {};
@@ -39,10 +51,11 @@ const Audio = {
     const holdSecs = Signal.envHold;
     const releaseSecs = divideBy(Signal.envRelease, 1) * Signal.envHold;
     const envelope = { attack: attackSecs, release: releaseSecs };
+    const attackRelease = attackSecs + holdSecs + releaseSecs;
 
-    synth.chain(...effects, Tone.Destination);
+    synth.chain(...effects, Tone.getContext().destination);
     synth.set({ envelope: envelope });
-    synth.triggerAttackRelease(notes, attackSecs + holdSecs + releaseSecs);
+    synth.triggerAttackRelease(notes, attackRelease);
 
     // Clean up
     setTimeout(() => {
@@ -53,7 +66,7 @@ const Audio = {
 
       synth.disconnect();
       synth.dispose();
-    }, attackSecs + holdSecs + releaseSecs * 1000 + 3000);
+    }, (attackRelease + releaseSecs) * 1000 + Audio.lookAhead * 1000);
   }
 };
 
