@@ -7,7 +7,8 @@ import Effects from './Effects';
 import Nexus from 'nexusui';
 
 const Signal = {
-  instrument: 'AM',
+  currentInstrument: 'AMSynth',
+  instrumentTypes: ['AMSynth', 'FMSynth', 'DuoSynth'],
   envelopeWrapper: document.querySelector('.envelope__wrapper'),
   envelopeHoldLabel: document.querySelector('.envelope__hold__label'),
   envAttack: null,
@@ -19,15 +20,13 @@ const Signal = {
   },
 
   renderInstrument() {
-    const options = ['AMSynth', 'FMSynth', 'DuoSynth'];
-
     const select = new Nexus.Select('#instrument', {
       size: [150, 30],
-      options: options
+      options: Signal.instrumentTypes
     });
 
     select.on('change', e => {
-      Signal.instrument = e.value;
+      Signal.currentInstrument = e.value;
     });
   },
 
@@ -52,7 +51,7 @@ const Signal = {
       mode: 'relative',
       min: 0.3,
       max: 4,
-      value: 2
+      value: 1
     });
 
     const envelope = new Nexus.Envelope('#envelope', {

@@ -12,6 +12,7 @@ const Sequencer = {
   sequencerWrapperEl: document.querySelector('.sequencer__wrapper'),
   notes: ['B', 'A#', 'A', 'G#', 'G', 'F#', 'F', 'E', 'D#', 'D', 'C#', 'C'],
   octaves: 7,
+  rows: null,
   isRunning: false,
   sequencer: null,
   columns: 8,
@@ -42,12 +43,12 @@ const Sequencer = {
   },
 
   renderSequence() {
-    const notesInt = Sequencer.notes.length * Sequencer.octaves;
+    Sequencer.rows = Sequencer.notes.length * Sequencer.octaves;
 
     Sequencer.sequencer = new Nexus.Sequencer('#sequencer', {
-      size: [Sequencer.sequencerWrapperEl.offsetWidth, notesInt * 48],
+      size: [Sequencer.sequencerWrapperEl.offsetWidth, Sequencer.rows * 48],
       mode: 'toggle',
-      rows: notesInt,
+      rows: Sequencer.rows,
       columns: Sequencer.columns,
       paddingRow: 0,
       paddingColumn: 0

@@ -19,6 +19,8 @@ const Main = {
     Audio.setContext();
     Effects.render();
     Signal.render();
+    Audio.setInstruments();
+    Audio.setEffects();
 
     Main.openEl.addEventListener(
       'click',

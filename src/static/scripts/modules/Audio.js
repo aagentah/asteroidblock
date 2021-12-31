@@ -10,6 +10,8 @@ import Signal from './Signal';
 
 const Audio = {
   lookAhead: 0.5,
+  instruments: {},
+  effetcs: {},
 
   setContext() {
     const context = new Tone.Context({
@@ -21,7 +23,16 @@ const Audio = {
     Tone.setContext(context);
   },
 
-  play: async notes => {
+  setInstruments() {
+    let instrument;
+
+    for (let i = 0; i < Signal.instrumentTypes.length; i++) {
+      instrument = Signal.instrumentTypes[i];
+      Audio.instruments[instrument] = Tone[instrument];
+    }
+  },
+
+  setEffects() {
     let effects = [];
     let effectParams = {};
     let effect, param;
@@ -37,14 +48,38 @@ const Audio = {
       }
 
       if (i === 0) {
-        effects.push(new Tone[effect.name]({ ...effectParams }).start());
+        Audio.effetcs[effect.name] = new Tone[effect.name]({
+          ...effectParams
+        }).start();
       } else {
-        effects.push(new Tone[effect.name]({ ...effectParams }));
+        Audio.effetcs[effect.name] = new Tone[effect.name]({
+          ...effectParams
+        });
       }
+    }
+  },
+
+  play: async notes => {
+    let effectParams = {};
+    let effect, param;
+
+    // Tweaks all Tone Effects based on Effects.js data object
+    for (let i = 0; i < Effects.data.length; i++) {
+      effectParams = [];
+      effect = Effects.data[i];
+
+      for (let ii = 0; ii < effect.paramaters.length; ii++) {
+        param = effect.paramaters[ii];
+        effectParams[param.name] = param.value;
+      }
+
+      Audio.effetcs[effect.name].set({ ...effectParams });
     }
 
     // Play tone
-    const synth = new Tone.PolySynth(Tone[Signal.instrument]);
+    const synth = new Tone.PolySynth(
+      Audio.instruments[Signal.currentInstrument]
+    );
     const durationSecs = Controls.noteLength / 1000;
     const divideBy = (divide, by) => divide / by;
     const attackSecs = divideBy(Signal.envAttack, 1) * Signal.envHold;
@@ -53,17 +88,12 @@ const Audio = {
     const envelope = { attack: attackSecs, release: releaseSecs };
     const attackRelease = attackSecs + holdSecs + releaseSecs;
 
-    synth.chain(...effects, Tone.getContext().destination);
-    synth.set({ envelope: envelope });
+    synth.chain(..._.values(Audio.effetcs), Tone.getContext().destination);
+    synth.set({ envelope });
     synth.triggerAttackRelease(notes, attackRelease);
 
     // Clean up
     setTimeout(() => {
-      for (let i = 0; i < effects.length; i++) {
-        effects[i].disconnect();
-        effects[i].dispose();
-      }
-
       synth.disconnect();
       synth.dispose();
     }, (attackRelease + releaseSecs) * 1000 + Audio.lookAhead * 1000);
