@@ -9,9 +9,10 @@ import Nexus from 'nexusui';
 const Signal = {
   instrument: 'AM',
   envelopeWrapper: document.querySelector('.envelope__wrapper'),
+  envelopeHoldLabel: document.querySelector('.envelope__hold__label'),
   envAttack: null,
   envRelease: null,
-  envSustain: null,
+  envHold: null,
 
   init() {
     this.render();
@@ -33,22 +34,25 @@ const Signal = {
   renderEnvelope() {
     const attackDial = new Nexus.Dial('#envelopeAttack', {
       size: [50, 50],
-      interaction: 'radial', // "radial", "vertical", or "horizontal"
-      mode: 'relative', // "absolute" or "relative"
-      // min: 0,
-      // max: 1,
-      // step: 0,
+      interaction: 'radial',
+      mode: 'relative',
       value: 0.25
     });
 
     const releaseDial = new Nexus.Dial('#envelopeRelease', {
       size: [50, 50],
-      interaction: 'radial', // "radial", "vertical", or "horizontal"
-      mode: 'relative', // "absolute" or "relative"
-      // min: 0,
-      // max: 1,
-      // step: 0,
+      interaction: 'radial',
+      mode: 'relative',
       value: 0.75
+    });
+
+    const holdDial = new Nexus.Dial('#envelopeHold', {
+      size: [50, 50],
+      interaction: 'radial',
+      mode: 'relative',
+      min: 1,
+      max: 4,
+      value: 2
     });
 
     const envelope = new Nexus.Envelope('#envelope', {
@@ -66,14 +70,13 @@ const Signal = {
       const attack = e[1].x;
       const release = e[2].x;
       const noteLengthSecs = Controls.noteLength / 1000;
-
       const attackVal = attack;
       const releaseVal = 1 - release;
-      const sustainVal = 1 - (attackVal + releaseVal);
 
       Signal.envAttack = attackVal;
       Signal.envRelease = releaseVal;
-      Signal.envSustain = sustainVal;
+      Signal.envHold = Controls.noteLength / 1000;
+      Signal.envelopeHoldLabel.innerHTML = `${Signal.envHold.toFixed(2)}s`;
     };
 
     const attackChange = v => {
@@ -88,11 +91,18 @@ const Signal = {
       envelope.movePoint(2, v, 0.75);
     };
 
+    const holdChange = v => {
+      Signal.envelopeHoldLabel.innerHTML = `${v.toFixed(2)}s`;
+      Signal.envHold = v;
+    };
+
     const attackDialThrottle = _.throttle(attackChange, 10);
     const releaseDialThrottle = _.throttle(releaseChange, 10);
+    const holdDialThrottle = _.throttle(holdChange, 10);
 
     attackDial.on('change', attackDialThrottle);
     releaseDial.on('change', releaseDialThrottle);
+    holdDial.on('change', holdDialThrottle);
     envelope.on('change', setEnvelopeVals);
 
     setEnvelopeVals(envelope.points);
