@@ -8,6 +8,7 @@ import Audio from './Audio';
 import Controls from './Controls';
 
 const Sequencer = {
+  elem: document.querySelector('.sequencer__notes__wrapper'),
   notesEl: document.querySelector('#notes'),
   sequencerWrapperEl: document.querySelector('.sequencer__wrapper'),
   notes: ['B', 'A#', 'A', 'G#', 'G', 'F#', 'F', 'E', 'D#', 'D', 'C#', 'C'],

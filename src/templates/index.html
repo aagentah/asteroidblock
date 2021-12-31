@@ -14,11 +14,6 @@
         </div>
 
         <div class="col-24">
-          <button id="open" class="control__button">
-            Open
-          </button>
-        </div>
-        <div class="col-24">
           <button id="start" class="control__button">
             Start
           </button>
@@ -36,7 +31,7 @@
       </div>
       </div>
 
-      <div class="col-16  flex  flex-wrap  sequencer__notes__wrapper">
+      <div class="col-16  flex  flex-wrap  sequencer__notes__wrapper" style="display: none;">
         <!-- Notes -->
         <div class="col-2  notes__wrapper">
           <div id="notes"></div>
@@ -44,6 +39,44 @@
         <!-- Sequencer -->
         <div class="col-22  sequencer__wrapper">
           <div id="sequencer"></div>
+        </div>
+      </div>
+
+      <div class="col-16  flex  flex-wrap  intro__wrapper">
+        <div class="intro">
+          <div class="flex  flex-wrap  justify-center  pv3">
+            <div class="measure-wide">
+              <h1 class="tac">asteroidblock.io</h1>
+
+              <p class="tal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+
+          <div class="flex  flex-wrap">
+            <div class="col-12  ph3">
+              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+                Select Asteroid:
+              </div>
+              <div class="flex  flex-wrap">
+                <div id="asteroids"></div>
+              </div>
+            </div>
+
+            <div class="col-12  ph3">
+              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+                Asteroid Data:
+              </div>
+              <div class="flex  flex-wrap">
+                <div class="w-100" id="asteroid-data"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex  flex-wrap  justify-center  pt3">
+            <button id="begin" class="control__button">
+              Begin
+            </button>
+          </div>
         </div>
       </div>
 

@@ -92,6 +92,19 @@ body {
 //   background-color: $grey-light;
 // }
 
+.intro__wrapper {
+  @extend .ph3;
+}
+
+.intro {
+  background-color: $grey-light;
+
+  @extend .w-100;
+  @extend .pa3;
+  @extend .br4;
+  @extend .shadow2;
+}
+
 .controls__wrapper {
   @extend .ph3;
 }

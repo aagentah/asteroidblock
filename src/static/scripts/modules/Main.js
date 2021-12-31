@@ -6,37 +6,20 @@ import Controls from './Controls';
 import Signal from './Signal';
 import Effects from './Effects';
 import Audio from './Audio';
+import Asteroid from './Asteroid';
 
 const Main = {
-  openEl: document.querySelector('#open'),
-  hasOpened: false,
-
   init() {
     this.render();
   },
 
   render() {
+    Asteroid.render();
     Audio.setContext();
     Effects.render();
     Signal.render();
     Audio.setInstruments();
     Audio.setEffects();
-
-    Main.openEl.addEventListener(
-      'click',
-      () => {
-        if (Main.hasOpened) {
-          return;
-        }
-
-        Sequencer.renderNotes();
-        Sequencer.renderSequence();
-        Controls.renderControls();
-
-        Main.hasOpened = true;
-      },
-      false
-    );
   }
 };
 
