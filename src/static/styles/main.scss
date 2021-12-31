@@ -76,7 +76,7 @@ $purple-medium: #5b628d;
 $purple-dark: #505483;
 
 $almost-white: #fafafa;
-$grey-light: #d8dada;
+$grey-light: #e5e6e6;
 $grey-medium: #828484;
 $grey-dark: #6a6b6b;
 
@@ -93,29 +93,27 @@ body {
 // }
 
 .controls__wrapper {
-  @extend .pa3;
+  @extend .ph3;
 }
 
 .controls {
   background-color: $grey-light;
 
   @extend .w-100;
-  @extend .pv3;
-  @extend .ph3;
+  @extend .pa3;
   @extend .br4;
   @extend .shadow2;
 }
 
 .effects__wrapper {
-  @extend .pa3;
+  @extend .ph3;
 }
 
 .effects {
   background-color: $grey-light;
 
   @extend .w-100;
-  @extend .pv3;
-  @extend .ph3;
+  @extend .pa3;
   @extend .br4;
   @extend .shadow2;
 }
@@ -128,8 +126,7 @@ body {
   background-color: $grey-light;
 
   @extend .w-100;
-  @extend .pv3;
-  @extend .ph3;
+  @extend .pa3;
   @extend .br4;
   @extend .shadow2;
 }
@@ -158,29 +155,20 @@ body {
 }
 
 .effect__title {
-  position: absolute;
-  top: -22px;
-  left: 0px;
   color: $grey-dark;
+  font-weight: bold;
 
   @extend .f6;
-  @extend .pa1;
-  @extend .mv2;
+  @extend .mb0;
 }
 
 .effect__label {
-  position: absolute;
-  margin: 0 auto;
-  bottom: -15px;
   text-align: center;
   color: $purple-dark;
-  background: $grey-light;
-  pointer-events: none;
 
-  @extend .ba;
-  @extend .bc-black;
+  @extend .pt2;
+  @extend .mb0;
   @extend .f7;
-  @extend .pa1;
 }
 
 .envelope__wrapper {
@@ -189,6 +177,14 @@ body {
 
   @extend .flex;
   @extend .justify-center;
+}
+
+.envelope__title {
+  color: $grey-dark;
+  font-weight: bold;
+
+  @extend .f6;
+  @extend .mb0;
 }
 
 .envelope__hold__label {
