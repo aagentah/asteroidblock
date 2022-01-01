@@ -94,6 +94,14 @@ body {
 
 .intro__wrapper {
   @extend .ph3;
+  @extend .pb3;
+}
+
+.sequencer__notes__wrapper {
+  overflow-y: scroll;
+  height: calc(48 * 12) + px;
+  max-height: calc(100vh - 100px);
+  @extend .ph3;
 }
 
 .intro {
@@ -107,6 +115,7 @@ body {
 
 .controls__wrapper {
   @extend .ph3;
+  @extend .pb3;
 }
 
 .controls {
@@ -120,6 +129,7 @@ body {
 
 .effects__wrapper {
   @extend .ph3;
+  @extend .pb3;
 }
 
 .effects {
@@ -146,12 +156,6 @@ body {
 
 //
 
-.sequencer__notes__wrapper {
-  overflow-y: scroll;
-  height: calc(48 * 12) + px;
-  max-height: calc(100vh - 100px);
-}
-
 .notes__item {
   position: relative;
   color: $grey-dark;
@@ -169,7 +173,7 @@ body {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 85px;
+    left: 82px;
     width: 100%;
     border-bottom: 3px solid $purple-dark;
     z-index: 999;

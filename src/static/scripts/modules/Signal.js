@@ -37,18 +37,29 @@ const Signal = {
   },
 
   renderEnvelope() {
-    const attackDial = new Nexus.Dial('#envelopeAttack', {
-      value: 0.25
+    const attackDial = new Nexus.Multislider('#envelopeAttack', {
+      values: [0.25],
+      numberOfSliders: 1,
+      size: [30, 75],
+      min: 0,
+      max: 1
     });
 
-    const releaseDial = new Nexus.Dial('#envelopeRelease', {
-      value: 0.75
+    const releaseDial = new Nexus.Multislider('#envelopeRelease', {
+      values: [0.75],
+      numberOfSliders: 1,
+      size: [30, 75],
+      min: 0,
+      max: 1
     });
 
-    const holdDial = new Nexus.Dial('#envelopeHold', {
+    const holdDial = new Nexus.Multislider('#envelopeHold', {
+      values: [1],
+      numberOfSliders: 1,
+      size: [30, 75],
       min: 0.3,
       max: 4,
-      value: 1
+      mode: 'line'
     });
 
     const envelope = new Nexus.Envelope('#envelope', {
@@ -86,20 +97,23 @@ const Signal = {
     };
 
     const attackChange = v => {
+      const value = v[0];
       const releaseVal = envelope.points[2].x;
-      if (v >= releaseVal) attackDial.value = releaseVal;
-      envelope.movePoint(1, v, 0.5);
+      if (value >= releaseVal) attackDial.values[0] = releaseVal;
+      envelope.movePoint(1, value, 0.5);
     };
 
     const releaseChange = v => {
+      const value = v[0];
       const attackVal = envelope.points[1].x;
-      if (v <= attackVal) releaseDial.value = attackVal;
-      envelope.movePoint(2, v, 0.5);
+      if (value <= attackVal) releaseDial.values[0] = attackVal;
+      envelope.movePoint(2, value, 0.5);
     };
 
     const holdChange = v => {
-      Signal.envelopeHoldLabel.innerHTML = `${v.toFixed(2)}s`;
-      Signal.envHold = v;
+      const value = v[0];
+      Signal.envelopeHoldLabel.innerHTML = `${value.toFixed(2)}s`;
+      Signal.envHold = value;
     };
 
     const attackDialThrottle = _.throttle(attackChange, 10);
@@ -111,7 +125,7 @@ const Signal = {
     holdDial.on('change', holdDialThrottle);
     envelope.on('change', setEnvelopeVals);
 
-    Signal.envHold = holdDial.value;
+    Signal.envHold = holdDial.values[0];
     Signal.envelopeHoldLabel.innerHTML = `${Signal.envHold.toFixed(2)}s`;
 
     setEnvelopeVals(envelope.points);

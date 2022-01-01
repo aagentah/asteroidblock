@@ -61,7 +61,7 @@
               <p class="tac  lh-copy">
                 asteroidblock.io is a web-based, interactive, atmospheric pad
                 synthesizer which queries NASA's asteroid API, using
-                asteroid proximity data to throttle initial parameters
+                live proximity data to throttle initial parameters
                 of the synth.
               </p>
             </div>
@@ -236,39 +236,41 @@
 
         </div>
 
-        <div class="col-6  envelope__wrapper  ph3">
+        <div class="col-7  envelope__wrapper  ph3">
           <div id="envelope"></div>
           <div class="envelope__hold__label"></div>
         </div>
 
-        <div class="col-4  flex  flex-wrap  ph3">
-          <div class="col-24  flex  flex-wrap">
+        <div class="col-3  flex  flex-wrap  pr2">
+          <div class="col-24">
             <div class="col-24  envelope__title">Envelope</div>
           </div>
 
           <div class="col-24  flex  flex-wrap">
             <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center">
+              <div class="col-24  flex  justify-center  ph2">
                 <div id="envelopeAttack"></div>
               </div>
               <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
                 Attack
               </div>
             </div>
+
             <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center">
-                <div id="envelopeHold"></div>
-              </div>
-              <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
-                Hold
-              </div>
-            </div>
-            <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center">
+              <div class="col-24  flex  justify-center  ph2">
                 <div id="envelopeRelease"></div>
               </div>
               <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
                 Release
+              </div>
+            </div>
+
+            <div class="col-8  flex  flex-wrap">
+              <div class="col-24  flex  justify-center  ph2">
+                <div id="envelopeHold"></div>
+              </div>
+              <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
+                Hold
               </div>
             </div>
           </div>
