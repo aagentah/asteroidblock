@@ -40,7 +40,7 @@ const Signal = {
     const attackDial = new Nexus.Multislider('#envelopeAttack', {
       values: [0.25],
       numberOfSliders: 1,
-      size: [30, 75],
+      size: [30, 70],
       min: 0,
       max: 1
     });
@@ -48,7 +48,7 @@ const Signal = {
     const releaseDial = new Nexus.Multislider('#envelopeRelease', {
       values: [0.75],
       numberOfSliders: 1,
-      size: [30, 75],
+      size: [30, 70],
       min: 0,
       max: 1
     });
@@ -56,7 +56,7 @@ const Signal = {
     const holdDial = new Nexus.Multislider('#envelopeHold', {
       values: [1],
       numberOfSliders: 1,
-      size: [30, 75],
+      size: [30, 70],
       min: 0.3,
       max: 4,
       mode: 'line'

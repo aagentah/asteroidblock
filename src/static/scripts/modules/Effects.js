@@ -138,6 +138,7 @@ const Effects = {
 
         if (nex[params.name]) {
           // Set default values
+          nex[params.name].resize(55, 55);
           nex[params.name].value = Effects.calcDial(params);
 
           // Set event listener to update object store

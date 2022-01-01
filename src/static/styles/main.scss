@@ -183,14 +183,18 @@ body {
 .effect__wrapper {
   @extend .relative;
   @extend .pt2;
-  @extend .pb2;
+  @extend .pb3;
 }
 
 .effect__title {
   color: $grey-dark;
   font-weight: bold;
 
+  @extend .tac;
+  @extend .mla;
+  @extend .mra;
   @extend .f6;
+  @extend .pb2;
   @extend .mb0;
 }
 
@@ -215,6 +219,9 @@ body {
   color: $grey-dark;
   font-weight: bold;
 
+  @extend .tac;
+  @extend .mla;
+  @extend .mra;
   @extend .f6;
   @extend .mb0;
 }
