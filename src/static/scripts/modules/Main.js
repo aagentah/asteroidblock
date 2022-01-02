@@ -9,6 +9,9 @@ import Audio from './Audio';
 import Asteroid from './Asteroid';
 
 const Main = {
+  main: document.querySelector('main'),
+  wrapper: document.querySelector('.wrapper'),
+
   init() {
     this.render();
   },
@@ -20,6 +23,10 @@ const Main = {
     Signal.render();
     Audio.setInstruments();
     Audio.setEffects();
+
+    setTimeout(() => {
+      Main.main.classList.add('active');
+    }, 300);
   }
 };
 

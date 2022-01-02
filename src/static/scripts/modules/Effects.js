@@ -16,7 +16,7 @@ const Effects = {
           value: 2,
           range: [1, 3],
           instance: null,
-          influencedBy: 'estimated_diameter'
+          influencedBy: 'diameter'
         },
         {
           name: 'delayTime',
@@ -35,9 +35,9 @@ const Effects = {
         {
           name: 'wet',
           value: 0.5,
-          range: [0, 1],
+          range: [0, 0.75],
           instance: null,
-          influencedBy: 'relative_velocity'
+          influencedBy: 'velocity'
         }
       ]
     },
@@ -66,13 +66,13 @@ const Effects = {
           value: 8,
           range: [1, 8],
           instance: null,
-          influencedBy: 'estimated_diameter'
+          influencedBy: null
         },
 
         {
           name: 'wet',
           value: 0,
-          range: [0, 1],
+          range: [0, 0.75],
           instance: null,
           influencedBy: null
         }
@@ -83,10 +83,10 @@ const Effects = {
       paramaters: [
         {
           name: 'delayTime',
-          value: 500,
-          range: [20, 1000],
+          value: 250,
+          range: [20, 500],
           instance: null,
-          influencedBy: null
+          influencedBy: 'diameter'
         },
         {
           name: 'feedback',
@@ -98,9 +98,9 @@ const Effects = {
         {
           name: 'wet',
           value: 0,
-          range: [0, 1],
+          range: [0, 0.65],
           instance: null,
-          influencedBy: 'relative_velocity'
+          influencedBy: 'velocity'
         }
       ]
     }
@@ -132,18 +132,25 @@ const Effects = {
     );
   },
 
-  updateEffectVal(effectIt, paramIt, value, source) {
+  updateEffectVal(effectIt, paramIt, value) {
     const percentage = value * 100;
     const effect = Effects.data[effectIt].paramaters[paramIt];
     const val = Effects.valueInRangeFromPercentage(percentage, effect.range);
 
-    const instance = Effects.data[effectIt].paramaters[paramIt].instance;
-
-    if (source === 'asteroid') {
-      instance.value = value;
+    if (Effects.data[effectIt].paramaters[paramIt].name === 'delayTime') {
+      console.log('value', value);
+      console.log('a', val);
     }
 
     Effects.data[effectIt].paramaters[paramIt].value = val;
+  },
+
+  updateEffectValFromAsteroid(effectIt, paramIt, value) {
+    if (Effects.data[effectIt].paramaters[paramIt].name === 'delayTime') {
+      console.log('b', value);
+    }
+
+    Effects.data[effectIt].paramaters[paramIt].instance.value = value;
   },
 
   init() {
@@ -172,7 +179,7 @@ const Effects = {
 
           // Set event listener to update object store
           Effects.data[i].paramaters[ii].instance.on('change', v => {
-            Effects.updateEffectVal(i, ii, v, 'effects');
+            Effects.updateEffectVal(i, ii, v);
           });
         }
       }

@@ -82,26 +82,59 @@ $grey-dark: #6a6b6b;
 
 // Layout
 
-main,
-html,
-body {
+main {
+  opacity: 0;
   background-color: $almost-white;
 }
 
-// .wrapper {
-//   background-color: $grey-light;
-// }
+main.active {
+  opacity: 1;
+  transition: 0.3s ease-in-out opacity;
+}
+
+.wrapper.active {
+  .sequencer__notes__wrapper,
+  .controls__wrapper,
+  .effects__wrapper,
+  .signal__wrapper {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.sequencer__notes__wrapper,
+.controls__wrapper,
+.effects__wrapper,
+.signal__wrapper {
+  opacity: 0.5;
+  pointer-events: none;
+  transition: 0.3s ease-in-out opacity;
+}
+
+.sequencer__notes__wrapper {
+  opacity: 0;
+  transition-delay: 0.3s;
+}
+
+.sequencer__intro__wrapper {
+  position: relative;
+}
 
 .intro__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.3s ease-in-out opacity;
+
   @extend .ph3;
   @extend .pb3;
 }
 
-.sequencer__notes__wrapper {
-  overflow-y: scroll;
-  height: calc(48 * 12) + px;
-  max-height: calc(100vh - 100px);
-  @extend .ph3;
+.intro__wrapper.active {
+  opacity: 1;
 }
 
 .intro {
@@ -111,6 +144,13 @@ body {
   @extend .pa3;
   @extend .br4;
   @extend .shadow2;
+}
+
+.sequencer__notes__wrapper {
+  overflow-y: scroll;
+  height: calc(48 * 12) + px;
+  max-height: calc(100vh - 100px);
+  @extend .ph3;
 }
 
 .controls__wrapper {

@@ -9,7 +9,7 @@
       <!-- Controls -->
       <div class="col-4  controls__wrapper">
       <div class="controls">
-        <div class="flex  flex-wrap  pb3">
+        <div class="flex  flex-wrap  h3">
           <div class="col-9  flex  flex-wrap  align-center">
             Tempo:
           </div>
@@ -41,63 +41,65 @@
       </div>
       </div>
 
-      <div class="col-16  flex  flex-wrap  sequencer__notes__wrapper" style="display: none;">
-        <!-- Notes -->
-        <div class="col-2  notes__wrapper">
-          <div id="notes"></div>
-        </div>
-        <!-- Sequencer -->
-        <div class="col-22  sequencer__wrapper">
-          <div id="sequencer"></div>
-        </div>
-      </div>
-
-      <div class="col-16  flex  flex-wrap  intro__wrapper">
-        <div class="intro">
-          <div class="flex  flex-wrap  justify-center  pv3">
-            <div class="measure-wide">
-              <h1 class="tac">asteroidblock.io</h1>
-
-              <p class="tac  lh-copy">
-                asteroidblock.io is a web-based, interactive, atmospheric pad
-                synthesizer which queries NASA's asteroid API, using
-                live proximity data to throttle initial parameters
-                of the synth.
-              </p>
-            </div>
+      <div class="col-16  flex  flex-wrap  sequencer__intro__wrapper">
+        <div class="col-24  flex  flex-wrap  sequencer__notes__wrapper">
+          <!-- Notes -->
+          <div class="col-2  notes__wrapper">
+            <div id="notes"></div>
           </div>
-
-          <div class="flex  flex-wrap">
-            <div class="col-12  ph3">
-              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
-                Select Asteroid:
-              </div>
-              <div class="flex  flex-wrap">
-                <div id="asteroids"></div>
-              </div>
-
-              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
-                Select MIDI Sequence:
-              </div>
-              <div class="flex  flex-wrap">
-                <div id="midi-sequence"></div>
-              </div>
-            </div>
-
-            <div class="col-12  ph3">
-              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
-                Asteroid Data:
-              </div>
-              <div class="flex  flex-wrap">
-                <div class="w-100" id="asteroid-data"></div>
-              </div>
-            </div>
+          <!-- Sequencer -->
+          <div class="col-22  sequencer__wrapper">
+            <div id="sequencer"></div>
           </div>
+        </div>
 
-          <div class="flex  flex-wrap  justify-center  pt3">
-            <button id="begin" class="control__button">
-              Begin
-            </button>
+        <div class="col-24  flex  flex-wrap  intro__wrapper  active">
+          <div class="intro">
+            <div class="flex  flex-wrap  justify-center  pv3">
+              <div class="measure-wide">
+                <h1 class="tac">asteroidblock.io</h1>
+
+                <p class="tac  lh-copy">
+                  asteroidblock.io is a web-based, interactive, atmospheric pad
+                  synthesizer which queries NASA's asteroid API, using
+                  live proximity data to throttle initial parameters
+                  of the synth.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex  flex-wrap">
+              <div class="col-12  ph3">
+                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+                  Select Asteroid:
+                </div>
+                <div class="flex  flex-wrap">
+                  <div id="asteroids"></div>
+                </div>
+
+                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
+                  Select MIDI Sequence:
+                </div>
+                <div class="flex  flex-wrap">
+                  <div id="midi-sequence"></div>
+                </div>
+              </div>
+
+              <div class="col-12  ph3">
+                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+                  Asteroid Data:
+                </div>
+                <div class="flex  flex-wrap">
+                  <div class="w-100" id="asteroid-data"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex  flex-wrap  justify-center  pt3">
+              <button id="begin" class="control__button">
+                Begin
+              </button>
+            </div>
           </div>
         </div>
       </div>

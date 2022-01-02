@@ -1,6 +1,7 @@
 /* eslint-disable new-cap, no-unused-vars */
 import Nexus from 'nexusui';
 
+import Main from './Main';
 import Sequencer from './Sequencer';
 import Controls from './Controls';
 import Signal from './Signal';
@@ -22,35 +23,31 @@ const Asteroid = {
   },
 
   fetchData: async () => {
+    const today = new Date().toISOString().split('T')[0];
+
     const data = await fetchAsync(
-      'https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-08&end_date=2015-09-08&api_key=MKsFWtbcBefGIcipiyBf36RE9qX31mrNnwQGoges'
+      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=MKsFWtbcBefGIcipiyBf36RE9qX31mrNnwQGoges`
     );
 
+    const r = (value, decimals) => {
+      return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+    };
+
     const asteroids = [];
+    let a, closeApproach;
 
-    for (let i = 0; i < data.near_earth_objects['2015-09-08'].length; i++) {
-      const asteroid = data.near_earth_objects['2015-09-08'][i];
-
-      function round(value, decimals) {
-        return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
-      }
+    for (let i = 0; i < data.near_earth_objects[today].length; i++) {
+      a = data.near_earth_objects[today][i];
+      closeApproach = a.close_approach_data[0];
 
       const asteroidInstance = {
-        name: asteroid.name,
-        hazardous: asteroid.is_potentially_hazardous_asteroid.toString(),
-        close_approach_date:
-          asteroid.close_approach_data[0].close_approach_date,
-        orbiting_body: asteroid.close_approach_data[0].orbiting_body,
-        estimated_diameter:
-          asteroid.estimated_diameter.kilometers.estimated_diameter_max,
-        miss_distance: round(
-          asteroid.close_approach_data[0].miss_distance.kilometers,
-          3
-        ),
-        relative_velocity: round(
-          asteroid.close_approach_data[0].relative_velocity.miles_per_hour,
-          3
-        )
+        name: a.name,
+        hazardous: a.is_potentially_hazardous_asteroid.toString(),
+        close_approach_date: closeApproach.close_approach_date,
+        orbiting_body: closeApproach.orbiting_body,
+        diameter: r(a.estimated_diameter.kilometers.estimated_diameter_max, 3),
+        miss_distance: r(closeApproach.miss_distance.kilometers, 3),
+        velocity: r(closeApproach.relative_velocity.miles_per_hour, 3)
       };
 
       asteroids.push(asteroidInstance);
@@ -104,16 +101,16 @@ const Asteroid = {
 
       <div class="flex  flex-wrap  pb2">
         <div class="col-12">
-          <span class="fw7">Est. Diamater (Kilometers):</span>
+          <span class="fw7">Est. Diamater (km):</span>
         </div>
         <div class="col-12">
-          ${Asteroid.selected.estimated_diameter}
+          ${Asteroid.selected.diameter}
         </div>
       </div>
 
       <div class="flex  flex-wrap  pb2">
         <div class="col-12">
-          <span class="fw7">Miss Distance (Kilometers):</span>
+          <span class="fw7">Miss Distance (km):</span>
         </div>
         <div class="col-12">
           ${Asteroid.selected.miss_distance}
@@ -122,10 +119,10 @@ const Asteroid = {
 
       <div class="flex  flex-wrap  pb2">
         <div class="col-12">
-          <span class="fw7">Relatice Velocity (MPH):</span>
+          <span class="fw7">Relatice Velocity (mph):</span>
         </div>
         <div class="col-12">
-        ${Asteroid.selected.relative_velocity}
+        ${Asteroid.selected.velocity}
         </div>
       </div>
     `;
@@ -140,7 +137,7 @@ const Asteroid = {
         return;
       }
 
-      const currDiamater = Asteroid.selected[influencedBy];
+      const currInfluencedVal = Asteroid.selected[influencedBy];
       const diamaters = [];
       let curr;
 
@@ -153,7 +150,7 @@ const Asteroid = {
       const influencedByRange = [_.min(diamaters), _.max(diamaters)];
 
       const currInfluencePercentage = Effects.percentageInRangeGivenValue(
-        currDiamater,
+        currInfluencedVal,
         influencedByRange
       );
 
@@ -164,25 +161,23 @@ const Asteroid = {
         effectRange
       );
 
-      // console.log('Asteroid.asteroids', Asteroid.asteroids);
-      // console.log('influencedBy', influencedBy);
-      // console.log('currDiamater', currDiamater);
-      // console.log('influencedByRange', influencedByRange);
-      // console.log('currInfluencePercentage', currInfluencePercentage);
-      // console.log('effectRange', effectRange);
-      // console.log('updatedVal', updatedVal);
-      // console.log('effect', effect);
-      // console.log('effectParams', effectParams);
-      // console.log('updatedVal', updatedVal);
-      // console.log('---');
+      // if (
+      //   Effects.data[effect].paramaters[effectParams].influencedBy ===
+      //   'diameter'
+      // ) {
+      //   console.log('Asteroid.asteroids', Asteroid.asteroids);
+      //   console.log('influencedBy', influencedBy);
+      //   console.log('currInfluencedVal', currInfluencedVal);
+      //   console.log('influencedByRange', influencedByRange);
+      //   console.log('currInfluencePercentage', currInfluencePercentage);
+      //   console.log('effectRange', effectRange);
+      //   console.log('effect', effect);
+      //   console.log('effectParams', effectParams);
+      //   console.log('updatedVal', updatedVal);
+      //   console.log('---');
+      // }
 
-      Effects.updateEffectVal(effect, effectParams, updatedVal, 'asteroid');
-
-      console.log('i', i);
-      console.log(
-        'Signal.instrumentTypes.length',
-        Signal.instrumentTypes.length
-      );
+      Effects.updateEffectValFromAsteroid(effect, effectParams, updatedVal);
 
       let octave;
       let key;
@@ -224,8 +219,13 @@ const Asteroid = {
           return;
         }
 
-        Asteroid.elem.style.display = 'none';
-        Sequencer.elem.style.display = 'flex';
+        Main.wrapper.classList.add('active');
+        Asteroid.elem.classList.remove('active');
+
+        setTimeout(() => {
+          Asteroid.elem.classList.remove('flex');
+          Asteroid.elem.classList.add('dn');
+        }, 300);
 
         Sequencer.renderNotes();
         Sequencer.renderSequence();
