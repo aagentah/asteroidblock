@@ -20,18 +20,19 @@ const Signal = {
   envAttack: null,
   envRelease: null,
   envHold: null,
+  instrumentSelect: null,
 
   init() {
     this.render();
   },
 
   renderInstrument() {
-    const select = new Nexus.Select('#instrument', {
+    Signal.instrumentSelect = new Nexus.Select('#instrument', {
       size: [180, 30],
       options: Signal.instrumentTypes
     });
 
-    select.on('change', e => {
+    Signal.instrumentSelect.on('change', e => {
       Signal.currentInstrument = e.value;
     });
   },

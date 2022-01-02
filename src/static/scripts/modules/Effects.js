@@ -66,7 +66,7 @@ const Effects = {
           value: 8,
           range: [1, 8],
           instance: null,
-          influencedBy: null
+          influencedBy: 'estimated_diameter'
         },
 
         {
@@ -93,7 +93,7 @@ const Effects = {
           value: 0.5,
           range: [0, 1],
           instance: null,
-          influencedBy: null
+          influencedBy: 'miss_distance'
         },
         {
           name: 'wet',

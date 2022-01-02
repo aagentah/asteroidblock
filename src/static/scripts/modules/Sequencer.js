@@ -87,7 +87,6 @@ const Sequencer = {
     };
 
     Sequencer.interval = new Nexus.Interval(Controls.noteLength, () => {
-      console.log('Controls.noteLength', Controls.noteLength);
       const matrix = [];
 
       for (let i = 0; i < Sequencer.sequencer.matrix.pattern.length; i++) {

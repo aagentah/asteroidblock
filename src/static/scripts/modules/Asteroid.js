@@ -58,7 +58,7 @@ const Asteroid = {
 
     Asteroid.asteroids = asteroids;
     Asteroid.selected = Asteroid.asteroids[0];
-    Asteroid.renderInfo();
+    Asteroid.renderInfo(0);
     Asteroid.eventListener();
   },
 
@@ -164,21 +164,35 @@ const Asteroid = {
         effectRange
       );
 
-      if (influencedBy === 'miss_distance') {
-        console.log('Asteroid.asteroids', Asteroid.asteroids);
-        console.log('influencedBy', influencedBy);
-        console.log('currDiamater', currDiamater);
-        console.log('influencedByRange', influencedByRange);
-        console.log('currInfluencePercentage', currInfluencePercentage);
-        console.log('effectRange', effectRange);
-        console.log('updatedVal', updatedVal);
-        console.log('effect', effect);
-        console.log('effectParams', effectParams);
-        console.log('updatedVal', updatedVal);
-        console.log('---');
-      }
+      // console.log('Asteroid.asteroids', Asteroid.asteroids);
+      // console.log('influencedBy', influencedBy);
+      // console.log('currDiamater', currDiamater);
+      // console.log('influencedByRange', influencedByRange);
+      // console.log('currInfluencePercentage', currInfluencePercentage);
+      // console.log('effectRange', effectRange);
+      // console.log('updatedVal', updatedVal);
+      // console.log('effect', effect);
+      // console.log('effectParams', effectParams);
+      // console.log('updatedVal', updatedVal);
+      // console.log('---');
 
       Effects.updateEffectVal(effect, effectParams, updatedVal, 'asteroid');
+
+      console.log('i', i);
+      console.log(
+        'Signal.instrumentTypes.length',
+        Signal.instrumentTypes.length
+      );
+
+      let octave;
+      let key;
+      let multitude;
+
+      octave = Math.floor(i / Signal.instrumentTypes.length);
+      multitude = octave * Signal.instrumentTypes.length;
+      key = i - multitude;
+
+      Signal.instrumentSelect.value = Signal.instrumentTypes[key];
     };
 
     for (let i = 0; i < Effects.data.length; i++) {
@@ -200,7 +214,7 @@ const Asteroid = {
 
     select.on('change', e => {
       Asteroid.selected = Asteroid.asteroids[e.index];
-      Asteroid.renderInfo();
+      Asteroid.renderInfo(e.index);
     });
 
     Asteroid.beginEl.addEventListener(
