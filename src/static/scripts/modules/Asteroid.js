@@ -26,7 +26,37 @@ const Asteroid = {
       'https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-08&end_date=2015-09-08&api_key=MKsFWtbcBefGIcipiyBf36RE9qX31mrNnwQGoges'
     );
 
-    Asteroid.asteroids = data.near_earth_objects['2015-09-08'];
+    const asteroids = [];
+
+    for (let i = 0; i < data.near_earth_objects['2015-09-08'].length; i++) {
+      const asteroid = data.near_earth_objects['2015-09-08'][i];
+
+      function round(value, decimals) {
+        return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+      }
+
+      const asteroidInstance = {
+        name: asteroid.name,
+        hazardous: asteroid.is_potentially_hazardous_asteroid.toString(),
+        close_approach_date:
+          asteroid.close_approach_data[0].close_approach_date,
+        orbiting_body: asteroid.close_approach_data[0].orbiting_body,
+        estimated_diameter:
+          asteroid.estimated_diameter.kilometers.estimated_diameter_max,
+        miss_distance: round(
+          asteroid.close_approach_data[0].miss_distance.kilometers,
+          3
+        ),
+        relative_velocity: round(
+          asteroid.close_approach_data[0].relative_velocity.miles_per_hour,
+          3
+        )
+      };
+
+      asteroids.push(asteroidInstance);
+    }
+
+    Asteroid.asteroids = asteroids;
     Asteroid.selected = Asteroid.asteroids[0];
     Asteroid.renderInfo();
     Asteroid.eventListener();
@@ -50,7 +80,7 @@ const Asteroid = {
           <span class="fw7">Potentially Dangerous:</span>
         </div>
         <div class="col-12">
-          ${Asteroid.selected.is_potentially_hazardous_asteroid.toString()}
+          ${Asteroid.selected.hazardous}
         </div>
       </div>
 
@@ -59,7 +89,7 @@ const Asteroid = {
           <span class="fw7">Close Approach Date:</span>
         </div>
         <div class="col-12">
-          ${Asteroid.selected.close_approach_data[0].close_approach_date}
+          ${Asteroid.selected.close_approach_date}
         </div>
       </div>
 
@@ -68,7 +98,7 @@ const Asteroid = {
           <span class="fw7">Orbiting Body:</span>
         </div>
         <div class="col-12">
-          ${Asteroid.selected.close_approach_data[0].orbiting_body}
+          ${Asteroid.selected.orbiting_body}
         </div>
       </div>
 
@@ -77,10 +107,7 @@ const Asteroid = {
           <span class="fw7">Est. Diamater (Kilometers):</span>
         </div>
         <div class="col-12">
-          ${
-            Asteroid.selected.estimated_diameter.kilometers
-              .estimated_diameter_max
-          }
+          ${Asteroid.selected.estimated_diameter}
         </div>
       </div>
 
@@ -89,7 +116,7 @@ const Asteroid = {
           <span class="fw7">Miss Distance (Kilometers):</span>
         </div>
         <div class="col-12">
-          ${Asteroid.selected.close_approach_data[0].miss_distance.kilometers}
+          ${Asteroid.selected.miss_distance}
         </div>
       </div>
 
@@ -98,42 +125,71 @@ const Asteroid = {
           <span class="fw7">Relatice Velocity (MPH):</span>
         </div>
         <div class="col-12">
-        ${
-          Asteroid.selected.close_approach_data[0].relative_velocity
-            .miles_per_hour
-        }
+        ${Asteroid.selected.relative_velocity}
         </div>
       </div>
     `;
 
     Asteroid.asteroidDataElem.insertAdjacentHTML('beforeend', html);
 
-    const currDiamater =
-      Asteroid.selected.estimated_diameter.kilometers.estimated_diameter_max;
-    const diamaters = [];
-    let curr;
+    const macro = (effect, effectParams) => {
+      const influencedBy =
+        Effects.data[effect].paramaters[effectParams].influencedBy;
 
-    for (let i = 0; i < Asteroid.asteroids.length; i++) {
-      curr = Asteroid.asteroids[i];
-      diamaters.push(curr.estimated_diameter.kilometers.estimated_diameter_max);
+      if (!influencedBy) {
+        return;
+      }
+
+      const currDiamater = Asteroid.selected[influencedBy];
+      const diamaters = [];
+      let curr;
+
+      for (let i = 0; i < Asteroid.asteroids.length; i++) {
+        curr = Asteroid.asteroids[i];
+        diamaters.push(curr[influencedBy]);
+      }
+
+      // Chorus controlled by Est. Diamater
+      const influencedByRange = [_.min(diamaters), _.max(diamaters)];
+
+      const currInfluencePercentage = Effects.percentageInRangeGivenValue(
+        currDiamater,
+        influencedByRange
+      );
+
+      const effectRange = Effects.data[effect].paramaters[effectParams].range;
+
+      const updatedVal = Effects.valueInRangeFromPercentage(
+        currInfluencePercentage,
+        effectRange
+      );
+
+      if (influencedBy === 'miss_distance') {
+        console.log('Asteroid.asteroids', Asteroid.asteroids);
+        console.log('influencedBy', influencedBy);
+        console.log('currDiamater', currDiamater);
+        console.log('influencedByRange', influencedByRange);
+        console.log('currInfluencePercentage', currInfluencePercentage);
+        console.log('effectRange', effectRange);
+        console.log('updatedVal', updatedVal);
+        console.log('effect', effect);
+        console.log('effectParams', effectParams);
+        console.log('updatedVal', updatedVal);
+        console.log('---');
+      }
+
+      Effects.updateEffectVal(effect, effectParams, updatedVal, 'asteroid');
+    };
+
+    for (let i = 0; i < Effects.data.length; i++) {
+      const effect = Effects.data[i];
+
+      for (let ii = 0; ii < effect.paramaters.length; ii++) {
+        const effectParams = effect.paramaters[ii];
+
+        macro(i, ii);
+      }
     }
-
-    // Chorus controlled by Est. Diamater
-    const diamatersRange = [_.min(diamaters), _.max(diamaters)];
-
-    const currDiamaterPercentage = Effects.percentageInRangeGivenValue(
-      currDiamater,
-      diamatersRange
-    );
-
-    const effectRange = Effects.data[0].paramaters[3].range;
-
-    const updatedVal = Effects.valueInRangeFromPercentage(
-      currDiamaterPercentage,
-      effectRange
-    );
-
-    Effects.updateEffectVal(0, 3, updatedVal, 'asteroid');
   },
 
   eventListener() {

@@ -14,22 +14,30 @@ const Effects = {
         {
           name: 'frequency',
           value: 2,
-          range: [1, 3]
+          range: [1, 3],
+          instance: null,
+          influencedBy: 'estimated_diameter'
         },
         {
           name: 'delayTime',
           value: 8,
-          range: [2, 10]
+          range: [2, 10],
+          instance: null,
+          influencedBy: null
         },
         {
           name: 'depth',
           value: 0.25,
-          range: [0, 0.5]
+          range: [0, 0.5],
+          instance: null,
+          influencedBy: 'miss_distance'
         },
         {
           name: 'wet',
           value: 0.5,
-          range: [0, 1]
+          range: [0, 1],
+          instance: null,
+          influencedBy: 'relative_velocity'
         }
       ]
     },
@@ -44,7 +52,9 @@ const Effects = {
         {
           name: 'wet',
           value: 0,
-          range: [0, 0.5]
+          range: [0, 0.5],
+          instance: null,
+          influencedBy: 'miss_distance'
         }
       ]
     },
@@ -54,13 +64,17 @@ const Effects = {
         {
           name: 'bits',
           value: 8,
-          range: [1, 8]
+          range: [1, 8],
+          instance: null,
+          influencedBy: null
         },
 
         {
           name: 'wet',
           value: 0,
-          range: [0, 1]
+          range: [0, 1],
+          instance: null,
+          influencedBy: null
         }
       ]
     },
@@ -70,17 +84,23 @@ const Effects = {
         {
           name: 'delayTime',
           value: 500,
-          range: [20, 1000]
+          range: [20, 1000],
+          instance: null,
+          influencedBy: null
         },
         {
           name: 'feedback',
           value: 0.5,
-          range: [0, 1]
+          range: [0, 1],
+          instance: null,
+          influencedBy: null
         },
         {
           name: 'wet',
           value: 0,
-          range: [0, 1]
+          range: [0, 1],
+          instance: null,
+          influencedBy: 'relative_velocity'
         }
       ]
     }
@@ -117,13 +137,11 @@ const Effects = {
     const effect = Effects.data[effectIt].paramaters[paramIt];
     const val = Effects.valueInRangeFromPercentage(percentage, effect.range);
 
-    const instance = Effects.data[effectIt].paramaters[paramIt].nextInstance;
+    const instance = Effects.data[effectIt].paramaters[paramIt].instance;
 
     if (source === 'asteroid') {
       instance.value = value;
     }
-
-    console.log('instance', instance);
 
     Effects.data[effectIt].paramaters[paramIt].value = val;
   },
@@ -143,17 +161,17 @@ const Effects = {
 
       for (let ii = 0; ii < effect.paramaters.length; ii++) {
         params = effect.paramaters[ii];
-        Effects.data[i].paramaters[ii].nextInstance = nex[params.name];
+        Effects.data[i].paramaters[ii].instance = nex[params.name];
 
-        if (Effects.data[i].paramaters[ii].nextInstance) {
+        if (Effects.data[i].paramaters[ii].instance) {
           // Set default values
-          Effects.data[i].paramaters[ii].nextInstance.resize(55, 55);
-          Effects.data[i].paramaters[ii].nextInstance.value = Effects.calcDial(
+          Effects.data[i].paramaters[ii].instance.resize(55, 55);
+          Effects.data[i].paramaters[ii].instance.value = Effects.calcDial(
             params
           );
 
           // Set event listener to update object store
-          Effects.data[i].paramaters[ii].nextInstance.on('change', v => {
+          Effects.data[i].paramaters[ii].instance.on('change', v => {
             Effects.updateEffectVal(i, ii, v, 'effects');
           });
         }
