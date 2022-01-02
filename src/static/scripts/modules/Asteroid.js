@@ -1,5 +1,6 @@
 /* eslint-disable new-cap, no-unused-vars */
 import Nexus from 'nexusui';
+import Cookies from 'js-cookie';
 
 import Main from './Main';
 import Sequencer from './Sequencer';
@@ -23,34 +24,46 @@ const Asteroid = {
   },
 
   fetchData: async () => {
-    const today = new Date().toISOString().split('T')[0];
+    let asteroids = [];
+    const asteroidCookie = Cookies.get('asteroids');
 
-    const data = await fetchAsync(
-      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=MKsFWtbcBefGIcipiyBf36RE9qX31mrNnwQGoges`
-    );
+    if (asteroidCookie) {
+      asteroids = JSON.parse(asteroidCookie);
+    } else {
+      const today = new Date().toISOString().split('T')[0];
 
-    const r = (value, decimals) => {
-      return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
-    };
+      const data = await fetchAsync(
+        `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=MKsFWtbcBefGIcipiyBf36RE9qX31mrNnwQGoges`
+      );
 
-    const asteroids = [];
-    let a, closeApproach;
-
-    for (let i = 0; i < data.near_earth_objects[today].length; i++) {
-      a = data.near_earth_objects[today][i];
-      closeApproach = a.close_approach_data[0];
-
-      const asteroidInstance = {
-        name: a.name,
-        hazardous: a.is_potentially_hazardous_asteroid.toString(),
-        close_approach_date: closeApproach.close_approach_date,
-        orbiting_body: closeApproach.orbiting_body,
-        diameter: r(a.estimated_diameter.kilometers.estimated_diameter_max, 3),
-        miss_distance: r(closeApproach.miss_distance.kilometers, 3),
-        velocity: r(closeApproach.relative_velocity.miles_per_hour, 3)
+      const r = (value, decimals) => {
+        return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
       };
 
-      asteroids.push(asteroidInstance);
+      asteroids = [];
+      let a, closeApproach;
+
+      for (let i = 0; i < data.near_earth_objects[today].length; i++) {
+        a = data.near_earth_objects[today][i];
+        closeApproach = a.close_approach_data[0];
+
+        const asteroidInstance = {
+          name: a.name,
+          hazardous: a.is_potentially_hazardous_asteroid.toString(),
+          close_approach_date: closeApproach.close_approach_date,
+          orbiting_body: closeApproach.orbiting_body,
+          diameter: r(
+            a.estimated_diameter.kilometers.estimated_diameter_max,
+            3
+          ),
+          miss_distance: r(closeApproach.miss_distance.kilometers, 3),
+          velocity: r(closeApproach.relative_velocity.miles_per_hour, 3)
+        };
+
+        asteroids.push(asteroidInstance);
+      }
+
+      Cookies.set('asteroids', asteroids, { expires: 1 });
     }
 
     Asteroid.asteroids = asteroids;

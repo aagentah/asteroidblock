@@ -160,6 +160,8 @@ const Effects = {
   render() {
     let nex, effect, params, element;
 
+    // TODO: instead of rack, initiate dials with custom ranges etc
+
     for (let i = 0; i < Effects.data.length; i++) {
       effect = Effects.data[i];
       nex = new Nexus.Rack(`#effect-${effect.name}`);

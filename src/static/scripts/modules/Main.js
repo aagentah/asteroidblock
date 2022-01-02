@@ -17,12 +17,12 @@ const Main = {
   },
 
   render() {
-    Asteroid.render();
     Audio.setContext();
     Effects.render();
     Signal.render();
     Audio.setInstruments();
     Audio.setEffects();
+    Asteroid.render();
 
     setTimeout(() => {
       Main.main.classList.add('active');
