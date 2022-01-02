@@ -112,10 +112,18 @@ const Effects = {
     );
   },
 
-  updateEffectVal(effectIt, paramIt, value) {
+  updateEffectVal(effectIt, paramIt, value, source) {
     const percentage = value * 100;
     const effect = Effects.data[effectIt].paramaters[paramIt];
     const val = Effects.valueInRangeFromPercentage(percentage, effect.range);
+
+    const instance = Effects.data[effectIt].paramaters[paramIt].nextInstance;
+
+    if (source === 'asteroid') {
+      instance.value = value;
+    }
+
+    console.log('instance', instance);
 
     Effects.data[effectIt].paramaters[paramIt].value = val;
   },
@@ -125,7 +133,7 @@ const Effects = {
   },
 
   render() {
-    let nex, effect, params;
+    let nex, effect, params, element;
 
     for (let i = 0; i < Effects.data.length; i++) {
       effect = Effects.data[i];
@@ -135,15 +143,18 @@ const Effects = {
 
       for (let ii = 0; ii < effect.paramaters.length; ii++) {
         params = effect.paramaters[ii];
+        Effects.data[i].paramaters[ii].nextInstance = nex[params.name];
 
-        if (nex[params.name]) {
+        if (Effects.data[i].paramaters[ii].nextInstance) {
           // Set default values
-          nex[params.name].resize(55, 55);
-          nex[params.name].value = Effects.calcDial(params);
+          Effects.data[i].paramaters[ii].nextInstance.resize(55, 55);
+          Effects.data[i].paramaters[ii].nextInstance.value = Effects.calcDial(
+            params
+          );
 
           // Set event listener to update object store
-          nex[`${params.name}`].on('change', v => {
-            Effects.updateEffectVal(i, ii, v);
+          Effects.data[i].paramaters[ii].nextInstance.on('change', v => {
+            Effects.updateEffectVal(i, ii, v, 'effects');
           });
         }
       }

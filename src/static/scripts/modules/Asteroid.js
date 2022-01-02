@@ -27,9 +27,8 @@ const Asteroid = {
     );
 
     Asteroid.asteroids = data.near_earth_objects['2015-09-08'];
-    Asteroid.selectedAsteroid = Asteroid.asteroids[0];
+    Asteroid.selected = Asteroid.asteroids[0];
     Asteroid.renderInfo();
-    console.log('Asteroid.asteroids', Asteroid.asteroids);
     Asteroid.eventListener();
   },
 
@@ -42,7 +41,7 @@ const Asteroid = {
           <span class="fw7">Name:</span>
         </div>
         <div class="col-12">
-          ${Asteroid.selectedAsteroid.name}
+          ${Asteroid.selected.name}
         </div>
       </div>
 
@@ -51,7 +50,7 @@ const Asteroid = {
           <span class="fw7">Potentially Dangerous:</span>
         </div>
         <div class="col-12">
-          ${Asteroid.selectedAsteroid.is_potentially_hazardous_asteroid.toString()}
+          ${Asteroid.selected.is_potentially_hazardous_asteroid.toString()}
         </div>
       </div>
 
@@ -60,9 +59,7 @@ const Asteroid = {
           <span class="fw7">Close Approach Date:</span>
         </div>
         <div class="col-12">
-          ${
-            Asteroid.selectedAsteroid.close_approach_data[0].close_approach_date
-          }
+          ${Asteroid.selected.close_approach_data[0].close_approach_date}
         </div>
       </div>
 
@@ -71,7 +68,7 @@ const Asteroid = {
           <span class="fw7">Orbiting Body:</span>
         </div>
         <div class="col-12">
-          ${Asteroid.selectedAsteroid.close_approach_data[0].orbiting_body}
+          ${Asteroid.selected.close_approach_data[0].orbiting_body}
         </div>
       </div>
 
@@ -81,7 +78,7 @@ const Asteroid = {
         </div>
         <div class="col-12">
           ${
-            Asteroid.selectedAsteroid.estimated_diameter.kilometers
+            Asteroid.selected.estimated_diameter.kilometers
               .estimated_diameter_max
           }
         </div>
@@ -92,15 +89,51 @@ const Asteroid = {
           <span class="fw7">Miss Distance (Kilometers):</span>
         </div>
         <div class="col-12">
-          ${
-            Asteroid.selectedAsteroid.close_approach_data[0].miss_distance
-              .kilometers
-          }
+          ${Asteroid.selected.close_approach_data[0].miss_distance.kilometers}
+        </div>
+      </div>
+
+      <div class="flex  flex-wrap  pb2">
+        <div class="col-12">
+          <span class="fw7">Relatice Velocity (MPH):</span>
+        </div>
+        <div class="col-12">
+        ${
+          Asteroid.selected.close_approach_data[0].relative_velocity
+            .miles_per_hour
+        }
         </div>
       </div>
     `;
 
     Asteroid.asteroidDataElem.insertAdjacentHTML('beforeend', html);
+
+    const currDiamater =
+      Asteroid.selected.estimated_diameter.kilometers.estimated_diameter_max;
+    const diamaters = [];
+    let curr;
+
+    for (let i = 0; i < Asteroid.asteroids.length; i++) {
+      curr = Asteroid.asteroids[i];
+      diamaters.push(curr.estimated_diameter.kilometers.estimated_diameter_max);
+    }
+
+    // Chorus controlled by Est. Diamater
+    const diamatersRange = [_.min(diamaters), _.max(diamaters)];
+
+    const currDiamaterPercentage = Effects.percentageInRangeGivenValue(
+      currDiamater,
+      diamatersRange
+    );
+
+    const effectRange = Effects.data[0].paramaters[3].range;
+
+    const updatedVal = Effects.valueInRangeFromPercentage(
+      currDiamaterPercentage,
+      effectRange
+    );
+
+    Effects.updateEffectVal(0, 3, updatedVal, 'asteroid');
   },
 
   eventListener() {
@@ -110,7 +143,7 @@ const Asteroid = {
     });
 
     select.on('change', e => {
-      Asteroid.selectedAsteroid = Asteroid.asteroids[e.index];
+      Asteroid.selected = Asteroid.asteroids[e.index];
       Asteroid.renderInfo();
     });
 

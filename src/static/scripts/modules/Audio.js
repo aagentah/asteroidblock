@@ -73,8 +73,6 @@ const Audio = {
         effectParams[param.name] = param.value;
       }
 
-      console.log('effectParams', effectParams);
-
       Audio.effect[effect.name].set({ ...effectParams });
     }
 
