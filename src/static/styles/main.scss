@@ -84,12 +84,35 @@ $grey-dark: #6a6b6b;
 
 main {
   opacity: 0;
-  background-color: $almost-white;
+  // background-color: $almost-white;
 }
 
 main.active {
   opacity: 1;
   transition: 0.3s ease-in-out opacity;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#overlay img {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  height: 100vh;
+  z-index: 1;
+
+  // .flex {
+  //   display: none;
+  // }
 }
 
 .wrapper.active {
@@ -114,6 +137,7 @@ main.active {
 .sequencer__notes__wrapper {
   opacity: 0;
   transition-delay: 0.3s;
+  background-color: $almost-white;
 }
 
 .sequencer__intro__wrapper {
