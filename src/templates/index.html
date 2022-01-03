@@ -8,40 +8,44 @@
     <div class="flex  flex-wrap">
       <!-- Controls -->
       <div class="col-4  controls__wrapper">
-      <div class="controls">
-        <div class="flex  flex-wrap  h3">
-          <div class="col-9  flex  flex-wrap  align-center">
-            Tempo:
+        <div class="controls">
+          <div class="flex  flex-wrap  h3">
+            <div class="col-9  flex  flex-wrap  align-center">
+              Tempo:
+            </div>
+            <div class="col-15  flex  flex-wrap  align-center">
+              <div id="tempo"></div>
+            </div>
           </div>
-          <div class="col-15  flex  flex-wrap  align-center">
-            <div id="tempo"></div>
-          </div>
-        </div>
 
-        <div class="col-24">
-          <button id="start" class="control__button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M2 24v-24l20 12-20 12z"/></svg>
-          </button>
-        </div>
-        <div class="col-24">
-          <button id="stop" class="control__button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z"/></svg>
-          </button>
-        </div>
-        <div class="col-24">
-          <button id="reset" class="control__button">
-            Reset
-          </button>
-        </div>
-        <div class="col-24">
-          <button id="reset" class="control__button">
-            Save & Export
-          </button>
+          <div class="flex  flex-wrap">
+            <button id="start" class="control__button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M2 24v-24l20 12-20 12z"/></svg>
+            </button>
+          </div>
+          <div class="flex  flex-wrap">
+            <button id="stop" class="control__button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z"/></svg>
+            </button>
+          </div>
+          <div class="flex  flex-wrap">
+            <button id="reset" class="control__button">
+              Reset
+            </button>
+          </div>
+          <div class="flex  flex-wrap">
+            <button id="reset" class="control__button">
+              Save & Export
+            </button>
+          </div>
+
+          <div class="flex  flex-wrap">
+            <audio controls></audio>
+          </div>
         </div>
       </div>
-      </div>
 
-      <div class="col-16  flex  flex-wrap  sequencer__intro__wrapper">
+      <div class="col-13  col-16-md  flex  flex-wrap  sequencer__intro__wrapper">
         <div class="col-24  flex  flex-wrap  sequencer__notes__wrapper">
           <!-- Notes -->
           <div class="col-2  notes__wrapper">
@@ -59,7 +63,7 @@
               <div class="measure-wide">
                 <h1 class="tac">asteroidblock.io</h1>
 
-                <p class="tac  lh-copy">
+                <p class="tac  lh-copy  dn  db-md">
                   asteroidblock.io is a web-based, interactive, atmospheric pad
                   synthesizer which queries NASA's asteroid API, using
                   live proximity data to throttle initial parameters
@@ -69,7 +73,7 @@
             </div>
 
             <div class="flex  flex-wrap">
-              <div class="col-12  ph3">
+              <div class="col-24  col-12-md  ph3">
                 <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
                   Select Asteroid:
                 </div>
@@ -85,7 +89,7 @@
                 </div>
               </div>
 
-              <div class="col-12  ph3">
+              <div class="col-12  ph3  dn  db-md">
                 <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
                   Asteroid Data:
                 </div>
@@ -105,7 +109,7 @@
       </div>
 
       <!-- Effects -->
-      <div class="col-4  flex  effects__wrapper">
+      <div class="col-7  col-4-md  flex  effects__wrapper">
         <div class="effects  flex  flex-wrap  align-center">
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Chorus</div>

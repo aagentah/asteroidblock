@@ -137,19 +137,10 @@ const Effects = {
     const effect = Effects.data[effectIt].paramaters[paramIt];
     const val = Effects.valueInRangeFromPercentage(percentage, effect.range);
 
-    if (Effects.data[effectIt].paramaters[paramIt].name === 'delayTime') {
-      console.log('value', value);
-      console.log('a', val);
-    }
-
     Effects.data[effectIt].paramaters[paramIt].value = val;
   },
 
   updateEffectValFromAsteroid(effectIt, paramIt, value) {
-    if (Effects.data[effectIt].paramaters[paramIt].name === 'delayTime') {
-      console.log('b', value);
-    }
-
     Effects.data[effectIt].paramaters[paramIt].instance.value = value;
   },
 
