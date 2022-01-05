@@ -19,6 +19,7 @@
     "test": "mocha --require @babel/register 'test/**/*.test.js' || true"
   },
   "dependencies": {
+    "audiobuffer-to-wav": "1.0.0",
     "axios": "^0.18.0",
     "flickity": "^2.1.1",
     "flickity-imagesloaded": "^2.0.0",

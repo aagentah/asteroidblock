@@ -2,6 +2,13 @@
 
 {% set bodyClass = 'page-home' %}
 
+{% set loadingIcon = '
+  <span class="loading-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.75 22c0 .966-.783 1.75-1.75 1.75s-1.75-.784-1.75-1.75.783-1.75 1.75-1.75 1.75.784 1.75 1.75zm-1.75-22c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 10.75c.689 0 1.249.561 1.249 1.25 0 .69-.56 1.25-1.249 1.25-.69 0-1.249-.559-1.249-1.25 0-.689.559-1.25 1.249-1.25zm-22 1.25c0 1.105.896 2 2 2s2-.895 2-2c0-1.104-.896-2-2-2s-2 .896-2 2zm19-8c.551 0 1 .449 1 1 0 .553-.449 1.002-1 1-.551 0-1-.447-1-.998 0-.553.449-1.002 1-1.002zm0 13.5c.828 0 1.5.672 1.5 1.5s-.672 1.501-1.502 1.5c-.826 0-1.498-.671-1.498-1.499 0-.829.672-1.501 1.5-1.501zm-14-14.5c1.104 0 2 .896 2 2s-.896 2-2.001 2c-1.103 0-1.999-.895-1.999-2s.896-2 2-2zm0 14c1.104 0 2 .896 2 2s-.896 2-2.001 2c-1.103 0-1.999-.895-1.999-2s.896-2 2-2z"/></svg>
+  </span>
+' %}
+
+
 {% block content %}
 
   <div id="overlay"><img src="https://cdn.kapwing.com/final_61d3101e3c744300931ba227_608722.gif" alt="Be patient..." /></div>
@@ -74,20 +81,24 @@
               </div>
             </div>
 
-            <div class="flex  flex-wrap">
+            <div class="flex  flex-wrap" id="asteroid-data">
               <div class="col-24  col-12-md  ph3">
                 <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
                   Select Asteroid:
                 </div>
                 <div class="flex  flex-wrap">
-                  <div id="asteroids"></div>
+                  <div id="asteroids" class="col-12  intro__statistic">
+                    {{loadingIcon}}
+                  </div>
                 </div>
 
                 <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
                   Select MIDI Sequence:
                 </div>
                 <div class="flex  flex-wrap">
-                  <div id="midi-sequence"></div>
+                  <div id="midi-sequence" class="col-12  intro__statistic">
+                    {{loadingIcon}}
+                  </div>
                 </div>
               </div>
 
@@ -96,15 +107,78 @@
                   Asteroid Data:
                 </div>
                 <div class="flex  flex-wrap">
-                  <div class="w-100" id="asteroid-data"></div>
+                  <div class="w-100">
+                    <div class="flex  flex-wrap  pb2">
+                      <div class="col-12">
+                        <span class="fw7">Name:</span>
+                      </div>
+                      <div class="col-12  intro__statistic">
+                        {{loadingIcon}}
+                      </div>
+                    </div>
+
+                    <div class="flex  flex-wrap  pb2">
+                      <div class="col-12">
+                        <span class="fw7">Potentially Dangerous:</span>
+                      </div>
+                      <div class="col-12  intro__statistic">
+                        {{loadingIcon}}
+                      </div>
+                    </div>
+
+                    <div class="flex  flex-wrap  pb2">
+                      <div class="col-12">
+                        <span class="fw7">Close Approach Date:</span>
+                      </div>
+                      <div class="col-12  intro__statistic">
+                        {{loadingIcon}}
+                      </div>
+                    </div>
+
+                    <div class="flex  flex-wrap  pb2">
+                      <div class="col-12">
+                        <span class="fw7">Orbiting Body:</span>
+                      </div>
+                      <div class="col-12  intro__statistic">
+                        {{loadingIcon}}
+                      </div>
+                    </div>
+
+                    <div class="flex  flex-wrap  pb2">
+                      <div class="col-12">
+                        <span class="fw7">Est. Diamater (km):</span>
+                      </div>
+                      <div class="col-12  intro__statistic">
+                        {{loadingIcon}}
+                      </div>
+                    </div>
+
+                    <div class="flex  flex-wrap  pb2">
+                      <div class="col-12">
+                        <span class="fw7">Miss Distance (km):</span>
+                      </div>
+                      <div class="col-12  intro__statistic">
+                        {{loadingIcon}}
+                      </div>
+                    </div>
+
+                    <div class="flex  flex-wrap  pb2">
+                      <div class="col-12">
+                        <span class="fw7">Relatice Velocity (mph):</span>
+                      </div>
+                      <div class="col-12  intro__statistic">
+                        {{loadingIcon}}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="flex  flex-wrap  justify-center  pt3">
-              <button id="begin" class="control__button">
-                Begin
-              </button>
+              <div class="flex  flex-wrap  justify-center  pt3  w-100">
+                <button id="begin" class="control__button" disabled>
+                  Begin
+                </button>
+              </div>
             </div>
           </div>
         </div>
