@@ -348,3 +348,31 @@ main.active {
     transform: rotate(360deg);
   }
 }
+
+// progress
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 5px;
+  background: transparent;
+}
+
+progress {
+  color: transparent;
+}
+
+progress::-moz-progress-bar {
+  background: transparent;
+}
+
+progress::-webkit-progress-value {
+  background: red;
+}
+
+progress::-webkit-progress-bar {
+  background: transparent;
+}
