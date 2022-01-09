@@ -149,31 +149,62 @@ const Effects = {
   },
 
   render() {
-    let nex, effect, params, element;
+    // let nex, effect, params, element;
+    //
+    // // TODO: instead of rack, initiate dials with custom ranges etc
+    //
+    // for (let i = 0; i < Effects.data.length; i++) {
+    //   effect = Effects.data[i];
+    //   nex = new Nexus.Rack(`#effect-${effect.name}`);
+    //   nex.colorize('accent', '#505483');
+    //   nex.colorize('fill', '#fafafa');
+    //
+    //   for (let ii = 0; ii < effect.paramaters.length; ii++) {
+    //     params = effect.paramaters[ii];
+    //     Effects.data[i].paramaters[ii].instance = nex[params.name];
+    //
+    //     if (Effects.data[i].paramaters[ii].instance) {
+    //       // Set default values
+    //       Effects.data[i].paramaters[ii].instance.resize(55, 55);
+    //       Effects.data[i].paramaters[ii].instance.value = Effects.calcDial(
+    //         params
+    //       );
+    //
+    //       // Set event listener to update object store
+    //       Effects.data[i].paramaters[ii].instance.on('change', v => {
+    //         Effects.updateEffectVal(i, ii, v);
+    //       });
+    //     }
+    //   }
+    // }
 
-    // TODO: instead of rack, initiate dials with custom ranges etc
+    let rackEl, effect, dialEl, dial, effectParams;
 
     for (let i = 0; i < Effects.data.length; i++) {
       effect = Effects.data[i];
-      nex = new Nexus.Rack(`#effect-${effect.name}`);
-      nex.colorize('accent', '#505483');
-      nex.colorize('fill', '#fafafa');
+      rackEl = document.querySelector(`#effect-${effect.name}`);
 
       for (let ii = 0; ii < effect.paramaters.length; ii++) {
-        params = effect.paramaters[ii];
-        Effects.data[i].paramaters[ii].instance = nex[params.name];
+        effectParams = effect.paramaters[ii];
+        dialEl = rackEl.querySelector(`#${effectParams.name}`);
 
-        if (Effects.data[i].paramaters[ii].instance) {
-          // Set default values
-          Effects.data[i].paramaters[ii].instance.resize(55, 55);
-          Effects.data[i].paramaters[ii].instance.value = Effects.calcDial(
-            params
-          );
+        if (dialEl) {
+          dial = new Nexus.Dial(dialEl, {
+            size: [55, 55],
+            min: effectParams.range[0],
+            max: effectParams.range[1],
+            value: effectParams.value
+          });
+
+          dial.colorize('accent', '#505483');
+          dial.colorize('fill', '#fafafa');
 
           // Set event listener to update object store
-          Effects.data[i].paramaters[ii].instance.on('change', v => {
+          dial.on('change', v => {
             Effects.updateEffectVal(i, ii, v);
           });
+
+          Effects.data[i].paramaters[ii].instance = dial;
         }
       }
     }

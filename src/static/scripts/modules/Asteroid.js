@@ -271,28 +271,28 @@ const Asteroid = {
 
       const effectRange = Effects.data[effect].paramaters[effectParams].range;
 
-      const updatedVal = Effects.valueInRangeFromPercentage(
+      const valInRange = Effects.valueInRangeFromPercentage(
         currInfluencePercentage,
         effectRange
       );
 
-      // if (
-      //   Effects.data[effect].paramaters[effectParams].influencedBy ===
-      //   'diameter'
-      // ) {
-      //   console.log('Asteroid.asteroids', Asteroid.asteroids);
-      //   console.log('influencedBy', influencedBy);
-      //   console.log('currInfluencedVal', currInfluencedVal);
-      //   console.log('influencedByRange', influencedByRange);
-      //   console.log('currInfluencePercentage', currInfluencePercentage);
-      //   console.log('effectRange', effectRange);
-      //   console.log('effect', effect);
-      //   console.log('effectParams', effectParams);
-      //   console.log('updatedVal', updatedVal);
-      //   console.log('---');
-      // }
+      if (
+        Effects.data[effect].paramaters[effectParams].influencedBy ===
+        'diameter'
+      ) {
+        console.log('Asteroid.asteroids', Asteroid.asteroids);
+        console.log('influencedBy', influencedBy);
+        console.log('currInfluencedVal', currInfluencedVal);
+        console.log('influencedByRange', influencedByRange);
+        console.log('currInfluencePercentage', currInfluencePercentage);
+        console.log('effectRange', effectRange);
+        console.log('effect', effect);
+        console.log('effectParams', effectParams);
+        console.log('valInRange', valInRange);
+        console.log('---');
+      }
 
-      Effects.updateEffectValFromAsteroid(effect, effectParams, updatedVal);
+      Effects.updateEffectValFromAsteroid(effect, effectParams, valInRange);
 
       let octave;
       let key;
