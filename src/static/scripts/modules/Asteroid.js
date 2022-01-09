@@ -13,6 +13,8 @@ import { fetchAsync } from '../utils/fetchAsync';
 
 const Asteroid = {
   elem: document.querySelector('.intro__wrapper'),
+  asteroidBeginElem: document.querySelector('#asteroid-begin'),
+  asteroidSelectsElem: document.querySelector('#asteroid-selects'),
   asteroidDataElem: document.querySelector('#asteroid-data'),
   asteroids: [],
   midiSequences: [
@@ -143,26 +145,7 @@ const Asteroid = {
   },
 
   renderInfo(i) {
-    Asteroid.asteroidDataElem.innerHTML = '';
-
     let html = `
-        <div class="col-24  col-12-md  ph3">
-          <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
-            Select Asteroid:
-          </div>
-          <div class="flex  flex-wrap">
-            <div id="asteroids" class="col-12  intro__statistic"></div>
-          </div>
-
-          <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
-            Select MIDI Sequence:
-          </div>
-          <div class="flex  flex-wrap">
-            <div id="midi-sequence" class="col-12  intro__statistic"></div>
-          </div>
-        </div>
-
-        <div class="col-12  ph3  dn  db-md">
           <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
             Asteroid Data:
           </div>
@@ -232,17 +215,10 @@ const Asteroid = {
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="flex  flex-wrap  justify-center  pt3  w-100">
-          <button id="begin" class="control__button">
-            Begin
-          </button>
-        </div>
       `;
 
+    Asteroid.asteroidDataElem.innerHTML = '';
     Asteroid.asteroidDataElem.insertAdjacentHTML('beforeend', html);
-    Asteroid.eventListener();
 
     const macro = (effect, effectParams) => {
       const influencedBy =
@@ -317,6 +293,34 @@ const Asteroid = {
   },
 
   eventListener() {
+    let selectsHtml = `
+      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+        Select Asteroid:
+      </div>
+      <div class="flex  flex-wrap">
+        <div id="asteroids" class="col-12  intro__statistic"></div>
+      </div>
+
+      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
+        Select MIDI Sequence:
+      </div>
+      <div class="flex  flex-wrap">
+        <div id="midi-sequence" class="col-12  intro__statistic"></div>
+      </div>
+    `;
+
+    let buttonHtml = `
+      <button id="begin" class="control__button">
+        Begin
+      </button>
+    `;
+
+    Asteroid.asteroidSelectsElem.innerHTML = '';
+    Asteroid.asteroidBeginElem.innerHTML = '';
+
+    Asteroid.asteroidSelectsElem.insertAdjacentHTML('beforeend', selectsHtml);
+    Asteroid.asteroidBeginElem.insertAdjacentHTML('beforeend', buttonHtml);
+
     const beginEl = document.querySelector('#begin');
 
     const asteroidSelect = new Nexus.Select('#asteroids', {
@@ -369,6 +373,7 @@ const Asteroid = {
 
   render() {
     Asteroid.fetchData();
+    Asteroid.eventListener();
   }
 };
 
