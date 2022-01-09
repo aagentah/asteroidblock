@@ -20,6 +20,10 @@ const Sequencer = {
   interval: null,
   currentColumn: 0,
 
+  parseMatrix(matrix) {
+    Sequencer.sequencer.matrix.set.all(matrix);
+  },
+
   renderNotes() {
     let octave;
     let notesItems = '';

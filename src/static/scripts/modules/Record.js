@@ -90,9 +90,38 @@ const Record = {
     });
   },
 
+  animateProgress() {
+    const fulltime = Controls.noteLength * 8;
+
+    const increaseVal = progressBar => {
+      if (progressBar.value < 100) {
+        progressBar.value = progressBar.value + 1;
+      } else {
+        progressBar.value = 0;
+        clearInterval(progressBar.interval);
+      }
+    };
+
+    const progressBars = document.getElementsByClassName('progress');
+    for (let i = 0; i < progressBars.length; i++) {
+      //call increaseVal function and wait 50ms before each call
+      //the third argument is the argument that i want to pass to the increaseVal function
+      //read https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval
+      progressBars[i].interval = setInterval(
+        increaseVal,
+        fulltime / 100,
+        progressBars[i]
+      );
+    }
+  },
+
   init(recorder) {
+    Record.animateProgress();
+
     // wait for the notes to end and stop the recording
     setTimeout(async () => {
+      Controls.stopControls();
+
       const recording = await recorder.stop();
       const audioBuffer = await Record.convertBlobToAudioBuffer(recording);
 
@@ -115,6 +144,7 @@ const Record = {
         numChannels: 2,
         sampleRate: 48000
       });
+
       const wav = new Blob([wavBytes], { type: 'audio/wav' });
 
       const anchor = document.createElement('a');

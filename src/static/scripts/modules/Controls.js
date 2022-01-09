@@ -43,29 +43,6 @@ const Controls = {
       return;
     }
 
-    const fulltime = Controls.noteLength * 8;
-
-    const increaseVal = progressBar => {
-      if (progressBar.value < 100) {
-        progressBar.value = progressBar.value + 1;
-      } else {
-        progressBar.value = 0;
-        clearInterval(progressBar.interval);
-      }
-    };
-
-    const progressBars = document.getElementsByClassName('progress');
-    for (let i = 0; i < progressBars.length; i++) {
-      //call increaseVal function and wait 50ms before each call
-      //the third argument is the argument that i want to pass to the increaseVal function
-      //read https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval
-      progressBars[i].interval = setInterval(
-        increaseVal,
-        fulltime / 100,
-        progressBars[i]
-      );
-    }
-
     const recorder = new Tone.Recorder();
     Tone.getContext().destination.connect(recorder);
     recorder.start();
@@ -84,6 +61,8 @@ const Controls = {
     for (let i = 0; i < 10; i++) {
       if (Sequencer.sequencer.stepper.value !== 0) Sequencer.sequencer.next();
     }
+
+    Sequencer.currentColumn = 0;
   },
 
   resetControls() {

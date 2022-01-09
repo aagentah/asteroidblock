@@ -15,6 +15,77 @@ const Asteroid = {
   elem: document.querySelector('.intro__wrapper'),
   asteroidDataElem: document.querySelector('#asteroid-data'),
   asteroids: [],
+  midiSequences: [
+    {
+      name: 'None',
+      matrix: []
+    },
+    {
+      name: 'test',
+      matrix: [
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, true, false, true, false, false, false],
+        [false, false, false, false, false, false, true, false],
+        [true, false, false, false, false, false, false, true],
+        [false, true, false, false, false, true, false, false],
+        [false, false, false, true, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false]
+      ]
+    }
+  ],
   selectedAsteroid: {},
   hasOpened: false,
   isLoading: true,
@@ -248,14 +319,28 @@ const Asteroid = {
   eventListener() {
     const beginEl = document.querySelector('#begin');
 
-    const select = new Nexus.Select('#asteroids', {
+    const asteroidSelect = new Nexus.Select('#asteroids', {
       size: [300, 30],
       options: Asteroid.asteroids.map(e => e.name)
     });
 
-    select.on('change', e => {
+    const midiSelect = new Nexus.Select('#midi-sequence', {
+      size: [300, 30],
+      options: Asteroid.midiSequences.map(e => e.name)
+    });
+
+    asteroidSelect.on('change', e => {
       Asteroid.selected = Asteroid.asteroids[e.index];
       Asteroid.renderInfo(e.index);
+    });
+
+    midiSelect.on('change', e => {
+      const selected = Asteroid.midiSequences[e.index];
+      Controls.resetControls();
+
+      if (selected.name !== 'None') {
+        Sequencer.parseMatrix(selected.matrix);
+      }
     });
 
     beginEl.addEventListener(
@@ -274,7 +359,6 @@ const Asteroid = {
         }, 300);
 
         Sequencer.renderNotes();
-        Sequencer.renderSequence();
         Controls.renderControls();
 
         Asteroid.hasOpened = true;

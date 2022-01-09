@@ -23,6 +23,7 @@ const Main = {
     Audio.setInstruments();
     Audio.setEffects();
     Asteroid.render();
+    Sequencer.renderSequence();
 
     setTimeout(() => {
       Main.main.classList.add('active');
