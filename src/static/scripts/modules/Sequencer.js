@@ -110,9 +110,11 @@ const Sequencer = {
       }
 
       setTimeout(() => {
-        Sequencer.sequencer.next();
-      }, Audio.lookAhead * 1000);
+        if (Sequencer.isRunning) Sequencer.sequencer.next();
+      }, Audio.lookAhead * 1000 + Controls.noteLength);
     });
+
+    Sequencer.sequencer.next();
   }
 };
 
