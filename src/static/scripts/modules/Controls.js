@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import Audio from './Audio';
 import Sequencer from './Sequencer';
+import Record from './Record';
 
 const Controls = {
   startEl: document.querySelector('#start'),
@@ -42,10 +43,11 @@ const Controls = {
       return;
     }
 
-    await Tone.start();
-    Nexus.context.resume();
-    Sequencer.isRunning = true;
-    Sequencer.interval.start();
+    const recorder = new Tone.Recorder();
+    Tone.getContext().destination.connect(recorder);
+    recorder.start();
+    Controls.playControls();
+    Record.init(recorder);
   },
 
   stopControls() {
