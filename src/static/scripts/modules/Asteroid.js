@@ -276,21 +276,21 @@ const Asteroid = {
         effectRange
       );
 
-      if (
-        Effects.data[effect].paramaters[effectParams].influencedBy ===
-        'diameter'
-      ) {
-        console.log('Asteroid.asteroids', Asteroid.asteroids);
-        console.log('influencedBy', influencedBy);
-        console.log('currInfluencedVal', currInfluencedVal);
-        console.log('influencedByRange', influencedByRange);
-        console.log('currInfluencePercentage', currInfluencePercentage);
-        console.log('effectRange', effectRange);
-        console.log('effect', effect);
-        console.log('effectParams', effectParams);
-        console.log('valInRange', valInRange);
-        console.log('---');
-      }
+      // if (
+      //   Effects.data[effect].paramaters[effectParams].influencedBy ===
+      //   'diameter'
+      // ) {
+      //   console.log('Asteroid.asteroids', Asteroid.asteroids);
+      //   console.log('influencedBy', influencedBy);
+      //   console.log('currInfluencedVal', currInfluencedVal);
+      //   console.log('influencedByRange', influencedByRange);
+      //   console.log('currInfluencePercentage', currInfluencePercentage);
+      //   console.log('effectRange', effectRange);
+      //   console.log('effect', effect);
+      //   console.log('effectParams', effectParams);
+      //   console.log('valInRange', valInRange);
+      //   console.log('---');
+      // }
 
       Effects.updateEffectValFromAsteroid(effect, effectParams, valInRange);
 

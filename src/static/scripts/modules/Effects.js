@@ -126,12 +126,6 @@ const Effects = {
     return Object.keys(object).find(key => object[key] === value);
   },
 
-  calcDial(effect) {
-    return (
-      Effects.percentageInRangeGivenValue(effect.value, effect.range) / 100
-    );
-  },
-
   updateEffectVal(effectIt, paramIt, value) {
     const percentage = value * 100;
     const effect = Effects.data[effectIt].paramaters[paramIt];
@@ -149,35 +143,6 @@ const Effects = {
   },
 
   render() {
-    // let nex, effect, params, element;
-    //
-    // // TODO: instead of rack, initiate dials with custom ranges etc
-    //
-    // for (let i = 0; i < Effects.data.length; i++) {
-    //   effect = Effects.data[i];
-    //   nex = new Nexus.Rack(`#effect-${effect.name}`);
-    //   nex.colorize('accent', '#505483');
-    //   nex.colorize('fill', '#fafafa');
-    //
-    //   for (let ii = 0; ii < effect.paramaters.length; ii++) {
-    //     params = effect.paramaters[ii];
-    //     Effects.data[i].paramaters[ii].instance = nex[params.name];
-    //
-    //     if (Effects.data[i].paramaters[ii].instance) {
-    //       // Set default values
-    //       Effects.data[i].paramaters[ii].instance.resize(55, 55);
-    //       Effects.data[i].paramaters[ii].instance.value = Effects.calcDial(
-    //         params
-    //       );
-    //
-    //       // Set event listener to update object store
-    //       Effects.data[i].paramaters[ii].instance.on('change', v => {
-    //         Effects.updateEffectVal(i, ii, v);
-    //       });
-    //     }
-    //   }
-    // }
-
     let rackEl, effect, dialEl, dial, effectParams;
 
     for (let i = 0; i < Effects.data.length; i++) {

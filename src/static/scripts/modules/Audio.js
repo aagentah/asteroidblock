@@ -92,7 +92,6 @@ const Audio = {
 
     synth.chain(..._.values(Audio.effect), Tone.getContext().destination);
     synth.set({ envelope });
-
     synth.triggerAttackRelease(notes, attackRelease);
 
     // Clean up
