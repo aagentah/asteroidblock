@@ -10,6 +10,7 @@ import Sequencer from './Sequencer';
 const Controls = {
   startEl: document.querySelector('#start'),
   stopEl: document.querySelector('#stop'),
+  recordEl: document.querySelector('#record'),
   resetEl: document.querySelector('#reset'),
   tempo: 120,
   noteLength: 2000, // 120 BPM
@@ -26,6 +27,17 @@ const Controls = {
   },
 
   playControls: async () => {
+    if (Sequencer.isRunning) {
+      return;
+    }
+
+    await Tone.start();
+    Nexus.context.resume();
+    Sequencer.isRunning = true;
+    Sequencer.interval.start();
+  },
+
+  recordControls: async () => {
     if (Sequencer.isRunning) {
       return;
     }
@@ -97,6 +109,12 @@ const Controls = {
     Controls.resetEl.addEventListener(
       'click',
       () => Controls.resetControls(),
+      false
+    );
+
+    Controls.recordEl.addEventListener(
+      'click',
+      () => Controls.recordControls(),
       false
     );
   }

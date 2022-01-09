@@ -95,8 +95,7 @@ const Audio = {
     synth.chain(..._.values(Audio.effect), Tone.getContext().destination);
     synth.set({ envelope });
 
-    synth.connect(recorder);
-
+    Tone.getContext().destination.connect(recorder);
     recorder.start();
 
     synth.triggerAttackRelease(notes, attackRelease);
@@ -272,11 +271,6 @@ const Audio = {
     setTimeout(async () => {
       const recording = await recorder.stop();
       const audioBuffer = await convertBlobToAudioBuffer(recording);
-      // const wav = toWav(buffer);
-
-      console.log('recording', recording);
-      console.log('audioBuffer', audioBuffer);
-      // console.log('wav', wav);
 
       // Float32Array samples
       const [left, right] = [
@@ -298,28 +292,6 @@ const Audio = {
         sampleRate: 48000
       });
       const wav = new Blob([wavBytes], { type: 'audio/wav' });
-
-      console.log('URL.createObjectURL(wav);', URL.createObjectURL(wav));
-
-      // create download link and append to Dom
-      // const downloadLink = document.createElement('a');
-      // downloadLink.href =
-      // downloadLink.setAttribute('download', 'my-audio.wav'); // name file
-
-      // // get duration and sample rate
-      // var duration = buffer.duration,
-      //   rate = buffer.sampleRate,
-      //   offset = 0;
-      //
-      // var new_file = URL.createObjectURL(
-      //   bufferToWave(buffer, buffer.sampleRate * buffer.length)
-      // );
-      //
-      // var download_link = document.createElement('a');
-      // download_link.href = new_file;
-      // var name = generateFileName();
-      // download_link.download = name;
-      // download_link.click();
 
       const anchor = document.createElement('a');
       anchor.download = 'test.wav';
