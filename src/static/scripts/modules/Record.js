@@ -131,6 +131,8 @@ const Record = {
         audioBuffer.getChannelData(1)
       ];
 
+      console.log('audioBuffer', audioBuffer);
+
       // interleaved
       const interleaved = new Float32Array(left.length + right.length);
       for (let src = 0, dst = 0; src < left.length; src++, dst += 2) {
@@ -145,7 +147,11 @@ const Record = {
         sampleRate: 48000
       });
 
+      console.log('wavBytes', wavBytes);
+
       const wav = new Blob([wavBytes], { type: 'audio/wav' });
+
+      console.log('wav', wav);
 
       const anchor = document.createElement('a');
       anchor.download = 'asteroidblock.wav';
