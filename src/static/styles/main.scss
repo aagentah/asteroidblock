@@ -80,6 +80,40 @@ $grey-light: #e5e6e6;
 $grey-medium: #828484;
 $grey-dark: #6a6b6b;
 
+// Screen size
+
+.warning-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: palette(black);
+  color: palette(white);
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  font-size: 18px;
+  text-align: center;
+  display: none;
+  display: block;
+
+  p {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    text-align: center;
+    max-width: 300px;
+    @extend .lh-copy;
+  }
+}
+
+@include breakpoint-up(lg) {
+  .warning-overlay {
+    display: none;
+  }
+}
+
 // Layout
 
 a {
