@@ -1,6 +1,6 @@
 // import Accordion from './modules/Accordion';
 // import Gallery from './modules/Gallery';
-// import LazyLoad from './modules/LazyLoad';
+import LazyLoad from './modules/LazyLoad';
 // import Notify from './modules/Notify';
 // import Tabs from './modules/Tabs';
 import Main from './modules/Main';
@@ -68,12 +68,12 @@ class App {
   }
 
   setupLazyLoad() {
-    // const lazyLoad = new LazyLoad({
-    //   root: document.querySelectorAll('[data-src]'),
-    //   rootMargin: '20px 0px 20px 0px',
-    //   threshold: 0.1
-    // });
-    // lazyLoad.render();
+    const lazyLoad = new LazyLoad({
+      root: document.querySelectorAll('[data-src]'),
+      rootMargin: '20px 0px 20px 0px',
+      threshold: 0.1
+    });
+    lazyLoad.render();
   }
 }
 
