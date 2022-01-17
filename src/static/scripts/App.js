@@ -5,14 +5,14 @@
 // import Tabs from './modules/Tabs';
 import Main from './modules/Main';
 
-import { loadGA } from './functions/loadGA';
+// import { loadGA } from './functions/loadGA';
 
 class App {
   constructor() {
-    this.config = {
-      hostname: null,
-      gaId: null
-    };
+    // this.config = {
+    //   hostname: null,
+    //   gaId: null
+    // };
     this.modules = [Main];
 
     document.documentElement.className = 'js';
@@ -26,9 +26,9 @@ class App {
     this.setupLazyLoad();
 
     // Uncomment to load ga
-    if (this.config.hostname && this.config.gaId) {
-      loadGA(this.config.hostname, this.config.gaId);
-    }
+    // if (this.config.hostname && this.config.gaId) {
+    //   loadGA(this.config.hostname, this.config.gaId);
+    // }
   }
 
   dynamicWebpackImport() {

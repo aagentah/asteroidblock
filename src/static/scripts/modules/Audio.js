@@ -3,7 +3,6 @@
 import Nexus from 'nexusui';
 import * as Tone from 'tone';
 import _ from 'lodash';
-import toWav from 'audiobuffer-to-wav';
 
 import Controls from './Controls';
 import Effects from './Effects';

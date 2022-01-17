@@ -33,14 +33,10 @@
           <p>See Twig&rsquo;s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance" target="_blank" rel="noopener">Template Inheritance</a> documentation for an explanation.</p>
         {% endblock %}
       </main>
-
-      {% if settings.helper == true %}
-        {% include '../_partials/helper.html' with { grid: true, cols: '24', width: '1' } %}
-      {% endif %}
     </div>
 
     <script src="/static/scripts/vendor.js"></script>
-    <script async src="https://cdn.jsdelivr.net/npm/audio-recorder-polyfill/index.js"></script>
+    <!-- <script async src="https://cdn.jsdelivr.net/npm/audio-recorder-polyfill/index.js"></script> -->
     <script async src="/static/scripts/bundle.js"></script>
 
 
