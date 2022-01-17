@@ -148,7 +148,7 @@ const Record = {
       const wav = new Blob([wavBytes], { type: 'audio/wav' });
 
       const anchor = document.createElement('a');
-      anchor.download = 'test.wav';
+      anchor.download = 'asteroidblock.wav';
       anchor.href = URL.createObjectURL(wav);
       anchor.click();
     }, Controls.noteLength * 8);
