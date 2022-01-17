@@ -90,15 +90,15 @@ const Effects = {
         },
         {
           name: 'feedback',
-          value: 0.5,
-          range: [0, 1],
+          value: 0.25,
+          range: [0, 0.5],
           instance: null,
           influencedBy: 'miss_distance'
         },
         {
           name: 'wet',
           value: 0,
-          range: [0, 0.65],
+          range: [0, 0.5],
           instance: null,
           influencedBy: 'velocity'
         }
