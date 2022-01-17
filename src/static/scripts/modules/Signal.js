@@ -28,7 +28,7 @@ const Signal = {
 
   renderInstrument() {
     Signal.instrumentSelect = new Nexus.Select('#instrument', {
-      size: [180, 30],
+      size: [150, 30],
       options: Signal.instrumentTypes
     });
 

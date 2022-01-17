@@ -183,6 +183,7 @@ main.active {
 }
 
 .controls__wrapper {
+  max-height: 90vh;
   @extend .ph3;
   @extend .pb3;
 }
@@ -401,5 +402,10 @@ progress::-webkit-progress-bar {
 
 #tempo,
 #tempo input {
+  width: 100% !important;
+}
+
+#instrument,
+#instrument select {
   width: 100% !important;
 }
