@@ -142,6 +142,7 @@ const Asteroid = {
     Asteroid.asteroids = asteroids;
     Asteroid.selected = Asteroid.asteroids[0];
     Asteroid.renderInfo(0);
+    Asteroid.eventListener();
   },
 
   renderInfo(i) {
@@ -373,7 +374,6 @@ const Asteroid = {
 
   render() {
     Asteroid.fetchData();
-    Asteroid.eventListener();
   }
 };
 

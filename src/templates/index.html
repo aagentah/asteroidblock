@@ -17,7 +17,10 @@
     <div class="flex  flex-wrap">
       <!-- Controls -->
       <div class="col-4  controls__wrapper">
-        <div class="controls">
+        <div class="controls  h-100">
+          <div class="flex  flex-wrap">
+            <img class="w2" src="/static/images/logo.png" alt="">
+          </div>
           <div class="flex  flex-wrap  h3">
             <div class="col-9  flex  flex-wrap  align-center">
               Tempo:
@@ -46,8 +49,14 @@
           </div>
           <div class="flex  flex-wrap">
             <button id="reset" class="control__button">
-              Reset
+              Reset MIDI
             </button>
+          </div>
+          <div class="flex  flex-wrap  pt2">
+            <div class="flex  flex-wrap  mb2  fw7  pt2">
+              Select Synth:
+            </div>
+            <div id="instrument"></div>
           </div>
         </div>
       </div>
@@ -67,15 +76,19 @@
         <div class="col-24  flex  flex-wrap  intro__wrapper  active">
           <div class="intro">
             <div class="flex  flex-wrap  justify-center  pv3">
-              <div class="measure-wide">
-                <h1 class="tac">asteroidblock.io</h1>
+              <div class="col-8  flex  flex-wrap  justify-center  pb3">
+                <img class="mla  mra" src="/static/images/logo-text.png" alt="">
+              </div>
 
-                <p class="tac  lh-copy  dn  db-md">
-                  asteroidblock.io is a web-based, interactive, atmospheric pad
-                  synthesizer which queries NASA's asteroid API, using
-                  live proximity data to throttle initial parameters
-                  of the synth.
-                </p>
+              <div class="col-24  flex  justify-center">
+                <div class="measure-wide">
+                  <p class="tac  lh-copy  dn  db-md">
+                    asteroidblock.io is a web-based, interactive, atmospheric pad
+                    synthesizer which queries NASA's asteroid API, using
+                    live proximity data to throttle initial parameters
+                    of the synth.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -305,16 +318,21 @@
     <div class="signal__wrapper">
       <div class="flex  flex-wrap  signal">
         <!-- Signal -->
-        <div class="col-3">
-          <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt2">
-            Select Synth:
+        <div class="col-8  flex  flex-wrap  align-center  pl3  pr5">
+          <div class="col-24  flex  flex-wrap">
+            <div class="col-24  f6  lh-copy">
+              This project serves as a personal challenge to address the capabilities of audio on the web. I'd like to thank <a href="https://github.com/Tonejs/Tone.js">Tone.js</a>, <a href="https://github.com/nexus-js/ui">Nexus UI</a>, and <a href="https://api.nasa.gov/">NASA's API</a> for making this project possible.
+            </div>
           </div>
-          <div id="instrument"></div>
+
+          <div class="col-24  flex  flex-wrap">
+            <div class="col-24  f6  lh-copy">
+              Created by Dan (Aagentah / holodan.io)
+            </div>
+          </div>
         </div>
 
-        <div class="col-11">
-
-        </div>
+        <div class="col-6"></div>
 
         <div class="col-7  envelope__wrapper  ph3">
           <div id="envelope"></div>
