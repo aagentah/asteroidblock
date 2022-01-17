@@ -148,6 +148,7 @@ const Record = {
       });
 
       console.log('wavBytes', wavBytes);
+      console.log('wavBytes', wavBytes);
 
       const wav = new Blob([wavBytes], { type: 'audio/wav' });
 
