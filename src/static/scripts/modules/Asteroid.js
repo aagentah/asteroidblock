@@ -301,14 +301,14 @@ const Asteroid = {
       <div class="flex  flex-wrap">
         <div id="asteroids" class="col-12  intro__statistic"></div>
       </div>
-
-      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
-        Select MIDI Sequence:
-      </div>
-      <div class="flex  flex-wrap">
-        <div id="midi-sequence" class="col-12  intro__statistic"></div>
-      </div>
     `;
+
+    // <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
+    //   Select MIDI Sequence:
+    // </div>
+    // <div class="flex  flex-wrap">
+    //   <div id="midi-sequence" class="col-12  intro__statistic"></div>
+    // </div>
 
     let buttonHtml = `
       <button id="begin" class="control__button">
@@ -329,24 +329,24 @@ const Asteroid = {
       options: Asteroid.asteroids.map(e => e.name)
     });
 
-    const midiSelect = new Nexus.Select('#midi-sequence', {
-      size: [300, 30],
-      options: Asteroid.midiSequences.map(e => e.name)
-    });
+    // const midiSelect = new Nexus.Select('#midi-sequence', {
+    //   size: [300, 30],
+    //   options: Asteroid.midiSequences.map(e => e.name)
+    // });
 
     asteroidSelect.on('change', e => {
       Asteroid.selected = Asteroid.asteroids[e.index];
       Asteroid.renderInfo(e.index);
     });
 
-    midiSelect.on('change', e => {
-      const selected = Asteroid.midiSequences[e.index];
-      Controls.resetControls();
-
-      if (selected.name !== 'None') {
-        Sequencer.parseMatrix(selected.matrix);
-      }
-    });
+    // midiSelect.on('change', e => {
+    //   const selected = Asteroid.midiSequences[e.index];
+    //   Controls.resetControls();
+    //
+    //   if (selected.name !== 'None') {
+    //     Sequencer.parseMatrix(selected.matrix);
+    //   }
+    // });
 
     beginEl.addEventListener(
       'click',

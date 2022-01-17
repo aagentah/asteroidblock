@@ -87,7 +87,7 @@ const Controls = {
       size: [120, 30],
       value: Controls.tempo,
       min: 30,
-      max: 1000,
+      max: 200,
       step: 1
     });
 
