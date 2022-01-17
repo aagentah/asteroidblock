@@ -82,6 +82,10 @@ $grey-dark: #6a6b6b;
 
 // Layout
 
+a {
+  color: $purple-medium;
+}
+
 main {
   opacity: 0;
   // background-color: $almost-white;
@@ -380,6 +384,17 @@ progress::-webkit-progress-value {
 
 progress::-webkit-progress-bar {
   background: transparent;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: $purple-dark;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 // UI

@@ -7,6 +7,9 @@
 .tac {
   text-align: center;
 }
+.taj {
+  text-align: justify;
+}
 
 @each $modifier, $breakpoint in $grid-breakpoints {
   $infix: breakpoint-infix($modifier, $grid-breakpoints);
@@ -19,6 +22,9 @@
     }
     .tac-#{$infix} {
       text-align: center;
+    }
+    .taj-#{$infix} {
+      text-align: justify;
     }
   }
 }
