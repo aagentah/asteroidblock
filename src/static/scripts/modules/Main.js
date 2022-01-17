@@ -1,5 +1,4 @@
 /* eslint-disable new-cap, no-unused-vars */
-import Nexus from 'nexusui';
 
 import Sequencer from './Sequencer';
 import Controls from './Controls';
