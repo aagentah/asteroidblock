@@ -64,7 +64,7 @@ const Signal = {
     });
 
     const envelope = new Nexus.Envelope('#envelope', {
-      size: [Signal.envelopeWrapper.offsetWidth, 125],
+      size: [100, 125],
       noNewPoints: false,
       points: [
         { x: 0, y: 0 },

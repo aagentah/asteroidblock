@@ -159,6 +159,7 @@ main.active {
 
 .intro__wrapper.active {
   opacity: 1;
+  max-height: calc(100vh - 100px);
 }
 
 .intro {
@@ -172,7 +173,7 @@ main.active {
 
 .sequencer__notes__wrapper {
   overflow-y: scroll;
-  height: calc(48 * 12) + px;
+  height: 100vh;
   max-height: calc(100vh - 100px);
   @extend .ph3;
 }
@@ -185,6 +186,7 @@ main.active {
 .controls {
   background-color: $grey-light;
 
+  @extend .mb3;
   @extend .w-100;
   @extend .pa3;
   @extend .br4;
@@ -199,6 +201,7 @@ main.active {
 .effects {
   background-color: $grey-light;
 
+  @extend .mb3;
   @extend .w-100;
   @extend .pa3;
   @extend .br4;
@@ -288,7 +291,7 @@ main.active {
   @extend .mla;
   @extend .mra;
   @extend .f6;
-  @extend .mb0;
+  @extend .mb3;
 }
 
 .envelope__hold__label {
@@ -328,6 +331,8 @@ main.active {
 
 .envelope__param__label {
   color: $purple-dark;
+
+  @extend .pt2;
 }
 
 .intro__statistic {
@@ -375,4 +380,11 @@ progress::-webkit-progress-value {
 
 progress::-webkit-progress-bar {
   background: transparent;
+}
+
+// UI
+
+#tempo,
+#tempo input {
+  width: 100% !important;
 }

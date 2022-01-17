@@ -28,12 +28,14 @@ const Sequencer = {
     let octave;
     let notesItems = '';
 
+    const offsetHeight = Sequencer.elem.offsetHeight / 12;
+
     for (let i = 0; i < Sequencer.octaves; i++) {
       octave = i;
 
       for (let ii = 0; ii < Sequencer.notes.length; ii++) {
         if (ii === 11) {
-          notesItems += `<div class="notes__item" style='height: 48px;'>${
+          notesItems += `<div class="notes__item" style='height: ${offsetHeight}px;'>${
             Sequencer.notes[ii]
           }${octave + 1}</div>
           <div class="notes__item__octave" style="width: ${
@@ -41,7 +43,7 @@ const Sequencer = {
           }px"></div>
           `;
         } else {
-          notesItems += `<div class="notes__item" style='height: 48px;'>${
+          notesItems += `<div class="notes__item" style='height: ${offsetHeight}px;'>${
             Sequencer.notes[ii]
           }${octave + 1}</div>`;
         }
@@ -52,10 +54,15 @@ const Sequencer = {
   },
 
   renderSequence() {
+    const offsetHeight = Sequencer.elem.offsetHeight / 12;
+
     Sequencer.rows = Sequencer.notes.length * Sequencer.octaves;
 
     Sequencer.sequencer = new Nexus.Sequencer('#sequencer', {
-      size: [Sequencer.sequencerWrapperEl.offsetWidth, Sequencer.rows * 48],
+      size: [
+        Sequencer.sequencerWrapperEl.offsetWidth,
+        Sequencer.rows * offsetHeight
+      ],
       mode: 'toggle',
       rows: Sequencer.rows,
       columns: Sequencer.columns,

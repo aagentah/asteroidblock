@@ -16,18 +16,10 @@
   <section class="wrapper  pa4" id="your-element-selector">
     <div class="flex  flex-wrap">
       <!-- Controls -->
-      <div class="col-4  controls__wrapper">
-        <div class="controls  h-100">
-          <div class="flex  flex-wrap">
-            <img class="w2" src="/static/images/logo.png" alt="">
-          </div>
-          <div class="flex  flex-wrap  h3">
-            <div class="col-9  flex  flex-wrap  align-center">
-              Tempo:
-            </div>
-            <div class="col-15  flex  flex-wrap  align-center">
-              <div id="tempo"></div>
-            </div>
+      <div class="col-4  flex  flex-wrap  controls__wrapper">
+        <div class="col-24  controls">
+          <div class="flex  flex-wrap  mb3">
+            <img class="w-100" src="/static/images/logo-text.png" alt="">
           </div>
 
           <div class="flex  flex-wrap">
@@ -52,11 +44,39 @@
               Reset MIDI
             </button>
           </div>
-          <div class="flex  flex-wrap  pt2">
+        </div>
+
+        <div class="col-24  controls">
+          <div class="flex  flex-wrap">
+            <div class="col-24  flex  flex-wrap  align-center  fw7">
+              Tempo:
+            </div>
+            <div class="col-24  flex  flex-wrap  align-center  h3">
+              <div id="tempo"></div>
+            </div>
+          </div>
+
+          <div class="flex  flex-wrap">
             <div class="flex  flex-wrap  mb2  fw7  pt2">
               Select Synth:
             </div>
             <div id="instrument"></div>
+          </div>
+        </div>
+
+        <div class="col-24  controls">
+          <div class="flex  flex-wrap">
+            <div class="col-24  flex  flex-wrap  pb3">
+              <div class="col-24  f7  lh-copy">
+                This project serves as a personal challenge to address the capabilities of audio on the web. I'd like to thank <a href="https://github.com/Tonejs/Tone.js">Tone.js</a>, <a href="https://github.com/nexus-js/ui">Nexus UI</a>, and <a href="https://api.nasa.gov/">NASA's API</a> for making this project possible.
+              </div>
+            </div>
+
+            <div class="col-24  flex  flex-wrap  pb3">
+              <div class="col-24  f7  lh-copy">
+                 – Dan (Aagentah / holodan.io)
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -196,8 +216,8 @@
       </div>
 
       <!-- Effects -->
-      <div class="col-7  col-4-md  flex  effects__wrapper">
-        <div class="effects  flex  flex-wrap  align-center">
+      <div class="col-7  col-4-md  flex  flex-wrap  effects__wrapper">
+        <div class="col-24  effects  flex  flex-wrap  align-center">
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Chorus</div>
             <div class="db  w-100  pt2" id="effect-Chorus">
@@ -312,25 +332,52 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="signal__wrapper">
-      <div class="flex  flex-wrap  signal">
-        <!-- Signal -->
-        <div class="col-8  flex  flex-wrap  align-center  pl3  pr5">
-          <div class="col-24  flex  flex-wrap">
-            <div class="col-24  f6  lh-copy">
-              This project serves as a personal challenge to address the capabilities of audio on the web. I'd like to thank <a href="https://github.com/Tonejs/Tone.js">Tone.js</a>, <a href="https://github.com/nexus-js/ui">Nexus UI</a>, and <a href="https://api.nasa.gov/">NASA's API</a> for making this project possible.
-            </div>
+        <div class="col-24  effects  flex  flex-wrap  align-center">
+          <div class="dn">
+            <div id="envelope"></div>
+            <div class="envelope__hold__label"></div>
           </div>
 
-          <div class="col-24  flex  flex-wrap">
-            <div class="col-24  f6  lh-copy">
-              Created by Dan (Aagentah / holodan.io)
+          <div class="col-24  envelope__title">Envelope</div>
+
+          <div class="col-24  flex  justify-center">
+            <div class="col-24  flex  flex-wrap">
+              <div class="col-8  flex  flex-wrap">
+                <div class="col-24  flex  justify-center  ph2">
+                  <div id="envelopeAttack"></div>
+                </div>
+                <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
+                  Attack
+                </div>
+              </div>
+
+              <div class="col-8  flex  flex-wrap">
+                <div class="col-24  flex  justify-center  ph2">
+                  <div id="envelopeRelease"></div>
+                </div>
+                <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
+                  Release
+                </div>
+              </div>
+
+              <div class="col-8  flex  flex-wrap">
+                <div class="col-24  flex  justify-center  ph2">
+                  <div id="envelopeHold"></div>
+                </div>
+                <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
+                  Hold
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- <div class="signal__wrapper">
+      <div class="flex  flex-wrap  signal">
+
 
         <div class="col-6"></div>
 
@@ -374,7 +421,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 
 
