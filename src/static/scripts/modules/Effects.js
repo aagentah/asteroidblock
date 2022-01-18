@@ -155,7 +155,7 @@ const Effects = {
 
         if (dialEl) {
           dial = new Nexus.Dial(dialEl, {
-            size: [55, 55],
+            size: [45, 45],
             min: effectParams.range[0],
             max: effectParams.range[1],
             value: effectParams.value

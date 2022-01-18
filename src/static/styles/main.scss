@@ -267,6 +267,7 @@ main.active {
   color: $grey-dark;
   border-bottom: 3px solid $purple-dark;
   background-color: $almost-white;
+  @extend .f6;
   @extend .flex;
   @extend .align-center;
   @extend .justify-center;
@@ -299,7 +300,7 @@ main.active {
   @extend .tac;
   @extend .mla;
   @extend .mra;
-  @extend .f6;
+  @extend .f7;
   @extend .pb2;
   @extend .mb0;
 }
@@ -329,7 +330,7 @@ main.active {
   @extend .tac;
   @extend .mla;
   @extend .mra;
-  @extend .f6;
+  @extend .f7;
   @extend .mb3;
 }
 
@@ -350,6 +351,7 @@ main.active {
   outline: 0;
   cursor: pointer;
 
+  @extend .f7;
   @extend .flex;
   @extend .justify-center;
   @extend .align-center;
