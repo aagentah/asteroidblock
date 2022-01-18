@@ -35,6 +35,8 @@ const Controls = {
     await Tone.start();
     Nexus.context.resume();
     Sequencer.isRunning = true;
+    Controls.recordEl.classList.add('disabled');
+    Controls.startEl.classList.add('disabled');
     Sequencer.interval.start();
   },
 
@@ -56,6 +58,8 @@ const Controls = {
     }
 
     Sequencer.isRunning = false;
+    Controls.recordEl.classList.remove('disabled');
+    Controls.startEl.classList.remove('disabled');
     Sequencer.interval.stop();
 
     for (let i = 0; i < 10; i++) {

@@ -451,3 +451,12 @@ progress::-webkit-progress-bar {
 .blockWarning {
   color: #b30000;
 }
+
+.control__button {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

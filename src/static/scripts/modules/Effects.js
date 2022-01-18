@@ -127,9 +127,18 @@ const Effects = {
   },
 
   updateEffectVal(effectIt, paramIt, value) {
-    const percentage = value * 100;
     const effect = Effects.data[effectIt].paramaters[paramIt];
+    const percentage = (value * 100) / effect.range[1];
     const val = Effects.valueInRangeFromPercentage(percentage, effect.range);
+
+    // console.log('effect', effect);
+    // console.log('effect.name', effect.name);
+    // console.log('value', value);
+    // console.log('result', result);
+    // console.log('percentage', percentage);
+    // console.log('effect.range', effect.range);
+    // console.log('valueInRangeFromPercentage', val);
+    // console.log('---');
 
     Effects.data[effectIt].paramaters[paramIt].value = val;
   },
@@ -158,8 +167,8 @@ const Effects = {
             size: [43, 43],
             min: effectParams.range[0],
             max: effectParams.range[1],
-            value: effectParams.value,
-            interaction: 'vertical'
+            value: effectParams.value
+            // interaction: 'vertical'
           });
 
           dial.colorize('accent', '#505483');

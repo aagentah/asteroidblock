@@ -117,10 +117,16 @@ const Record = {
 
   init(recorder) {
     Record.animateProgress();
+    Controls.startEl.classList.add('disabled');
+    Controls.stopEl.classList.add('disabled');
+    Controls.resetEl.classList.add('disabled');
 
     // wait for the notes to end and stop the recording
     setTimeout(async () => {
       Controls.stopControls();
+      Controls.startEl.classList.remove('disabled');
+      Controls.stopEl.classList.remove('disabled');
+      Controls.resetEl.classList.remove('disabled');
 
       const recording = await recorder.stop();
       const audioBuffer = await Record.convertBlobToAudioBuffer(recording);

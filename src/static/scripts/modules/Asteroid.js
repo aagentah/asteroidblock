@@ -148,7 +148,7 @@ const Asteroid = {
   renderInfo(i) {
     let html = `
           <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
-            Asteroid Data:
+            Asteroid's Data:
           </div>
           <div class="flex  flex-wrap">
             <div class="w-100">
@@ -296,7 +296,7 @@ const Asteroid = {
   eventListener() {
     let selectsHtml = `
       <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
-        Select Asteroid:
+        Select a real-world asteroid:
       </div>
       <div class="flex  flex-wrap">
         <div id="asteroids" class="col-12  intro__statistic"></div>
