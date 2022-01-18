@@ -155,10 +155,11 @@ const Effects = {
 
         if (dialEl) {
           dial = new Nexus.Dial(dialEl, {
-            size: [45, 45],
+            size: [50, 50],
             min: effectParams.range[0],
             max: effectParams.range[1],
-            value: effectParams.value
+            value: effectParams.value,
+            interaction: 'vertical'
           });
 
           dial.colorize('accent', '#505483');
