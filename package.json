@@ -19,8 +19,10 @@
     "test": "mocha --require @babel/register 'test/**/*.test.js' || true"
   },
   "dependencies": {
+    "adblock-detect-javascript-only": "1.0.5",
     "axios": "^0.18.0",
     "js-cookie": "^2.2.0",
+    "just-detect-adblock": "1.1.0",
     "lodash": "4.17.10",
     "nexusui": "2.1.6",
     "tone": "14.8.35"

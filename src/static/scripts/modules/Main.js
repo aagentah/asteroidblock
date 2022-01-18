@@ -1,4 +1,5 @@
 /* eslint-disable new-cap, no-unused-vars */
+import { detectAnyAdblocker } from 'just-detect-adblock';
 
 import Sequencer from './Sequencer';
 import Controls from './Controls';
@@ -10,6 +11,7 @@ import Asteroid from './Asteroid';
 const Main = {
   main: document.querySelector('main'),
   wrapper: document.querySelector('.wrapper'),
+  blockWarning: document.querySelector('.blockWarning'),
 
   init() {
     this.render();
@@ -23,6 +25,22 @@ const Main = {
     Audio.setEffects();
     Asteroid.render();
     Sequencer.renderSequence();
+
+    detectAnyAdblocker().then(detected => {
+      if (detected) {
+        Main.blockWarning.classList.remove('dn');
+        Main.blockWarning.classList.add('flex');
+      }
+    });
+
+    const checkBrave = async () => {
+      if ((navigator.brave && (await navigator.brave.isBrave())) || false) {
+        Main.blockWarning.classList.remove('dn');
+        Main.blockWarning.classList.add('flex');
+      }
+    };
+
+    checkBrave();
 
     setTimeout(() => {
       Main.main.classList.add('active');
