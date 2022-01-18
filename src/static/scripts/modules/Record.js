@@ -142,7 +142,7 @@ const Record = {
       const wavBytes = Record.getWavBytes(interleaved.buffer, {
         isFloat: true, // floating point or 16-bit integer
         numChannels: 2,
-        sampleRate: 32000
+        sampleRate: 48000
       });
 
       const wav = new Blob([wavBytes], { type: 'audio/wav' });
