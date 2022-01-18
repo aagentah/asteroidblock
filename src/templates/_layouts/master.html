@@ -1,4 +1,5 @@
 {% set settings = settings | default({}) | merge({
+  siteURL: 'https://asteroidblock.io/',
   siteName: 'asteroidblock.io',
   siteDesc: 'asteroidblock.io is a web-based, interactive, atmospheric pad synthesizer which queries NASAs asteroid API, using live proximity data to throttle initial parameters of the synth.',
   version: '1',
@@ -22,16 +23,16 @@
     <meta property="og:title" content="{{settings.siteName}}">
     <meta name="twitter:title" content="{{settings.siteName}}">
 
-    <link rel="canonical" href="https://holodan.io">
-    <meta property="og:url" content="https://holodan.io">
-    <meta name="twitter:url" content="https://holodan.io">
+    <link rel="canonical" href="{{settings.siteURL}}">
+    <meta property="og:url" content="{{settings.siteURL}}">
+    <meta name="twitter:url" content="{{settings.siteURL}}">
 
     <meta property="og:site_name" content="{{settings.siteName}}">
     <meta property="og:type" content="website">
 
-    <meta name="twitter:image" content="{{settings.siteName}}/static/images/meta-img.png">
-    <meta property="og:image" content="{{settings.siteName}}/static/images/meta-img.png">
-    <meta property="og:image:secure_url" content="{{settings.siteName}}/static/images/meta-img.png">
+    <meta name="twitter:image" content="{{settings.siteURL}}/static/images/meta-img.png">
+    <meta property="og:image" content="{{settings.siteURL}}/static/images/meta-img.png">
+    <meta property="og:image:secure_url" content="{{settings.siteURL}}/static/images/meta-img.png">
 
     <meta property="og:image:width" content="1200">
     <meta property="og:image:width" content="1200">
