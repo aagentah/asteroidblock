@@ -30,7 +30,8 @@ const Sequencer = {
 
     const offsetHeight = Sequencer.elem.offsetHeight / 12;
 
-    for (let i = 0; i < Sequencer.octaves; i++) {
+    for (let i = Sequencer.octaves - 1; i >= 0; i--) {
+      // for (let i = 0; i < Sequencer.octaves; i++) {
       octave = i;
 
       for (let ii = 0; ii < Sequencer.notes.length; ii++) {
@@ -90,7 +91,11 @@ const Sequencer = {
           multitude = octave * 12;
           key = i - multitude;
 
-          activeInStep.push(`${Sequencer.notes[key]}${octave + 1}`);
+          console.log('o', Sequencer.octaves - (octave + 1));
+
+          activeInStep.push(
+            `${Sequencer.notes[key]}${Sequencer.octaves - (octave + 1)}`
+          );
         }
       }
 
