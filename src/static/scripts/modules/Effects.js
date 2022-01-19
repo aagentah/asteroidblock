@@ -167,8 +167,8 @@ const Effects = {
             size: [43, 43],
             min: effectParams.range[0],
             max: effectParams.range[1],
-            value: effectParams.value
-            // interaction: 'vertical'
+            value: effectParams.value,
+            interaction: 'vertical'
           });
 
           dial.colorize('accent', '#505483');
