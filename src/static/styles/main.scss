@@ -108,7 +108,7 @@ $grey-dark: #6a6b6b;
   }
 }
 
-@include breakpoint-up(lg) {
+@include breakpoint-up(md) {
   .warning-overlay {
     display: none;
   }
