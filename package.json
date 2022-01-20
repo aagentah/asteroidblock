@@ -15,8 +15,7 @@
     "watch": "gulp watch",
     "static": "gulp static",
     "clean": "gulp clean",
-    "lint": "gulp eslint && gulp stylelint",
-    "test": "mocha --require @babel/register 'test/**/*.test.js' || true"
+    "lint": "gulp eslint && gulp stylelint"
   },
   "dependencies": {
     "adblock-detect-javascript-only": "1.0.5",

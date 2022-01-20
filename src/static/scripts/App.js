@@ -1,18 +1,8 @@
-// import Accordion from './modules/Accordion';
-// import Gallery from './modules/Gallery';
 import LazyLoad from './modules/LazyLoad';
-// import Notify from './modules/Notify';
-// import Tabs from './modules/Tabs';
 import Main from './modules/Main';
-
-// import { loadGA } from './functions/loadGA';
 
 class App {
   constructor() {
-    // this.config = {
-    //   hostname: null,
-    //   gaId: null
-    // };
     this.modules = [Main];
 
     document.documentElement.className = 'js';
@@ -24,11 +14,6 @@ class App {
 
     this.dynamicWebpackImport();
     this.setupLazyLoad();
-
-    // Uncomment to load ga
-    // if (this.config.hostname && this.config.gaId) {
-    //   loadGA(this.config.hostname, this.config.gaId);
-    // }
   }
 
   dynamicWebpackImport() {
