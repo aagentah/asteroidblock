@@ -112,7 +112,11 @@ const Asteroid = {
         `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=MKsFWtbcBefGIcipiyBf36RE9qX31mrNnwQGoges`
       );
 
-      if (!data) {
+      if (!data || !data.near_earth_objects) {
+        data = backup;
+      }
+
+      if (data.near_earth_objects[today].length < 3) {
         data = backup;
       }
 
