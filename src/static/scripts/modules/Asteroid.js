@@ -9,6 +9,8 @@ import Signal from './Signal';
 import Effects from './Effects';
 import Audio from './Audio';
 
+import * as backup from '../data/backup.json';
+
 import { fetchAsync } from '../utils/fetchAsync';
 
 const Asteroid = {
@@ -98,6 +100,7 @@ const Asteroid = {
 
   fetchData: async () => {
     let asteroids = [];
+    let data;
     const asteroidCookie = Cookies.get('asteroids');
 
     if (asteroidCookie) {
@@ -105,9 +108,13 @@ const Asteroid = {
     } else {
       const today = new Date().toISOString().split('T')[0];
 
-      const data = await fetchAsync(
+      data = await fetchAsync(
         `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=MKsFWtbcBefGIcipiyBf36RE9qX31mrNnwQGoges`
       );
+
+      if (!data) {
+        data = backup;
+      }
 
       const r = (value, decimals) => {
         return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
