@@ -24,6 +24,7 @@
     "just-detect-adblock": "1.1.0",
     "lodash": "4.17.10",
     "nexusui": "2.1.6",
+    "tippy.js": "6.3.7",
     "tone": "14.8.35"
   },
   "devDependencies": {

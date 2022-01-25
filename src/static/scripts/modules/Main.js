@@ -1,5 +1,6 @@
 /* eslint-disable new-cap, no-unused-vars */
 import { detectAnyAdblocker } from 'just-detect-adblock';
+import tippy from 'tippy.js';
 
 import Sequencer from './Sequencer';
 import Controls from './Controls';
@@ -45,6 +46,11 @@ const Main = {
     setTimeout(() => {
       Main.main.classList.add('active');
     }, 300);
+
+    tippy('#record', {
+      content: 'Plays & records the sequence to wav file!',
+      delay: [300]
+    });
   }
 };
 
