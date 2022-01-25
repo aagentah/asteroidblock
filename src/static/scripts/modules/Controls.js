@@ -114,6 +114,18 @@ const Controls = {
       false
     );
 
+    document.body.onkeyup = e => {
+      if (e.keyCode == 32) {
+        e.preventDefault();
+
+        if (Sequencer.isRunning) {
+          Controls.stopControls();
+        } else {
+          Controls.playControls();
+        }
+      }
+    };
+
     Controls.resetEl.addEventListener(
       'click',
       () => Controls.resetControls(),
