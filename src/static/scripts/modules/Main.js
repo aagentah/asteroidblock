@@ -50,13 +50,20 @@ const Main = {
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+    console.log('window.innerHeight', window.innerHeight);
+    console.log('window.screen.availHeight', window.screen.availHeight);
+
     if (isMobile) {
       if (window.screen.availHeight) {
+        const body = document.querySelector('body');
         const els = document.querySelectorAll('.availheight');
 
         for (let i = 0; i < els.length; i++) {
           els[i].style.maxHeight = `${window.screen.availHeight}px`;
         }
+
+        body.style.marginTop = `${window.innerHeight -
+          window.screen.availHeight}px`;
       }
     }
 

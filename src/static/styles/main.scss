@@ -233,13 +233,15 @@ main.active {
 .controls__wrapper {
   @extend .ph2;
   @extend .ph3-md;
-  @extend .pb3;
+  @extend .pb2;
+  @extend .pb3-md;
 }
 
 .controls {
   background-color: $grey-light;
 
-  @extend .mb3;
+  @extend .mb2;
+  @extend .mb3-md;
   @extend .w-100;
   @extend .pa3;
   @extend .br4;
