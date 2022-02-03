@@ -48,6 +48,18 @@ const Main = {
       Main.main.classList.add('active');
     }, 300);
 
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      if (window.screen.availHeight) {
+        const els = document.querySelectorAll('.availheight');
+
+        for (let i = 0; i < els.length; i++) {
+          els[i].style.maxHeight = `${window.screen.availHeight}px`;
+        }
+      }
+    }
+
     window.addEventListener(
       'orientationchange',
       () => {
