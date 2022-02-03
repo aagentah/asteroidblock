@@ -49,24 +49,15 @@ const Main = {
     }, 300);
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    console.log('window.innerHeight', window.innerHeight);
-    console.log('window.screen.availHeight', window.screen.availHeight);
-
-    const avail = window.screen.availHeight;
-    const winHeight = window.innerHeight;
-    const difference = window.innerHeight - window.screen.availHeight;
+    const winHeight = window.screen.availWidth;
 
     if (isMobile) {
       if (avail) {
-        const body = document.querySelector('body');
         const els = document.querySelectorAll('.availheight');
 
         for (let i = 0; i < els.length; i++) {
-          els[i].style.maxHeight = `${winHeight - difference}px`;
+          els[i].style.maxHeight = `${winHeight - 40}px`;
         }
-
-        body.style.marginTop = `${difference}px`;
       }
     }
 
