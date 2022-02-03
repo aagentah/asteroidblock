@@ -100,7 +100,13 @@ const Sequencer = {
       if (activeInStep.length) Audio.play(activeInStep);
     };
 
-    Sequencer.interval = new Nexus.Interval(Controls.noteLength, () => {
+    var myFunction = function() {
+      console.log('running', Sequencer.isRunning);
+
+      if (!Sequencer.isRunning) {
+        return window.setTimeout(myFunction, Controls.noteLength);
+      }
+
       const matrix = [];
 
       for (let i = 0; i < Sequencer.sequencer.matrix.pattern.length; i++) {
@@ -122,7 +128,15 @@ const Sequencer = {
       setTimeout(() => {
         if (Sequencer.isRunning) Sequencer.sequencer.next();
       }, Audio.lookAhead * 1000 + Controls.noteLength);
-    });
+
+      window.setTimeout(myFunction, Controls.noteLength);
+    };
+
+    window.setTimeout(myFunction, Controls.noteLength);
+
+    // Sequencer.interval = new Nexus.Interval(Controls.noteLength, () => {
+    //
+    // });
 
     Sequencer.sequencer.next();
   }
