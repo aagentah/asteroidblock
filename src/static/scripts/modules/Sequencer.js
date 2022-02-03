@@ -91,8 +91,6 @@ const Sequencer = {
           multitude = octave * 12;
           key = i - multitude;
 
-          console.log('o', Sequencer.octaves - (octave + 1));
-
           activeInStep.push(
             `${Sequencer.notes[key]}${Sequencer.octaves - (octave + 1)}`
           );
