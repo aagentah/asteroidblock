@@ -53,11 +53,14 @@ const Main = {
 
     if (isMobile) {
       if (winHeight) {
+        const body = document.querySelector('body');
         const els = document.querySelectorAll('.availheight');
 
         for (let i = 0; i < els.length; i++) {
           els[i].style.maxHeight = `${winHeight - 100}px`;
         }
+
+        body.style.marginTop = `10px`;
       }
     }
 
