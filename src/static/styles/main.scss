@@ -178,7 +178,6 @@ main.active {
   transition: 0.3s ease-in-out opacity;
 }
 
-.intro__wrapper,
 .sequencer__notes__wrapper,
 .controls__wrapper,
 .effects__wrapper {
@@ -203,10 +202,10 @@ main.active {
   width: 100%;
   opacity: 0;
   transition: 0.3s ease-in-out opacity;
+  height: 100%;
 
   @extend .ph2;
   @extend .ph3-md;
-  @extend .pb3;
 }
 
 .intro__wrapper.active {
@@ -233,15 +232,11 @@ main.active {
 .controls__wrapper {
   @extend .ph2;
   @extend .ph3-md;
-  @extend .pb0;
-  @extend .pb3-md;
 }
 
 .controls {
   background-color: $grey-light;
 
-  @extend .mb0;
-  @extend .mb3-md;
   @extend .w-100;
   @extend .pa3;
   @extend .br4;
@@ -251,15 +246,11 @@ main.active {
 .effects__wrapper {
   @extend .ph2;
   @extend .ph3-md;
-  @extend .pb0;
-  @extend .pb3-md;
 }
 
 .effects {
   background-color: $grey-light;
 
-  @extend .mb0;
-  @extend .mb3-md;
   @extend .w-100;
   @extend .pa2;
   @extend .pa3-md;
