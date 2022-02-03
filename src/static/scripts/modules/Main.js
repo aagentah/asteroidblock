@@ -52,11 +52,11 @@ const Main = {
     const winHeight = window.screen.availWidth;
 
     if (isMobile) {
-      if (avail) {
+      if (winHeight) {
         const els = document.querySelectorAll('.availheight');
 
         for (let i = 0; i < els.length; i++) {
-          els[i].style.maxHeight = `${winHeight - 40}px`;
+          els[i].style.maxHeight = `${winHeight - 80}px`;
         }
       }
     }
