@@ -12,15 +12,15 @@
 {% block content %}
 
   <div class="warning-overlay">
-    <p>Sorry, this project is exclusively for desktop, please try with a bigger device/screen.</p>
+    <p>Please rotate your screen to landcape.</p>
   </div>
 
   <!-- <div id="overlay"><img data-src="/static/images/bg.gif"/></div> -->
 
-  <section class="wrapper  pa4" id="your-element-selector">
+  <section class="wrapper  pa2  pa4-md  flex  align-center" id="your-element-selector">
     <div class="flex  flex-wrap">
       <!-- Controls -->
-      <div class="col-4  flex  flex-wrap  controls__wrapper">
+      <div class="col-5  col-4-md  flex  flex-wrap  controls__wrapper">
         <div class="col-24  controls">
           <div class="flex  flex-wrap  mb3">
             <img class="w-100" src="/static/images/logo-text.png" alt="">
@@ -61,23 +61,23 @@
 
         <div class="col-24  controls">
           <div class="flex  flex-wrap">
-            <div class="col-24  flex  flex-wrap  align-center  f7  fw7">
+            <div class="col-24  flex  flex-wrap  align-center  f8  f7-md  fw3  fw7-md">
               Tempo:
             </div>
-            <div class="col-24  flex  flex-wrap  align-center  h3">
+            <div class="col-24  flex  flex-wrap  align-center  tempo__wrapper">
               <div id="tempo"></div>
             </div>
           </div>
 
-          <div class="flex  flex-wrap">
-            <div class="flex  flex-wrap  mb2  fw7  f7  pt2">
+          <div class="flex  flex-wrap  instrument__wrapper">
+            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2">
               Select Synth:
             </div>
             <div id="instrument"></div>
           </div>
         </div>
 
-        <div class="col-24  controls">
+        <div class="col-24  controls  dn  df-md">
           <div class="flex  flex-wrap">
             <div class="col-24  flex  flex-wrap  pb3">
               <div class="col-24  f7  lh-copy">
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <div class="col-13  col-16-md  flex  flex-wrap  sequencer__intro__wrapper">
+      <div class="col-14  col-16-md  flex  flex-wrap  sequencer__intro__wrapper">
         <div class="col-24  flex  flex-wrap  sequencer__notes__wrapper">
           <!-- Notes -->
           <div class="col-2  notes__wrapper">
@@ -133,7 +133,7 @@
 
             <div class="flex  flex-wrap">
               <div class="col-24  col-12-md  ph3" id="asteroid-selects">
-                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f7  f6-md">
                   Select a real-world asteroid:
                 </div>
                 <div class="flex  flex-wrap">
@@ -224,7 +224,7 @@
                 </div>
               </div>
 
-              <div class="dn  flex-wrap  justify-center  pt4  w-100  f7  blockWarning">
+              <div class="dn  flex-wrap  justify-center  pt4  w-100  f8  f7-md  blockWarning">
                 Please note—using Adblockers, Privacy Badger, Decentraleyes, or Brave Browser will prevent the save/export feature from working.
               </div>
 
@@ -239,7 +239,7 @@
       </div>
 
       <!-- Effects -->
-      <div class="col-7  col-4-md  flex  flex-wrap  effects__wrapper">
+      <div class="col-5  col-4-md  flex  flex-wrap  effects__wrapper">
         <div class="col-24  effects  flex  flex-wrap  align-center">
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Chorus</div>
@@ -356,7 +356,7 @@
           </div>
         </div>
 
-        <div class="col-24  effects  flex  flex-wrap  align-center">
+        <div class="col-24  effects  dn  df-md  flex-wrap  align-center">
           <div class="dn">
             <div id="envelope"></div>
             <div class="envelope__hold__label"></div>
@@ -398,53 +398,6 @@
       </div>
     </div>
 
-    <!-- <div class="signal__wrapper">
-      <div class="flex  flex-wrap  signal">
-
-
-        <div class="col-6"></div>
-
-        <div class="col-7  envelope__wrapper  ph3">
-          <div id="envelope"></div>
-          <div class="envelope__hold__label"></div>
-        </div>
-
-        <div class="col-3  flex  flex-wrap  pr2">
-          <div class="col-24">
-            <div class="col-24  envelope__title">Envelope</div>
-          </div>
-
-          <div class="col-24  flex  flex-wrap">
-            <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center  ph2">
-                <div id="envelopeAttack"></div>
-              </div>
-              <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
-                Attack
-              </div>
-            </div>
-
-            <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center  ph2">
-                <div id="envelopeRelease"></div>
-              </div>
-              <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
-                Release
-              </div>
-            </div>
-
-            <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center  ph2">
-                <div id="envelopeHold"></div>
-              </div>
-              <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
-                Hold
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </section>
 
 

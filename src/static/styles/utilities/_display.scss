@@ -1,6 +1,9 @@
 .dn {
   display: none;
 }
+.df {
+  display: flex;
+}
 .db {
   display: block;
 }
@@ -26,6 +29,9 @@
   @include breakpoint-up($modifier, $grid-breakpoints) {
     .dn-#{$infix} {
       display: none;
+    }
+    .df-#{$infix} {
+      display: flex;
     }
     .db-#{$infix} {
       display: block;

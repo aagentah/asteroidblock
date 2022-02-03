@@ -48,6 +48,14 @@ const Main = {
       Main.main.classList.add('active');
     }, 300);
 
+    window.addEventListener(
+      'orientationchange',
+      () => {
+        window.location.reload();
+      },
+      false
+    );
+
     tippy('#record', {
       content: 'Plays & records the sequence to wav file!',
       delay: [300],

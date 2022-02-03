@@ -87,8 +87,11 @@ const Controls = {
   },
 
   renderControls() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const tempoHeight = isMobile ? 20 : 30;
+
     const number = new Nexus.Number('#tempo', {
-      size: [120, 30],
+      size: [120, tempoHeight],
       value: Controls.tempo,
       min: 30,
       max: 300,

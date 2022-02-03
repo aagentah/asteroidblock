@@ -27,8 +27,11 @@ const Signal = {
   },
 
   renderInstrument() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const selectHeight = isMobile ? 20 : 30;
+
     Signal.instrumentSelect = new Nexus.Select('#instrument', {
-      size: [150, 30],
+      size: [150, selectHeight],
       options: Signal.instrumentTypes
     });
 

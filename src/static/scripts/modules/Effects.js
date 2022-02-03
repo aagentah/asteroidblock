@@ -153,6 +153,8 @@ const Effects = {
 
   render() {
     let rackEl, effect, dialEl, dial, effectParams;
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const dialSize = isMobile ? 22 : 43;
 
     for (let i = 0; i < Effects.data.length; i++) {
       effect = Effects.data[i];
@@ -164,7 +166,7 @@ const Effects = {
 
         if (dialEl) {
           dial = new Nexus.Dial(dialEl, {
-            size: [43, 43],
+            size: [dialSize, dialSize],
             min: effectParams.range[0],
             max: effectParams.range[1],
             value: effectParams.value,

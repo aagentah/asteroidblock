@@ -94,7 +94,6 @@ $grey-dark: #6a6b6b;
   height: 100vh;
   font-size: 18px;
   text-align: center;
-  display: none;
   display: block;
 
   p {
@@ -106,6 +105,12 @@ $grey-dark: #6a6b6b;
     text-align: center;
     max-width: 300px;
     @extend .lh-copy;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .warning-overlay {
+    display: none;
   }
 }
 
@@ -148,6 +153,8 @@ main.active {
 .wrapper {
   height: 100vh;
   z-index: 1;
+  max-width: 1480px;
+  margin: 0 auto;
 
   // .flex {
   //   display: none;
@@ -157,8 +164,7 @@ main.active {
 .wrapper.active {
   .sequencer__notes__wrapper,
   .controls__wrapper,
-  .effects__wrapper,
-  .signal__wrapper {
+  .effects__wrapper {
     opacity: 1;
     pointer-events: auto;
   }
@@ -166,11 +172,18 @@ main.active {
 
 .sequencer__notes__wrapper,
 .controls__wrapper,
-.effects__wrapper,
-.signal__wrapper {
+.effects__wrapper {
   opacity: 0.5;
   pointer-events: none;
   transition: 0.3s ease-in-out opacity;
+}
+
+.intro__wrapper,
+.sequencer__notes__wrapper,
+.controls__wrapper,
+.effects__wrapper {
+  height: 90vh;
+  max-height: 800px;
 }
 
 .sequencer__notes__wrapper {
@@ -188,17 +201,17 @@ main.active {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   opacity: 0;
   transition: 0.3s ease-in-out opacity;
 
-  @extend .ph3;
+  @extend .ph2;
+  @extend .ph3-md;
   @extend .pb3;
 }
 
 .intro__wrapper.active {
   opacity: 1;
-  max-height: calc(100vh - 100px);
+  max-height: 800px;
 }
 
 .intro {
@@ -212,14 +225,14 @@ main.active {
 
 .sequencer__notes__wrapper {
   overflow-y: scroll;
-  height: 100vh;
-  max-height: calc(100vh - 100px);
-  @extend .ph3;
+  overflow-x: hidden;
+  @extend .ph2;
+  @extend .ph3-md;
 }
 
 .controls__wrapper {
-  max-height: 90vh;
-  @extend .ph3;
+  @extend .ph2;
+  @extend .ph3-md;
   @extend .pb3;
 }
 
@@ -234,29 +247,20 @@ main.active {
 }
 
 .effects__wrapper {
-  @extend .ph3;
-  @extend .pb3;
+  @extend .ph2;
+  @extend .ph3-md;
+  @extend .pb0;
+  @extend .pb3-md;
 }
 
 .effects {
   background-color: $grey-light;
 
-  @extend .mb3;
+  @extend .mb0;
+  @extend .mb3-md;
   @extend .w-100;
-  @extend .pa3;
-  @extend .br4;
-  @extend .shadow2;
-}
-
-.signal__wrapper {
-  @extend .pa3;
-}
-
-.signal {
-  background-color: $grey-light;
-
-  @extend .w-100;
-  @extend .pa3;
+  @extend .pa2;
+  @extend .pa3-md;
   @extend .br4;
   @extend .shadow2;
 }
@@ -268,7 +272,8 @@ main.active {
   color: $grey-dark;
   border-bottom: 3px solid $purple-dark;
   background-color: $almost-white;
-  @extend .f6;
+  @extend .f8;
+  @extend .f6-md;
   @extend .flex;
   @extend .align-center;
   @extend .justify-center;
@@ -281,38 +286,64 @@ main.active {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 82px;
+    left: 41px;
     width: 100%;
     border-bottom: 3px solid $purple-dark;
     z-index: 999;
   }
 }
 
+@include breakpoint-up(md) {
+  .notes__item__octave {
+    &:after {
+      left: 82px;
+    }
+  }
+}
+
 .effect__wrapper {
   @extend .relative;
   @extend .pt2;
-  @extend .pb3;
+  @extend .pb0;
+  @extend .pb3-md;
 }
 
 .effect__title {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
   color: $grey-dark;
   font-weight: bold;
 
   @extend .tac;
   @extend .mla;
   @extend .mra;
-  @extend .f7;
+  @extend .f8;
+  @extend .f7-md;
   @extend .pb2;
   @extend .mb0;
+}
+
+@include breakpoint-up(md) {
+  .effect__title {
+    position: relative;
+  }
 }
 
 .effect__label {
   text-align: center;
   color: $purple-dark;
+  font-size: 7px;
 
   @extend .pt2;
   @extend .mb0;
-  @extend .f7;
+}
+
+@include breakpoint-up(md) {
+  .effect__label {
+    @extend .f7-md;
+  }
 }
 
 .envelope__wrapper {
@@ -345,14 +376,15 @@ main.active {
 
 .control__button {
   width: 100%;
-  height: 50px;
+  height: 25px;
   background: $almost-white;
   color: $purple-dark;
   border: 0;
   outline: 0;
   cursor: pointer;
 
-  @extend .f7;
+  @extend .f8;
+  @extend .f7-md;
   @extend .flex;
   @extend .justify-center;
   @extend .align-center;
@@ -360,9 +392,23 @@ main.active {
   @extend .br2;
   @extend .shadow2;
 
+  svg {
+    width: 12px;
+  }
+
   svg,
   svg * {
     fill: $purple-dark;
+  }
+}
+
+@include breakpoint-up(md) {
+  .control__button {
+    height: 50px;
+
+    svg {
+      width: 20px;
+    }
   }
 }
 
@@ -437,14 +483,37 @@ progress::-webkit-progress-bar {
 
 // UI
 
+.tempo__wrapper {
+  height: 2rem;
+}
+
+@include breakpoint-up(md) {
+  .tempo__wrapper {
+    height: 4rem;
+  }
+}
+
+.instrument__wrapper {
+  //
+}
+
 #tempo,
 #tempo input {
   width: 100% !important;
+  font-size: 10px !important;
 }
 
 #instrument,
 #instrument select {
   width: 100% !important;
+  font-size: 10px !important;
+}
+
+@include breakpoint-up(md) {
+  #instrument select,
+  #tempo input {
+    font-size: 15px;
+  }
 }
 
 // Warning

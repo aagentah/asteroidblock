@@ -306,7 +306,7 @@ const Asteroid = {
 
   eventListener() {
     let selectsHtml = `
-      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f7  f6-md">
         Select a real-world asteroid:
       </div>
       <div class="flex  flex-wrap">
@@ -335,8 +335,11 @@ const Asteroid = {
 
     const beginEl = document.querySelector('#begin');
 
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const selectWidth = isMobile ? 200 : 300;
+
     const asteroidSelect = new Nexus.Select('#asteroids', {
-      size: [300, 30],
+      size: [selectWidth, 30],
       options: Asteroid.asteroids.map(e => e.name)
     });
 
