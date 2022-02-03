@@ -53,17 +53,20 @@ const Main = {
     console.log('window.innerHeight', window.innerHeight);
     console.log('window.screen.availHeight', window.screen.availHeight);
 
+    const avail = window.screen.availHeight;
+    const winHeight = window.innerHeight;
+    const difference = window.innerHeight - window.screen.availHeight;
+
     if (isMobile) {
-      if (window.screen.availHeight) {
+      if (avail) {
         const body = document.querySelector('body');
         const els = document.querySelectorAll('.availheight');
 
         for (let i = 0; i < els.length; i++) {
-          els[i].style.maxHeight = `${window.screen.availHeight}px`;
+          els[i].style.maxHeight = `${winHeight - difference}px`;
         }
 
-        body.style.marginTop = `${window.innerHeight -
-          window.screen.availHeight}px`;
+        body.style.marginTop = `${difference}px`;
       }
     }
 
