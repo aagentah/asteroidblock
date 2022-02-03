@@ -56,7 +56,7 @@ const Main = {
         const els = document.querySelectorAll('.availheight');
 
         for (let i = 0; i < els.length; i++) {
-          els[i].style.maxHeight = `${winHeight - 80}px`;
+          els[i].style.maxHeight = `${winHeight - 100}px`;
         }
       }
     }

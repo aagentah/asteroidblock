@@ -101,8 +101,6 @@ const Sequencer = {
     };
 
     var myFunction = function() {
-      console.log('running', Sequencer.isRunning);
-
       if (!Sequencer.isRunning) {
         return window.setTimeout(myFunction, Controls.noteLength);
       }
