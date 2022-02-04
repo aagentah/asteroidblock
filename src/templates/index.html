@@ -17,10 +17,10 @@
 
   <!-- <div id="overlay"><img data-src="/static/images/bg.gif"/></div> -->
 
-  <section class="wrapper  pa2  pa4-md  flex  align-start  align-center-md" id="your-element-selector">
-    <div class="flex  flex-wrap">
+  <section class="wrapper  pa2  pa4-md  flex  align-center" id="your-element-selector">
+    <div class="flex  flex-wrap  w-100">
       <!-- Controls -->
-      <div class="col-24  col-4-md  flex  flex-wrap  controls__wrapper  availheight">
+      <div class="col-24  col-4-md  flex  flex-wrap  controls__wrapper">
         <div class="col-24  flex  flex-wrap  controls  mb3">
           <div class="col-24  flex-wrap  mb3  dn  df-md">
             <img class="w-100" src="/static/images/logo-text.png" alt="">
@@ -100,147 +100,145 @@
         </div>
       </div>
 
-      <div class="col-24  col-16-md  flex  flex-wrap  sequencer__intro__wrapper  mb3  mb0-md  availheight">
-        <div class="col-24  flex  flex-wrap  sequencer__notes__wrapper  availheight">
-          <!-- Notes -->
-          <div class="col-2  notes__wrapper">
-            <div id="notes"></div>
-          </div>
-          <!-- Sequencer -->
-          <div class="col-22  sequencer__wrapper">
-            <div id="sequencer"></div>
-          </div>
+      <div class="col-16-md  flex  flex-wrap  sequencer__notes__wrapper">
+        <!-- Notes -->
+        <div class="col-2  notes__wrapper">
+          <div id="notes"></div>
         </div>
+        <!-- Sequencer -->
+        <div class="col-22  sequencer__wrapper">
+          <div id="sequencer"></div>
+        </div>
+      </div>
 
-        <div class="col-24  flex  flex-wrap  intro__wrapper  active  availheight">
-          <div class="intro">
-            <div class="flex  flex-wrap  justify-center  pv3">
-              <div class="col-8  flex  flex-wrap  justify-center  pb0  pb3-md">
-                <img class="mla  mra" src="/static/images/logo-text.png" alt="">
+      <div class="col-24  flex  flex-wrap  intro__wrapper  active">
+        <div class="intro">
+          <div class="flex  flex-wrap  justify-center  pv3">
+            <div class="col-8  flex  flex-wrap  justify-center  pb0  pb3-md">
+              <img class="mla  mra" src="/static/images/logo-text.png" alt="">
+            </div>
+
+            <div class="col-24  flex  justify-center">
+              <div class="measure-wide">
+                <p class="tac  lh-copy  dn  db-md">
+                  asteroidblock.io is a web-based, interactive, atmospheric pad
+                  synthesizer which queries NASA's asteroid API, using
+                  live proximity data to throttle initial parameters
+                  of the synth.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex  flex-wrap">
+            <div class="col-24  col-12-md  ph3  pb3  pb0-md" id="asteroid-selects">
+              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f7  f6-md">
+                Select a real-world asteroid:
+              </div>
+              <div class="flex  flex-wrap">
+                <div id="asteroids" class="intro__statistic">
+                  {{loadingIcon}}
+                </div>
               </div>
 
-              <div class="col-24  flex  justify-center">
-                <div class="measure-wide">
-                  <p class="tac  lh-copy  dn  db-md">
-                    asteroidblock.io is a web-based, interactive, atmospheric pad
-                    synthesizer which queries NASA's asteroid API, using
-                    live proximity data to throttle initial parameters
-                    of the synth.
-                  </p>
+              <!-- <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
+                Select MIDI Sequence:
+              </div>
+              <div class="flex  flex-wrap">
+                <div id="midi-sequence" class="col-12  intro__statistic">
+                  {{loadingIcon}}
+                </div>
+              </div> -->
+            </div>
+
+            <div class="col-24  col-12-md  ph3" id="asteroid-data">
+              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+                Asteroid's Data:
+              </div>
+              <div class="flex  flex-wrap">
+                <div class="w-100">
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Name:</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Potentially Dangerous:</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Close Approach Date:</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Orbiting Body:</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Est. Diamater (km):</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Miss Distance (km):</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Relatice Velocity (mph):</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="flex  flex-wrap">
-              <div class="col-24  col-12-md  ph3  pb3  pb0-md" id="asteroid-selects">
-                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f7  f6-md">
-                  Select a real-world asteroid:
-                </div>
-                <div class="flex  flex-wrap">
-                  <div id="asteroids" class="intro__statistic">
-                    {{loadingIcon}}
-                  </div>
-                </div>
-
-                <!-- <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
-                  Select MIDI Sequence:
-                </div>
-                <div class="flex  flex-wrap">
-                  <div id="midi-sequence" class="col-12  intro__statistic">
-                    {{loadingIcon}}
-                  </div>
-                </div> -->
+            <div class="dn  db-md">
+              <div class="dn  flex-wrap  justify-center  pt3  pt4-md  w-100  f8  f7-md  blockWarning">
+                Please note—using Adblockers, Privacy Badger, Decentraleyes, or Brave Browser will prevent the save/export feature from working.
               </div>
+            </div>
 
-              <div class="col-24  col-12-md  ph3  dn  db-md" id="asteroid-data">
-                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
-                  Asteroid's Data:
-                </div>
-                <div class="flex  flex-wrap">
-                  <div class="w-100">
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Name:</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Potentially Dangerous:</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Close Approach Date:</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Orbiting Body:</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Est. Diamater (km):</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Miss Distance (km):</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Relatice Velocity (mph):</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="dn  db-md">
-                <div class="dn  flex-wrap  justify-center  pt3  pt4-md  w-100  f8  f7-md  blockWarning">
-                  Please note—using Adblockers, Privacy Badger, Decentraleyes, or Brave Browser will prevent the save/export feature from working.
-                </div>
-              </div>
-
-              <div class="flex  flex-wrap  justify-center  pt3  w-100" id="asteroid-begin">
-                <button id="begin" class="control__button" disabled>
-                  Begin
-                </button>
-              </div>
+            <div class="flex  flex-wrap  justify-center  pt3  w-100" id="asteroid-begin">
+              <button id="begin" class="control__button" disabled>
+                Begin
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="w-100  df  dn-md  flex  flex-wrap  slide-up-triggers__wrapper">
+      <div class="w-100  df  dn-md  flex-wrap  pt3  slide-up-triggers__wrapper">
         <div class="col-12  flex  align-center  justify-center  pl2  pr1">
           <span class="effects-toggle  control__button">Fx Toggle</span>
         </div>
@@ -250,7 +248,7 @@
       </div>
 
       <!-- Effects -->
-      <div class="col-24  col-4-md  flex  flex-wrap  effects__wrapper  availheight">
+      <div class="col-24  col-4-md  flex  flex-wrap  effects__wrapper">
 
 
         <div class="col-24  effects  effects__fx  mb0  mb3-md  flex  flex-wrap  align-center">

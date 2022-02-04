@@ -22,20 +22,6 @@ const Main = {
   render() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    if (isMobile) {
-      const controlsWrapper = document.querySelector('.controls__wrapper');
-      const slideUpTriggers = document.querySelector(
-        '.slide-up-triggers__wrapper'
-      );
-
-      const takenRoom =
-        controlsWrapper.offsetHeight + slideUpTriggers.offsetHeight;
-
-      const freeRoom = window.screen.availHeight - takenRoom - 220;
-
-      Controls.sequencer.style.height = `${freeRoom}px`;
-    }
-
     Audio.setContext();
     Effects.render();
     Signal.render();

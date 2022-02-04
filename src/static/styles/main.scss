@@ -197,10 +197,6 @@ main.active {
   background-color: $almost-white;
 }
 
-.sequencer__intro__wrapper {
-  position: relative;
-}
-
 .intro__wrapper {
   position: absolute;
   top: 0;
@@ -209,6 +205,7 @@ main.active {
   opacity: 0;
   transition: 0.3s ease-in-out opacity;
   height: 100%;
+  z-index: 999;
 
   @extend .ph2;
   @extend .ph3-md;

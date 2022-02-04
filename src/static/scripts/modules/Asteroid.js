@@ -386,12 +386,12 @@ const Asteroid = {
         setTimeout(() => {
           Asteroid.elem.classList.remove('flex');
           Asteroid.elem.classList.add('dn');
+
+          Sequencer.renderNotes();
+          Controls.renderControls();
+
+          Asteroid.hasOpened = true;
         }, 300);
-
-        Sequencer.renderNotes();
-        Controls.renderControls();
-
-        Asteroid.hasOpened = true;
       },
       false
     );
