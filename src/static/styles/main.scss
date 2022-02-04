@@ -466,9 +466,9 @@ main.active {
   border: 0;
   outline: 0;
   cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
 
-  @extend .f8;
-  @extend .f7-md;
+  @extend .f7;
   @extend .flex;
   @extend .justify-center;
   @extend .align-center;
@@ -611,10 +611,6 @@ progress::-webkit-progress-bar {
 
 .blockWarning {
   color: #b30000;
-}
-
-.control__button {
-  transition: opacity 0.2s ease-in-out;
 }
 
 .disabled {
