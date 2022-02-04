@@ -503,8 +503,14 @@ main.active {
   left: 0;
   display: inline-block;
   width: 100%;
-  height: 5px;
+  height: 2px;
   background: transparent;
+}
+
+@include breakpoint-up(md) {
+  .progress {
+    height: 5px;
+  }
 }
 
 progress {

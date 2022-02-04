@@ -30,20 +30,6 @@ const Sequencer = {
     let octave;
     let notesItems = '';
 
-    if (isMobile()) {
-      const controlsWrapper = document.querySelector('.controls__wrapper');
-      const slideUpTriggers = document.querySelector(
-        '.slide-up-triggers__wrapper'
-      );
-
-      const takenRoom =
-        controlsWrapper.offsetHeight + slideUpTriggers.offsetHeight;
-
-      const freeRoom = window.screen.availHeight - takenRoom - 220;
-
-      Controls.sequencer.style.height = `${freeRoom}px`;
-    }
-
     const offsetHeight = Sequencer.elem.offsetHeight / 12;
 
     for (let i = Sequencer.octaves - 1; i >= 0; i--) {
@@ -71,6 +57,20 @@ const Sequencer = {
   },
 
   render() {
+    if (isMobile()) {
+      const controlsWrapper = document.querySelector('.controls__wrapper');
+      const slideUpTriggers = document.querySelector(
+        '.slide-up-triggers__wrapper'
+      );
+
+      const takenRoom =
+        controlsWrapper.offsetHeight + slideUpTriggers.offsetHeight;
+
+      const freeRoom = window.screen.availHeight - takenRoom - 220;
+
+      Controls.sequencer.style.height = `${freeRoom}px`;
+    }
+
     const offsetHeight = Sequencer.elem.offsetHeight / 12;
 
     Sequencer.rows = Sequencer.notes.length * Sequencer.octaves;
