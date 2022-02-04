@@ -14,7 +14,9 @@ const Controls = {
   recordEl: document.querySelector('#record'),
   resetEl: document.querySelector('#reset'),
   effectsToggle: document.querySelectorAll('.effects-toggle'),
-  effectsWrapper: document.querySelector('.effects__wrapper'),
+  envelopeToggle: document.querySelectorAll('.envelope-toggle'),
+  effectsWrapper: document.querySelector('.effects__fx'),
+  envelopeWrapper: document.querySelector('.effects__envelope'),
   tempo: 120,
   noteLength: 2000, // 120 BPM
 
@@ -148,6 +150,16 @@ const Controls = {
         'click',
         () => {
           Controls.effectsWrapper.classList.toggle('active');
+        },
+        false
+      );
+    }
+
+    for (let i = 0; i < Controls.envelopeToggle.length; i++) {
+      Controls.envelopeToggle[i].addEventListener(
+        'click',
+        () => {
+          Controls.envelopeWrapper.classList.toggle('active');
         },
         false
       );

@@ -165,7 +165,7 @@ const Asteroid = {
             <div class="w-100">
               <div class="flex  flex-wrap  pb2">
                 <div class="col-12">
-                  <span class="fw7">Name:</span>
+                  <span class="f7  f6-md  fw7">Name:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.name}
@@ -174,7 +174,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb2">
                 <div class="col-12">
-                  <span class="fw7">Potentially Dangerous:</span>
+                  <span class="f7  f6-md  fw7">Potentially Dangerous:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.hazardous}
@@ -183,7 +183,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb2">
                 <div class="col-12">
-                  <span class="fw7">Close Approach Date:</span>
+                  <span class="f7  f6-md  fw7">Close Approach Date:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.close_approach_date}
@@ -192,7 +192,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb2">
                 <div class="col-12">
-                  <span class="fw7">Orbiting Body:</span>
+                  <span class="f7  f6-md  fw7">Orbiting Body:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.orbiting_body}
@@ -201,7 +201,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb2">
                 <div class="col-12">
-                  <span class="fw7">Est. Diamater (km):</span>
+                  <span class="f7  f6-md  fw7">Est. Diamater (km):</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.diameter}
@@ -210,7 +210,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb2">
                 <div class="col-12">
-                  <span class="fw7">Miss Distance (km):</span>
+                  <span class="f7  f6-md  fw7">Miss Distance (km):</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.miss_distance}
@@ -219,7 +219,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb2">
                 <div class="col-12">
-                  <span class="fw7">Relatice Velocity (mph):</span>
+                  <span class="f7  f6-md  fw7">Relatice Velocity (mph):</span>
                 </div>
                 <div class="col-12  intro__statistic">
                 ${Asteroid.selected.velocity}

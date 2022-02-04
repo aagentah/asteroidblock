@@ -256,24 +256,80 @@ main.active {
   @extend .shadow2;
 }
 
-.effects__wrapper {
+.arrow-btn {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  @extend .flex;
+  @extend .justify-center;
+
+  svg {
+    padding: 10px;
+    width: 40px;
+    transform: rotate(90deg);
+    background-color: $grey-light;
+    border-radius: 100%;
+    @extend .shadow2;
+
+    * {
+      fill: $purple-light;
+    }
+  }
+}
+
+.effects__fx {
+  width: 90vw;
   position: fixed;
   left: 0;
   right: 0;
   margin: 0 auto;
-  transform: translateY(calc(100vh + 520px));
+  transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 2;
-
   @extend .ph3;
+  @extend .pt4;
+  @extend .pt3-md;
 }
 
-.effects__wrapper.active {
-  transform: translateY(calc(100vh - 520px));
+.effects__fx.active {
+  transform: translateY(calc(100% - 990px));
 }
 
 @include breakpoint-up(md) {
-  .effects__wrapper {
+  .effects__fx {
+    width: 100%;
+    position: relative;
+    transform: none;
+    left: auto;
+    right: auto;
+    margin: auto;
+  }
+}
+
+.effects__envelope {
+  width: 90vw;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 2;
+  @extend .ph3;
+  @extend .pt4;
+  @extend .pt3-md;
+}
+
+.effects__envelope.active {
+  transform: translateY(calc(100% - 260px));
+}
+
+@include breakpoint-up(md) {
+  .effects__envelope {
+    word-spacing: 100%;
     position: relative;
     transform: none;
     left: auto;
@@ -442,6 +498,13 @@ main.active {
 .intro__statistic {
   position: relative;
   height: 22px;
+
+  @extend .f7;
+  @extend .f6-md;
+  @extend .flex;
+  @extend .align-center;
+  @extend .justify-end;
+  @extend .justify-start-md;
 }
 
 .loading-icon {

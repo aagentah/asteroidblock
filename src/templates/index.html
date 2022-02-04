@@ -132,7 +132,7 @@
             </div>
 
             <div class="flex  flex-wrap">
-              <div class="col-24  col-12-md  ph3" id="asteroid-selects">
+              <div class="col-24  col-12-md  ph3  pb3  pb0-md" id="asteroid-selects">
                 <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f7  f6-md">
                   Select a real-world asteroid:
                 </div>
@@ -152,7 +152,7 @@
                 </div> -->
               </div>
 
-              <div class="col-12  ph3  dn  db-md" id="asteroid-data">
+              <div class="col-24  col-12-md  ph3" id="asteroid-data">
                 <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
                   Asteroid's Data:
                 </div>
@@ -238,14 +238,24 @@
         </div>
       </div>
 
-      <span class="effects-toggle  db  dn-md">Toggle</span>
+      <div class="w-100  df  dn-md  flex  flex-wrap">
+        <div class="col-12  flex  align-center  justify-center  pl2  pr1">
+          <span class="effects-toggle  control__button">Fx Toggle</span>
+        </div>
+        <div class="col-12  flex  align-center  justify-center  pr2  pl1">
+          <span class="envelope-toggle  control__button">Env Toggle</span>
+        </div>
+      </div>
 
       <!-- Effects -->
       <div class="col-24  col-4-md  flex  flex-wrap  effects__wrapper  availheight">
-        <span class="effects-toggle  db  dn-md">Toggle</span>
 
 
-        <div class="col-24  effects  mb0  mb3-md  flex  flex-wrap  align-center">
+        <div class="col-24  effects  effects__fx  mb0  mb3-md  flex  flex-wrap  align-center">
+          <span class="effects-toggle  arrow-btn  db  dn-md">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/></svg>
+          </span>
+
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Chorus</div>
             <div class="db  w-100  pt3  pt2-md" id="effect-Chorus">
@@ -361,7 +371,11 @@
           </div>
         </div>
 
-        <div class="col-24  effects  dn  df-md  flex-wrap  align-center">
+        <div class="col-24  effects  effects__envelope  flex  flex-wrap  align-center">
+          <span class="envelope-toggle  arrow-btn  db  dn-md">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/></svg>
+          </span>
+
           <div class="dn">
             <div id="envelope"></div>
             <div class="envelope__hold__label"></div>
