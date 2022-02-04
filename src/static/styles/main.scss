@@ -169,16 +169,23 @@ main.active {
 .wrapper.active {
   .sequencer__notes__wrapper,
   .controls__wrapper,
-  .effects__wrapper {
+  .effects__wrapper,
+  .slide-up-triggers__wrapper {
     opacity: 1;
     pointer-events: auto;
   }
 }
 
+.slide-up-triggers__wrapper {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease-in-out opacity;
+}
+
 .sequencer__notes__wrapper,
 .controls__wrapper,
 .effects__wrapper {
-  opacity: 0.5;
+  opacity: 0;
   pointer-events: none;
   transition: 0.3s ease-in-out opacity;
 }
@@ -191,6 +198,7 @@ main.active {
   .sequencer__notes__wrapper,
   .controls__wrapper,
   .effects__wrapper {
+    opacity: 0.5;
     height: 90vh;
     max-height: 800px;
   }
