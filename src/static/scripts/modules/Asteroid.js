@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import Main from './Main';
 import Sequencer from './Sequencer';
 import Controls from './Controls';
-import Signal from './Signal';
+import Instrument from './Instrument';
 import Effects from './Effects';
 import Audio from './Audio';
 
@@ -298,11 +298,11 @@ const Asteroid = {
       let key;
       let multitude;
 
-      octave = Math.floor(i / Signal.instrumentTypes.length);
-      multitude = octave * Signal.instrumentTypes.length;
+      octave = Math.floor(i / Instrument.instrumentTypes.length);
+      multitude = octave * Instrument.instrumentTypes.length;
       key = i - multitude;
 
-      Signal.instrumentSelect.value = Signal.instrumentTypes[key];
+      Instrument.instrumentSelect.value = Instrument.instrumentTypes[key];
     };
 
     for (let i = 0; i < Effects.data.length; i++) {

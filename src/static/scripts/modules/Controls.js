@@ -31,7 +31,6 @@ const Controls = {
 
     Controls.tempo = tempo;
     Controls.noteLength = fullNote;
-    // Sequencer.interval.ms(Controls.noteLength);
   },
 
   playControls: async () => {
@@ -44,7 +43,6 @@ const Controls = {
     Sequencer.isRunning = true;
     Controls.recordEl.classList.add('disabled');
     Controls.startEl.classList.add('disabled');
-    // Sequencer.interval.start();
   },
 
   recordControls: async () => {
@@ -67,7 +65,6 @@ const Controls = {
     Sequencer.isRunning = false;
     Controls.recordEl.classList.remove('disabled');
     Controls.startEl.classList.remove('disabled');
-    // Sequencer.interval.stop();
 
     for (let i = 0; i < 10; i++) {
       if (Sequencer.sequencer.stepper.value !== 0) Sequencer.sequencer.next();

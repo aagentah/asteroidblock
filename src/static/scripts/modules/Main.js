@@ -4,7 +4,8 @@ import tippy from 'tippy.js';
 
 import Sequencer from './Sequencer';
 import Controls from './Controls';
-import Signal from './Signal';
+import Instrument from './Instrument';
+import Envelope from './Envelope';
 import Effects from './Effects';
 import Audio from './Audio';
 import Asteroid from './Asteroid';
@@ -22,11 +23,12 @@ const Main = {
   render() {
     Audio.setContext();
     Effects.render();
-    Signal.render();
+    Instrument.render();
+    Envelope.render();
     Audio.setInstruments();
     Audio.setEffects();
     Asteroid.render();
-    Sequencer.renderSequence();
+    Sequencer.render();
 
     detectAnyAdblocker().then(detected => {
       if (detected) {

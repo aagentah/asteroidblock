@@ -70,7 +70,7 @@ const Sequencer = {
     Sequencer.notesEl.insertAdjacentHTML('beforeend', notesItems);
   },
 
-  renderSequence() {
+  render() {
     const offsetHeight = Sequencer.elem.offsetHeight / 12;
 
     Sequencer.rows = Sequencer.notes.length * Sequencer.octaves;

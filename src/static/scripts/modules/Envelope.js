@@ -1,46 +1,21 @@
 /* eslint-disable new-cap, no-unused-vars */
 import _ from 'lodash';
-
-import Sequencer from './Sequencer';
-import Controls from './Controls';
-import Effects from './Effects';
 import Nexus from 'nexusui';
 
-const Signal = {
-  currentInstrument: 'AMSynth',
-  instrumentTypes: [
-    'AMSynth',
-    'FMSynth',
-    'DuoSynth',
-    'MetalSynth',
-    'MembraneSynth'
-  ],
+import Controls from './Controls';
+
+const Envelope = {
   envelopeWrapper: document.querySelector('.envelope__wrapper'),
   envelopeHoldLabel: document.querySelector('.envelope__hold__label'),
   envAttack: null,
   envRelease: null,
   envHold: null,
-  instrumentSelect: null,
 
   init() {
     this.render();
   },
 
-  renderInstrument() {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const selectHeight = isMobile ? 20 : 30;
-
-    Signal.instrumentSelect = new Nexus.Select('#instrument', {
-      size: [150, selectHeight],
-      options: Signal.instrumentTypes
-    });
-
-    Signal.instrumentSelect.on('change', e => {
-      Signal.currentInstrument = e.value;
-    });
-  },
-
-  renderEnvelope() {
+  render() {
     const attackDial = new Nexus.Multislider('#envelopeAttack', {
       values: [0.25],
       numberOfSliders: 1,
@@ -96,8 +71,8 @@ const Signal = {
       const attackVal = attack;
       const releaseVal = 1 - release;
 
-      Signal.envAttack = attackVal;
-      Signal.envRelease = releaseVal;
+      Envelope.envAttack = attackVal;
+      Envelope.envRelease = releaseVal;
     };
 
     const attackChange = v => {
@@ -116,8 +91,8 @@ const Signal = {
 
     const holdChange = v => {
       const value = v[0];
-      Signal.envelopeHoldLabel.innerHTML = `${value.toFixed(2)}s`;
-      Signal.envHold = value;
+      Envelope.envelopeHoldLabel.innerHTML = `${value.toFixed(2)}s`;
+      Envelope.envHold = value;
     };
 
     const attackDialThrottle = _.throttle(attackChange, 10);
@@ -129,18 +104,13 @@ const Signal = {
     holdDial.on('change', holdDialThrottle);
     envelope.on('change', setEnvelopeVals);
 
-    Signal.envHold = holdDial.values[0];
-    Signal.envelopeHoldLabel.innerHTML = `${Signal.envHold.toFixed(2)}s`;
+    Envelope.envHold = holdDial.values[0];
+    Envelope.envelopeHoldLabel.innerHTML = `${Envelope.envHold.toFixed(2)}s`;
 
     setEnvelopeVals(envelope.points);
-  },
-
-  render() {
-    Signal.renderInstrument();
-    Signal.renderEnvelope();
   }
 };
 
-export default Signal;
+export default Envelope;
 
 /* eslint-enable */
