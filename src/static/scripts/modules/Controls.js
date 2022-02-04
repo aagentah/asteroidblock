@@ -13,6 +13,8 @@ const Controls = {
   stopEl: document.querySelector('#stop'),
   recordEl: document.querySelector('#record'),
   resetEl: document.querySelector('#reset'),
+  effectsToggle: document.querySelectorAll('.effects-toggle'),
+  effectsWrapper: document.querySelector('.effects__wrapper'),
   tempo: 120,
   noteLength: 2000, // 120 BPM
 
@@ -140,6 +142,16 @@ const Controls = {
       () => Controls.recordControls(),
       false
     );
+
+    for (let i = 0; i < Controls.effectsToggle.length; i++) {
+      Controls.effectsToggle[i].addEventListener(
+        'click',
+        () => {
+          Controls.effectsWrapper.classList.toggle('active');
+        },
+        false
+      );
+    }
   }
 };
 

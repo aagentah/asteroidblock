@@ -181,8 +181,21 @@ main.active {
 .sequencer__notes__wrapper,
 .controls__wrapper,
 .effects__wrapper {
-  height: 90vh;
-  max-height: 800px;
+  // height: 90vh;
+  // max-height: 800px;
+}
+
+.sequencer__notes__wrapper {
+  height: 300px;
+}
+
+@include breakpoint-up(md) {
+  .sequencer__notes__wrapper,
+  .controls__wrapper,
+  .effects__wrapper {
+    height: 90vh;
+    max-height: 800px;
+  }
 }
 
 .sequencer__notes__wrapper {
@@ -244,16 +257,30 @@ main.active {
 }
 
 .effects__wrapper {
+  position: fixed;
+  transform: translateY(calc(100vh + 450px));
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+
   @extend .ph2;
   @extend .ph3-md;
+}
+
+.effects__wrapper.active {
+  transform: translateY(calc(100vh - 450px));
+}
+
+@include breakpoint-up(md) {
+  .effects__wrapper {
+    position: relative;
+  }
 }
 
 .effects {
   background-color: $grey-light;
 
   @extend .w-100;
-  @extend .pa2;
-  @extend .pa3-md;
+  @extend .pa3;
   @extend .br4;
   @extend .shadow2;
 }
@@ -279,10 +306,10 @@ main.active {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 41px;
+    left: 27px;
     width: 100%;
     border-bottom: 3px solid $purple-dark;
-    z-index: 999;
+    z-index: 1;
   }
 }
 
@@ -297,46 +324,29 @@ main.active {
 .effect__wrapper {
   @extend .relative;
   @extend .pt2;
-  @extend .pb0;
-  @extend .pb3-md;
+  @extend .pb3;
 }
 
 .effect__title {
-  position: absolute;
-  top: -2px;
-  left: 0;
-  right: 0;
+  position: relative;
+
   color: $grey-dark;
   font-weight: bold;
 
   @extend .tac;
   @extend .mla;
   @extend .mra;
-  @extend .f8;
-  @extend .f7-md;
+  @extend .f7;
   @extend .pb2;
   @extend .mb0;
-}
-
-@include breakpoint-up(md) {
-  .effect__title {
-    position: relative;
-  }
 }
 
 .effect__label {
   text-align: center;
   color: $purple-dark;
-  font-size: 7px;
-
+  @extend .f7;
   @extend .pt2;
   @extend .mb0;
-}
-
-@include breakpoint-up(md) {
-  .effect__label {
-    @extend .f7-md;
-  }
 }
 
 .envelope__wrapper {

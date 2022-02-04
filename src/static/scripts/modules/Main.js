@@ -49,7 +49,7 @@ const Main = {
     }, 300);
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const winHeight = window.screen.availWidth;
+    const winHeight = window.screen.availheight;
 
     if (isMobile) {
       if (winHeight) {
@@ -57,10 +57,10 @@ const Main = {
         const els = document.querySelectorAll('.availheight');
 
         for (let i = 0; i < els.length; i++) {
-          els[i].style.maxHeight = `${winHeight - 100}px`;
+          // els[i].style.maxHeight = `${winHeight - 100}px`;
         }
 
-        body.style.marginTop = `10px`;
+        // body.style.marginTop = `10px`;
       }
     }
 

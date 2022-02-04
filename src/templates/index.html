@@ -11,22 +11,22 @@
 
 {% block content %}
 
-  <div class="warning-overlay">
+  <!-- <div class="warning-overlay">
     <p>Please rotate your screen to landcape.</p>
-  </div>
+  </div> -->
 
   <!-- <div id="overlay"><img data-src="/static/images/bg.gif"/></div> -->
 
   <section class="wrapper  pa2  pa4-md  flex  align-start  align-center-md" id="your-element-selector">
     <div class="flex  flex-wrap">
       <!-- Controls -->
-      <div class="col-5  col-4-md  flex  flex-wrap  controls__wrapper  availheight">
-        <div class="col-24  controls  mb3">
-          <div class="flex-wrap  mb3  dn  df-md">
+      <div class="col-24  col-4-md  flex  flex-wrap  controls__wrapper  availheight">
+        <div class="col-24  flex  flex-wrap  controls  mb3">
+          <div class="col-24  flex-wrap  mb3  dn  df-md">
             <img class="w-100" src="/static/images/logo-text.png" alt="">
           </div>
 
-          <div class="flex  flex-wrap">
+          <div class="col-12  col-24-md  flex  flex-wrap">
             <div class="col-12  pr1">
               <div class="flex  flex-wrap">
                 <button id="start" class="control__button">
@@ -34,7 +34,7 @@
                 </button>
               </div>
             </div>
-            <div class="col-12  pl1">
+            <div class="col-12  pl1  pr1  pr0-md">
               <div class="flex  flex-wrap">
                 <button id="stop" class="control__button">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z"/></svg>
@@ -43,14 +43,14 @@
             </div>
           </div>
 
-          <div class="flex  flex-wrap">
+          <div class="col-6  col-24-md  flex  flex-wrap  ph1  ph0-md">
             <button id="record" class="control__button  relative">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.003 3h2.997v5h-2.997v-5zm8.997 1v20h-24v-24h20l4 4zm-19 5h14v-7h-14v7zm16 4h-18v9h18v-9z"/></svg>
 
               <progress class="progress" value="0" max="100"></progress>
             </button>
           </div>
-          <div class="flex  flex-wrap">
+          <div class="col-6  col-24-md  flex  flex-wrap  pl1  pl0-md">
             <button id="reset" class="control__button">
               Reset MIDI
             </button>
@@ -59,8 +59,8 @@
           <!-- <audio controls></audio> -->
         </div>
 
-        <div class="col-24  controls  mb0  mb3-md">
-          <div class="flex  flex-wrap">
+        <div class="col-24  flex  flex-wrap  controls  mb3">
+          <div class="col-12  col-24-md  flex  flex-wrap  pr1  pr0-md">
             <div class="col-24  flex  flex-wrap  align-center  f8  f7-md  fw3  fw7-md">
               Tempo:
             </div>
@@ -69,8 +69,8 @@
             </div>
           </div>
 
-          <div class="flex  flex-wrap  instrument__wrapper">
-            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2">
+          <div class="col-12  col-24-md  flex  flex-wrap  pl1  pl0-md  instrument__wrapper">
+            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
               Select Synth:
             </div>
             <div id="instrument"></div>
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <div class="col-14  col-16-md  flex  flex-wrap  sequencer__intro__wrapper  availheight">
+      <div class="col-24  col-16-md  flex  flex-wrap  sequencer__intro__wrapper  mb3  mb0-md  availheight">
         <div class="col-24  flex  flex-wrap  sequencer__notes__wrapper  availheight">
           <!-- Notes -->
           <div class="col-2  notes__wrapper">
@@ -238,8 +238,13 @@
         </div>
       </div>
 
+      <span class="effects-toggle  db  db-md">Toggle</span>
+
       <!-- Effects -->
-      <div class="col-5  col-4-md  flex  flex-wrap  effects__wrapper  availheight">
+      <div class="col-24  col-4-md  flex  flex-wrap  effects__wrapper  availheight">
+        <span class="effects-toggle  db  db-md">Toggle</span>
+
+        
         <div class="col-24  effects  mb0  mb3-md  flex  flex-wrap  align-center">
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Chorus</div>
