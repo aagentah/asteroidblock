@@ -116,8 +116,14 @@ const Asteroid = {
         data = backup;
       }
 
-      if (data.near_earth_objects[today].length < 3) {
+      if (!data.near_earth_objects[today]) {
         data = backup;
+      }
+
+      if (data.near_earth_objects[today]) {
+        if (data.near_earth_objects[today].length < 3) {
+          data = backup;
+        }
       }
 
       const r = (value, decimals) => {
@@ -127,8 +133,13 @@ const Asteroid = {
       asteroids = [];
       let a, closeApproach;
 
-      for (let i = 0; i < data.near_earth_objects[today].length; i++) {
-        a = data.near_earth_objects[today][i];
+      for (
+        let i = 0;
+        i <
+        data.near_earth_objects[Object.keys(data.near_earth_objects)[0]].length;
+        i++
+      ) {
+        a = data.near_earth_objects[Object.keys(data.near_earth_objects)[0]][i];
         closeApproach = a.close_approach_data[0];
 
         const asteroidInstance = {
