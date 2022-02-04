@@ -7,6 +7,8 @@ import _ from 'lodash';
 import Audio from './Audio';
 import Controls from './Controls';
 
+import { isMobile } from '../utils/isMobile';
+
 const Sequencer = {
   elem: document.querySelector('.sequencer__notes__wrapper'),
   notesEl: document.querySelector('#notes'),
@@ -28,9 +30,7 @@ const Sequencer = {
     let octave;
     let notesItems = '';
 
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
+    if (isMobile()) {
       const controlsWrapper = document.querySelector('.controls__wrapper');
       const slideUpTriggers = document.querySelector(
         '.slide-up-triggers__wrapper'

@@ -11,10 +11,6 @@
 
 {% block content %}
 
-  <!-- <div class="warning-overlay">
-    <p>Please rotate your screen to landcape.</p>
-  </div> -->
-
   <!-- <div id="overlay"><img data-src="/static/images/bg.gif"/></div> -->
 
   <section class="wrapper  pa2  pa4-md  flex  align-start  align-center-md" id="your-element-selector">
@@ -55,8 +51,6 @@
               Reset MIDI
             </button>
           </div>
-
-          <!-- <audio controls></audio> -->
         </div>
 
         <div class="col-24  flex  flex-wrap  controls  mb3">
@@ -100,22 +94,22 @@
         </div>
       </div>
 
+      <!-- Sequencer & Notes -->
       <div class="col-16-md  flex  flex-wrap  sequencer__notes__wrapper">
-        <!-- Notes -->
         <div class="col-2  notes__wrapper">
           <div id="notes"></div>
         </div>
-        <!-- Sequencer -->
         <div class="col-22  sequencer__wrapper">
           <div id="sequencer"></div>
         </div>
       </div>
 
+      <!-- Intro -->
       <div class="col-24  flex  flex-wrap  intro__wrapper">
         <div class="intro">
           <div class="flex  flex-wrap  justify-center  pv3">
-            <div class="col-8  flex  flex-wrap  justify-center  pb0  pb3-md">
-              <img class="mla  mra" src="/static/images/logo-text.png" alt="">
+            <div class="col-24  pb0  pb3-md">
+              <img class="mla  mra  mw5" src="/static/images/logo-text.png" alt="">
             </div>
 
             <div class="col-24  flex  justify-center">
@@ -132,7 +126,7 @@
 
           <div class="flex  flex-wrap">
             <div class="col-24  col-12-md  ph3  pb3  pb0-md" id="asteroid-selects">
-              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f7  f6-md">
+              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
                 Select a real-world asteroid:
               </div>
               <div class="flex  flex-wrap">
@@ -152,7 +146,7 @@
             </div>
 
             <div class="col-24  col-12-md  ph3" id="asteroid-data">
-              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
                 Asteroid's Data:
               </div>
               <div class="flex  flex-wrap">
@@ -177,7 +171,7 @@
 
                   <div class="flex  flex-wrap  pb2">
                     <div class="col-12">
-                      <span class="fw7">Close Approach Date:</span>
+                      <span class="fw7"><span class="dn  di-md">Close</span> Approach Date:</span>
                     </div>
                     <div class="col-12  intro__statistic">
                       {{loadingIcon}}
@@ -213,7 +207,7 @@
 
                   <div class="flex  flex-wrap  pb2">
                     <div class="col-12">
-                      <span class="fw7">Relatice Velocity (mph):</span>
+                      <span class="fw7"><span class="dn  di-md">Relative</span> Velocity (mph):</span>
                     </div>
                     <div class="col-12  intro__statistic">
                       {{loadingIcon}}
@@ -238,6 +232,7 @@
         </div>
       </div>
 
+      <!-- Mobile Effect & Envelope Triggers -->
       <div class="w-100  df  dn-md  flex-wrap  order-2  slide-up-triggers__wrapper">
         <div class="col-12  flex  align-center  justify-center  pl2  pr1">
           <span class="effects-toggle  control__button">Effects</span>
@@ -249,8 +244,6 @@
 
       <!-- Effects -->
       <div class="col-24  col-4-md  flex  flex-wrap  effects__wrapper">
-
-
         <div class="col-24  effects  effects__fx  mb0  mb3-md  flex  flex-wrap  align-center">
           <span class="effects-toggle  arrow-btn  db  dn-md">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/></svg>
@@ -416,10 +409,6 @@
         </div>
       </div>
     </div>
-
   </section>
-
-
-
 
 {% endblock %}

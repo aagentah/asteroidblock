@@ -12,6 +12,7 @@ import Audio from './Audio';
 import * as backup from '../data/backup.json';
 
 import { fetchAsync } from '../utils/fetchAsync';
+import { isMobile } from '../utils/isMobile';
 
 const Asteroid = {
   elem: document.querySelector('.intro__wrapper'),
@@ -169,7 +170,7 @@ const Asteroid = {
 
   renderInfo(i) {
     let html = `
-          <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+          <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
             Asteroid's Data:
           </div>
           <div class="flex  flex-wrap">
@@ -185,7 +186,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="f7  f6-md  fw7">Potentially Dangerous:</span>
+                  <span class="f7  f6-md  fw7"><span class="dn  di-md">Potentially</span> Dangerous:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.hazardous}
@@ -194,7 +195,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="f7  f6-md  fw7">Close Approach Date:</span>
+                  <span class="f7  f6-md  fw7"><span class="dn  di-md">Close</span> Approach Date:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.close_approach_date}
@@ -230,7 +231,7 @@ const Asteroid = {
 
               <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="f7  f6-md  fw7">Relatice Velocity (mph):</span>
+                  <span class="f7  f6-md  fw7"><span class="dn  di-md">Relative</span> Velocity (mph):</span>
                 </div>
                 <div class="col-12  intro__statistic">
                 ${Asteroid.selected.velocity}
@@ -317,7 +318,7 @@ const Asteroid = {
 
   eventListener() {
     let selectsHtml = `
-      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f7  f6-md">
+      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
         Select a real-world asteroid:
       </div>
       <div class="flex  flex-wrap">
@@ -345,9 +346,7 @@ const Asteroid = {
     Asteroid.asteroidBeginElem.insertAdjacentHTML('beforeend', buttonHtml);
 
     const beginEl = document.querySelector('#begin');
-
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const selectWidth = isMobile ? 200 : 300;
+    const selectWidth = isMobile() ? 200 : 300;
 
     const asteroidSelect = new Nexus.Select('#asteroids', {
       size: [selectWidth, 30],

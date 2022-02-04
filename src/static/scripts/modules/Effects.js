@@ -6,6 +6,8 @@ import Sequencer from './Sequencer';
 import Controls from './Controls';
 import Audio from './Audio';
 
+import { isMobile } from '../utils/isMobile';
+
 const Effects = {
   data: [
     {
@@ -153,8 +155,7 @@ const Effects = {
 
   render() {
     let rackEl, effect, dialEl, dial, effectParams;
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const dialSize = isMobile ? 55 : 43;
+    const dialSize = isMobile() ? 55 : 43;
 
     for (let i = 0; i < Effects.data.length; i++) {
       effect = Effects.data[i];

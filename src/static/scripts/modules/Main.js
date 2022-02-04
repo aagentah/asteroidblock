@@ -20,9 +20,6 @@ const Main = {
   },
 
   render() {
-    // const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    // Main.wrapper.style.height = `${window.screen.availHeight}px`;
-
     Audio.setContext();
     Effects.render();
     Signal.render();

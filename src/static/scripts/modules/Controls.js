@@ -8,6 +8,8 @@ import Audio from './Audio';
 import Sequencer from './Sequencer';
 import Record from './Record';
 
+import { isMobile } from '../utils/isMobile';
+
 const Controls = {
   startEl: document.querySelector('#start'),
   stopEl: document.querySelector('#stop'),
@@ -92,8 +94,7 @@ const Controls = {
   },
 
   renderControls() {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const tempoHeight = isMobile ? 20 : 30;
+    const tempoHeight = isMobile() ? 20 : 30;
 
     const number = new Nexus.Number('#tempo', {
       size: [120, tempoHeight],
