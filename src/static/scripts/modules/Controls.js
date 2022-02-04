@@ -95,20 +95,6 @@ const Controls = {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     const tempoHeight = isMobile ? 20 : 30;
 
-    if (isMobile) {
-      const controlsWrapper = document.querySelector('.controls__wrapper');
-      const slideUpTriggers = document.querySelector(
-        '.slide-up-triggers__wrapper'
-      );
-
-      const takenRoom =
-        controlsWrapper.offsetHeight + slideUpTriggers.offsetHeight;
-
-      const freeRoom = window.screen.availHeight - takenRoom - 80;
-
-      Controls.sequencer.style.height = `${freeRoom}px`;
-    }
-
     const number = new Nexus.Number('#tempo', {
       size: [120, tempoHeight],
       value: Controls.tempo,
