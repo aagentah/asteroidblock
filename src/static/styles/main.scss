@@ -294,16 +294,15 @@ main.active {
   .effects__fx {
     width: 100%;
     position: relative;
-    transform: none;
     left: auto;
     right: auto;
     margin: auto;
+    bottom: auto;
   }
 }
 
 .effects__envelope {
   width: 90vw;
-
   position: fixed;
   left: 0;
   right: 0;
@@ -322,12 +321,11 @@ main.active {
 
 @include breakpoint-up(md) {
   .effects__envelope {
-    word-spacing: 100%;
     position: relative;
-    transform: none;
     left: auto;
     right: auto;
     margin: auto;
+    bottom: auto;
   }
 }
 
