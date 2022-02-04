@@ -27,21 +27,29 @@ const Controls = {
     }
 
     await Tone.start();
+    console.log('yo 3');
     Nexus.context.resume();
+    console.log('yo 4');
     Sequencer.isRunning = true;
     Controls.recordEl.classList.add('disabled');
     Controls.startEl.classList.add('disabled');
   },
 
   recordControls: async () => {
+    console.log('Sequencer.isRunning', Sequencer.isRunning);
     if (Sequencer.isRunning) {
       return;
     }
 
     const recorder = new Tone.Recorder();
+
+    console.log('recorder', recorder);
     Tone.getContext().destination.connect(recorder);
+    console.log('yo');
     recorder.start();
+    console.log('yo 2');
     Controls.playControls();
+    console.log('yo 5');
     Record.init(recorder);
   },
 

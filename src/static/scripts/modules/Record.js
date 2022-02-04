@@ -1,6 +1,7 @@
 /* eslint-disable new-cap, no-unused-vars */
 
 import Controls from './Controls';
+import Audio from './Audio';
 
 const Record = {
   // adapted from https://gist.github.com/also/900023
@@ -116,6 +117,7 @@ const Record = {
   },
 
   init(recorder) {
+    console.log('init', Audio.noteLength);
     Record.animateProgress();
     Controls.startEl.classList.add('disabled');
     Controls.stopEl.classList.add('disabled');
