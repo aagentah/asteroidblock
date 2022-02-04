@@ -17,21 +17,9 @@ const Controls = {
   resetEl: document.querySelector('#reset'),
   sequencer: document.querySelector('.sequencer__notes__wrapper'),
   effectsToggle: document.querySelectorAll('.effects-toggle'),
-  envelopeToggle: document.querySelectorAll('.envelope-toggle'),
   effectsWrapper: document.querySelector('.effects__fx'),
+  envelopeToggle: document.querySelectorAll('.envelope-toggle'),
   envelopeWrapper: document.querySelector('.effects__envelope'),
-  tempo: 120,
-  noteLength: 2000, // 120 BPM
-
-  updateTempo(v) {
-    const minute = 60000;
-    const tempo = v;
-    const quarterNote = minute / tempo;
-    const fullNote = quarterNote * 4;
-
-    Controls.tempo = tempo;
-    Controls.noteLength = fullNote;
-  },
 
   playControls: async () => {
     if (Sequencer.isRunning) {
@@ -95,7 +83,7 @@ const Controls = {
 
     const number = new Nexus.Number('#tempo', {
       size: [120, tempoHeight],
-      value: Controls.tempo,
+      value: Audio.tempo,
       min: 30,
       max: 300,
       step: 1
@@ -105,7 +93,7 @@ const Controls = {
     number.colorize('fill', '#d8dada');
 
     number.on('change', v => {
-      Controls.updateTempo(v);
+      Audio.updateTempo(v);
     });
 
     Controls.startEl.addEventListener(

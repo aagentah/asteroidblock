@@ -67,7 +67,7 @@ const Envelope = {
     const setEnvelopeVals = e => {
       const attack = e[1].x;
       const release = e[2].x;
-      const noteLengthSecs = Controls.noteLength / 1000;
+      const noteLengthSecs = Audio.noteLength / 1000;
       const attackVal = attack;
       const releaseVal = 1 - release;
 

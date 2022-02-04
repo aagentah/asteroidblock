@@ -13,6 +13,8 @@ const Audio = {
   lookAhead: 0.5,
   instruments: {},
   effect: {},
+  noteLength: 2000, // 120 BPM
+  tempo: 120,
 
   setContext() {
     const context = new Tone.Context({
@@ -22,6 +24,16 @@ const Audio = {
     });
 
     Tone.setContext(context);
+  },
+
+  updateTempo(v) {
+    const minute = 60000;
+    const tempo = v;
+    const quarterNote = minute / tempo;
+    const fullNote = quarterNote * 4;
+
+    Audio.tempo = tempo;
+    Audio.noteLength = fullNote;
   },
 
   setInstruments() {
@@ -82,7 +94,7 @@ const Audio = {
       Audio.instruments[Instrument.currentInstrument]
     );
 
-    const durationSecs = Controls.noteLength / 1000;
+    const durationSecs = Audio.noteLength / 1000;
     const divideBy = (divide, by) => divide / by;
     const attackSecs = divideBy(Envelope.envAttack, 1) * Envelope.envHold;
     const holdSecs = Envelope.envHold;

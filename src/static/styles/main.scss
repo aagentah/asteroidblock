@@ -121,10 +121,6 @@ main.active {
   z-index: 1;
   max-width: 1480px;
   margin: 0 auto;
-
-  // .flex {
-  //   display: none;
-  // }
 }
 
 .wrapper.active {
@@ -169,14 +165,13 @@ main.active {
 
 .sequencer__notes__wrapper {
   opacity: 0;
-  transition-delay: 0.3s;
   background-color: $almost-white;
 }
 
 .intro__wrapper {
   position: absolute;
   width: 100%;
-  opacity: 1;
+  opacity: 0;
   transition: 0.3s ease-in-out opacity;
   z-index: 999;
   width: 900px;
@@ -200,6 +195,10 @@ main.active {
     bottom: 0;
     height: 605px;
   }
+}
+
+.intro__wrapper.active {
+  opacity: 1;
 }
 
 .intro {

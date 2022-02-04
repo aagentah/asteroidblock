@@ -379,12 +379,15 @@ const Asteroid = {
           return;
         }
 
-        Main.wrapper.classList.add('active');
         Asteroid.elem.classList.remove('active');
 
         setTimeout(() => {
+          // Hide intro
           Asteroid.elem.classList.remove('flex');
           Asteroid.elem.classList.add('dn');
+
+          // Show new elements
+          Main.wrapper.classList.add('active');
 
           Sequencer.renderNotes();
           Controls.renderControls();

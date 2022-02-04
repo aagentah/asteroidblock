@@ -91,7 +91,7 @@ const Record = {
   },
 
   animateProgress() {
-    const fulltime = Controls.noteLength * 8;
+    const fulltime = Audio.noteLength * 8;
 
     const increaseVal = progressBar => {
       if (progressBar.value < 100) {
@@ -157,7 +157,7 @@ const Record = {
       anchor.download = 'asteroidblock.wav';
       anchor.href = URL.createObjectURL(wav);
       anchor.click();
-    }, Controls.noteLength * 8);
+    }, Audio.noteLength * 8);
   }
 };
 

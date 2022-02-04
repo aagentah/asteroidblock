@@ -118,7 +118,7 @@ const Sequencer = {
 
     var myFunction = function() {
       if (!Sequencer.isRunning) {
-        return window.setTimeout(myFunction, Controls.noteLength);
+        return window.setTimeout(myFunction, Audio.noteLength);
       }
 
       const matrix = [];
@@ -141,14 +141,14 @@ const Sequencer = {
 
       setTimeout(() => {
         if (Sequencer.isRunning) Sequencer.sequencer.next();
-      }, Audio.lookAhead * 1000 + Controls.noteLength);
+      }, Audio.lookAhead * 1000 + Audio.noteLength);
 
-      window.setTimeout(myFunction, Controls.noteLength);
+      window.setTimeout(myFunction, Audio.noteLength);
     };
 
-    window.setTimeout(myFunction, Controls.noteLength);
+    window.setTimeout(myFunction, Audio.noteLength);
 
-    // Sequencer.interval = new Nexus.Interval(Controls.noteLength, () => {
+    // Sequencer.interval = new Nexus.Interval(Audio.noteLength, () => {
     //
     // });
 
