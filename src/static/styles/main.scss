@@ -126,6 +126,11 @@ a {
   color: $purple-medium;
 }
 
+body,
+html {
+  position: fixed;
+}
+
 main {
   opacity: 0;
   // background-color: $almost-white;
@@ -199,21 +204,28 @@ main.active {
 
 .intro__wrapper {
   position: absolute;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
+  right: 0;
   width: 100%;
-  opacity: 0;
+  opacity: 1;
   transition: 0.3s ease-in-out opacity;
-  height: 100%;
   z-index: 999;
+  width: 900px;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: 0 auto;
+  height: auto;
 
   @extend .ph2;
   @extend .ph3-md;
 }
 
-.intro__wrapper.active {
-  opacity: 1;
-  max-height: 800px;
+@include breakpoint-up(md) {
+  .intro__wrapper {
+    // height: 100%;
+  }
 }
 
 .intro {
@@ -232,7 +244,8 @@ main.active {
   @extend .ph3-md;
 }
 
-.controls__wrapper {
+.controls__wrapper,
+.effects__wrapper {
   @extend .ph2;
   @extend .ph3-md;
 }
