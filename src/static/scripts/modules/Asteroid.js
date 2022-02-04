@@ -174,7 +174,7 @@ const Asteroid = {
           </div>
           <div class="flex  flex-wrap">
             <div class="w-100">
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
                   <span class="f7  f6-md  fw7">Name:</span>
                 </div>
@@ -183,7 +183,7 @@ const Asteroid = {
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
                   <span class="f7  f6-md  fw7">Potentially Dangerous:</span>
                 </div>
@@ -192,7 +192,7 @@ const Asteroid = {
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
                   <span class="f7  f6-md  fw7">Close Approach Date:</span>
                 </div>
@@ -201,7 +201,7 @@ const Asteroid = {
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
                   <span class="f7  f6-md  fw7">Orbiting Body:</span>
                 </div>
@@ -210,7 +210,7 @@ const Asteroid = {
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
                   <span class="f7  f6-md  fw7">Est. Diamater (km):</span>
                 </div>
@@ -219,7 +219,7 @@ const Asteroid = {
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
                   <span class="f7  f6-md  fw7">Miss Distance (km):</span>
                 </div>
@@ -228,7 +228,7 @@ const Asteroid = {
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
                   <span class="f7  f6-md  fw7">Relatice Velocity (mph):</span>
                 </div>
@@ -321,7 +321,7 @@ const Asteroid = {
         Select a real-world asteroid:
       </div>
       <div class="flex  flex-wrap">
-        <div id="asteroids" class="col-12  intro__statistic"></div>
+        <div id="asteroids" class="intro__statistic"></div>
       </div>
     `;
 
