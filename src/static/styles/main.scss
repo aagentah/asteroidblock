@@ -178,15 +178,8 @@ main.active {
   transition: 0.3s ease-in-out opacity;
 }
 
-.sequencer__notes__wrapper,
-.controls__wrapper,
-.effects__wrapper {
-  // height: 90vh;
-  // max-height: 800px;
-}
-
 .sequencer__notes__wrapper {
-  height: 550px;
+  height: 300px;
 }
 
 @include breakpoint-up(md) {
@@ -284,9 +277,9 @@ main.active {
   position: fixed;
   left: 0;
   right: 0;
+  bottom: -550px;
   margin: 0 auto;
-  transform: translateY(100%);
-  transition: transform 0.3s ease-in-out;
+  transition: bottom 0.3s ease-in-out;
   z-index: 2;
   @extend .ph3;
   @extend .pt4;
@@ -294,7 +287,7 @@ main.active {
 }
 
 .effects__fx.active {
-  transform: translateY(calc(100% - 990px));
+  bottom: 0;
 }
 
 @include breakpoint-up(md) {
@@ -315,8 +308,8 @@ main.active {
   left: 0;
   right: 0;
   margin: 0 auto;
-  transform: translateY(100%);
-  transition: transform 0.3s ease-in-out;
+  bottom: -200px;
+  transition: bottom 0.3s ease-in-out;
   z-index: 2;
   @extend .ph3;
   @extend .pt4;
@@ -324,7 +317,7 @@ main.active {
 }
 
 .effects__envelope.active {
-  transform: translateY(calc(100% - 260px));
+  bottom: 0;
 }
 
 @include breakpoint-up(md) {
