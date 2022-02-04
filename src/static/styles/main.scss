@@ -186,7 +186,7 @@ main.active {
 }
 
 .sequencer__notes__wrapper {
-  height: 300px;
+  height: 550px;
 }
 
 @include breakpoint-up(md) {
@@ -258,21 +258,27 @@ main.active {
 
 .effects__wrapper {
   position: fixed;
-  transform: translateY(calc(100vh + 450px));
-  transition: all 0.3s ease-in-out;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transform: translateY(calc(100vh + 520px));
+  transition: transform 0.3s ease-in-out;
   z-index: 2;
 
-  @extend .ph2;
-  @extend .ph3-md;
+  @extend .ph3;
 }
 
 .effects__wrapper.active {
-  transform: translateY(calc(100vh - 450px));
+  transform: translateY(calc(100vh - 520px));
 }
 
 @include breakpoint-up(md) {
   .effects__wrapper {
     position: relative;
+    transform: none;
+    left: auto;
+    right: auto;
+    margin: auto;
   }
 }
 
@@ -328,17 +334,24 @@ main.active {
 }
 
 .effect__title {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
 
   color: $grey-dark;
   font-weight: bold;
-
-  @extend .tac;
-  @extend .mla;
-  @extend .mra;
   @extend .f7;
   @extend .pb2;
   @extend .mb0;
+}
+
+@include breakpoint-up(md) {
+  .effect__title {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+  }
 }
 
 .effect__label {
