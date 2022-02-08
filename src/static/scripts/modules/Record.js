@@ -159,7 +159,7 @@ const Record = {
       anchor.download = 'asteroidblock.wav';
       anchor.href = URL.createObjectURL(wav);
       anchor.click();
-    }, Audio.noteLength * 8);
+    }, Audio.noteLength * 8 + Audio.noteLength);
   }
 };
 
