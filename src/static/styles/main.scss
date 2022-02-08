@@ -571,7 +571,7 @@ progress::-webkit-progress-bar {
 @include breakpoint-up(md) {
   #instrument select,
   #tempo input {
-    font-size: 15px;
+    font-size: 15px !important;
   }
 }
 
