@@ -127,7 +127,8 @@ main.active {
   .sequencer__notes__wrapper,
   .controls__wrapper,
   .effects__wrapper,
-  .slide-up-triggers__wrapper {
+  .slide-up-triggers__wrapper,
+  .logo--mobile {
     opacity: 1;
     pointer-events: auto;
   }
@@ -584,4 +585,10 @@ progress::-webkit-progress-bar {
 .disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+.logo--mobile {
+  opacity: 0;
+  transition: 0.3s ease-in-out opacity;
+  max-width: 10rem;
 }
