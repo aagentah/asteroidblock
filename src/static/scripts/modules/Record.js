@@ -117,15 +117,18 @@ const Record = {
   },
 
   init(recorder) {
-    console.log('init', Audio.noteLength);
     Record.animateProgress();
     Controls.startEl.classList.add('disabled');
     Controls.stopEl.classList.add('disabled');
     Controls.resetEl.classList.add('disabled');
 
-    // wait for the notes to end and stop the recording
+    // stops a note later to account for reverb etc
     setTimeout(async () => {
       Controls.stopControls();
+    }, Audio.noteLength * 8);
+
+    // wait for the notes to end and stop the recording
+    setTimeout(async () => {
       Controls.startEl.classList.remove('disabled');
       Controls.stopEl.classList.remove('disabled');
       Controls.resetEl.classList.remove('disabled');

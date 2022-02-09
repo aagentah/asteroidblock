@@ -56,6 +56,78 @@ const Sequencer = {
     Sequencer.notesEl.insertAdjacentHTML('beforeend', notesItems);
   },
 
+  createInterval() {
+    Sequencer.destroyInterval();
+
+    const handleStep = matrix => {
+      if (!Sequencer.isRunning) {
+        return;
+      }
+
+      const activeInStep = [];
+      let octave;
+      let key;
+      let multitude;
+
+      for (let i = 0; i < matrix.length; i++) {
+        if (matrix[i] === 1) {
+          octave = Math.floor(i / 12);
+          multitude = octave * 12;
+          key = i - multitude;
+
+          activeInStep.push(
+            `${Sequencer.notes[key]}${Sequencer.octaves - (octave + 1)}`
+          );
+        }
+      }
+
+      if (activeInStep.length) Audio.play(activeInStep);
+    };
+
+    Sequencer.interval = function() {
+      if (!Sequencer.interval) return;
+
+      // if (!Sequencer.isRunning) {
+      //   return window.setTimeout(Sequencer.interval, Audio.noteLength);
+      // }
+
+      const matrix = [];
+
+      for (let i = 0; i < Sequencer.sequencer.matrix.pattern.length; i++) {
+        const row = Sequencer.sequencer.matrix.pattern[i];
+        const column = row[Sequencer.currentColumn];
+        const item = column ? 1 : 0;
+
+        matrix.push(item);
+      }
+
+      handleStep(matrix);
+
+      if (Sequencer.currentColumn === Sequencer.columns - 1) {
+        Sequencer.currentColumn = 0;
+      } else {
+        Sequencer.currentColumn = Sequencer.currentColumn + 1;
+      }
+
+      setTimeout(() => {
+        if (Sequencer.isRunning) Sequencer.sequencer.next();
+      }, Audio.lookAhead * 1000 + Audio.noteLength);
+
+      window.setTimeout(Sequencer.interval, Audio.noteLength);
+    };
+
+    Sequencer.interval();
+  },
+
+  destroyInterval() {
+    Sequencer.interval = null;
+  },
+
+  restartInterval() {
+    Sequencer.destroyInterval();
+    Sequencer.createInterval();
+  },
+
   render() {
     if (isMobile()) {
       const controlsWrapper = document.querySelector('.controls__wrapper');
@@ -90,67 +162,6 @@ const Sequencer = {
     Sequencer.sequencer.colorize('accent', '#505483');
     Sequencer.sequencer.colorize('fill', '#b5b7c9');
     Sequencer.sequencer.colorize('mediumLight', '#61669e');
-
-    const handleStep = matrix => {
-      if (!Sequencer.isRunning) {
-        return;
-      }
-
-      const activeInStep = [];
-      let octave;
-      let key;
-      let multitude;
-
-      for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i] === 1) {
-          octave = Math.floor(i / 12);
-          multitude = octave * 12;
-          key = i - multitude;
-
-          activeInStep.push(
-            `${Sequencer.notes[key]}${Sequencer.octaves - (octave + 1)}`
-          );
-        }
-      }
-
-      if (activeInStep.length) Audio.play(activeInStep);
-    };
-
-    var myFunction = function() {
-      if (!Sequencer.isRunning) {
-        return window.setTimeout(myFunction, Audio.noteLength);
-      }
-
-      const matrix = [];
-
-      for (let i = 0; i < Sequencer.sequencer.matrix.pattern.length; i++) {
-        const row = Sequencer.sequencer.matrix.pattern[i];
-        const column = row[Sequencer.currentColumn];
-        const item = column ? 1 : 0;
-
-        matrix.push(item);
-      }
-
-      handleStep(matrix);
-
-      if (Sequencer.currentColumn === Sequencer.columns - 1) {
-        Sequencer.currentColumn = 0;
-      } else {
-        Sequencer.currentColumn = Sequencer.currentColumn + 1;
-      }
-
-      setTimeout(() => {
-        if (Sequencer.isRunning) Sequencer.sequencer.next();
-      }, Audio.lookAhead * 1000 + Audio.noteLength);
-
-      window.setTimeout(myFunction, Audio.noteLength);
-    };
-
-    window.setTimeout(myFunction, Audio.noteLength);
-
-    // Sequencer.interval = new Nexus.Interval(Audio.noteLength, () => {
-    //
-    // });
 
     Sequencer.sequencer.next();
   }
