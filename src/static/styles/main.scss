@@ -90,6 +90,7 @@ a {
 body,
 html {
   position: fixed;
+  width: 100%;
 }
 
 main {
@@ -119,7 +120,7 @@ main.active {
 .wrapper {
   height: 100vh;
   z-index: 1;
-  max-width: 1480px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
