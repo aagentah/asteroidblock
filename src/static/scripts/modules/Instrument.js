@@ -1,5 +1,6 @@
 /* eslint-disable new-cap, no-unused-vars */
 import Nexus from 'nexusui';
+import { isMobile } from '../utils/isMobile';
 
 const Instrument = {
   currentInstrument: 'AMSynth',
@@ -17,8 +18,7 @@ const Instrument = {
   },
 
   render() {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const selectHeight = isMobile ? 20 : 30;
+    const selectHeight = isMobile() ? 20 : 30;
 
     Instrument.instrumentSelect = new Nexus.Select('#instrument', {
       size: [150, selectHeight],

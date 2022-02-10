@@ -550,7 +550,7 @@ progress::-webkit-progress-bar {
 
 @include breakpoint-up(md) {
   .tempo__wrapper {
-    height: 4rem;
+    height: 30px;
   }
 }
 
@@ -573,6 +573,19 @@ progress::-webkit-progress-bar {
 @include breakpoint-up(md) {
   #instrument select,
   #tempo input {
+    font-size: 15px !important;
+  }
+}
+
+#asteroids-change,
+#asteroids-change select {
+  width: 100% !important;
+  font-size: 10px !important;
+}
+
+@include breakpoint-up(md) {
+  #asteroids-change,
+  #asteroids-change select {
     font-size: 15px !important;
   }
 }

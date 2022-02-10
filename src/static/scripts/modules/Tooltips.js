@@ -26,6 +26,15 @@ const Tooltips = {
           Tooltips.tippyShown.push(instance.id);
         }
       });
+
+    tippy('#asteroids-change', {
+      content: 'This will override your FX configuration',
+      delay: [300],
+      onShow(instance) {
+        if (Tooltips.tippyShown.includes(instance.id)) return false;
+        Tooltips.tippyShown.push(instance.id);
+      }
+    });
   }
 };
 

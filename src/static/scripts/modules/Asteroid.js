@@ -347,9 +347,15 @@ const Asteroid = {
 
     const beginEl = document.querySelector('#begin');
     const selectWidth = isMobile() ? 200 : 300;
+    const selectHeight = isMobile() ? 20 : 30;
 
     const asteroidSelect = new Nexus.Select('#asteroids', {
       size: [selectWidth, 30],
+      options: Asteroid.asteroids.map(e => e.name)
+    });
+
+    const asteroidSelectChange = new Nexus.Select('#asteroids-change', {
+      size: [150, selectHeight],
       options: Asteroid.asteroids.map(e => e.name)
     });
 
@@ -359,6 +365,11 @@ const Asteroid = {
     // });
 
     asteroidSelect.on('change', e => {
+      Asteroid.selected = Asteroid.asteroids[e.index];
+      Asteroid.renderInfo(e.index);
+    });
+
+    asteroidSelectChange.on('change', e => {
       Asteroid.selected = Asteroid.asteroids[e.index];
       Asteroid.renderInfo(e.index);
     });
