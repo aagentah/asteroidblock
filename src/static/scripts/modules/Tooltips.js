@@ -28,7 +28,7 @@ const Tooltips = {
       });
 
     tippy('#asteroids-change', {
-      content: 'This will override your FX configuration',
+      content: 'This will override the Synth & FX configuration',
       delay: [300],
       onShow(instance) {
         if (Tooltips.tippyShown.includes(instance.id)) return false;
