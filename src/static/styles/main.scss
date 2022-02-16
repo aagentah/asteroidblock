@@ -354,7 +354,7 @@ main.active {
 @include breakpoint-up(md) {
   .notes__item__octave {
     &:after {
-      left: 82px;
+      left: 73px;
     }
   }
 }
