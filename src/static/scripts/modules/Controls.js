@@ -101,7 +101,10 @@ const Controls = {
 
     Controls.startEl.addEventListener(
       'click',
-      () => Controls.playControls(),
+      () => {
+        if (Tone.context.state !== 'running') Tone.context.resume();
+        Controls.playControls();
+      },
       false
     );
 
@@ -131,7 +134,10 @@ const Controls = {
 
     Controls.recordEl.addEventListener(
       'click',
-      () => Controls.recordControls(),
+      () => {
+        if (Tone.context.state !== 'running') Tone.context.resume();
+        Controls.recordControls();
+      },
       false
     );
 
