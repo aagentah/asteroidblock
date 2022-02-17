@@ -7,6 +7,8 @@ import _ from 'lodash';
 import Audio from './Audio';
 import Controls from './Controls';
 
+import { isMobile } from '../utils/isMobile';
+
 const Sequencer = {
   elem: document.querySelector('.sequencer__notes__wrapper'),
   notesEl: document.querySelector('#notes'),
@@ -54,26 +56,8 @@ const Sequencer = {
     Sequencer.notesEl.insertAdjacentHTML('beforeend', notesItems);
   },
 
-  renderSequence() {
-    const offsetHeight = Sequencer.elem.offsetHeight / 12;
-
-    Sequencer.rows = Sequencer.notes.length * Sequencer.octaves;
-
-    Sequencer.sequencer = new Nexus.Sequencer('#sequencer', {
-      size: [
-        Sequencer.sequencerWrapperEl.offsetWidth,
-        Sequencer.rows * offsetHeight
-      ],
-      mode: 'toggle',
-      rows: Sequencer.rows,
-      columns: Sequencer.columns,
-      paddingRow: 0,
-      paddingColumn: 0
-    });
-
-    Sequencer.sequencer.colorize('accent', '#505483');
-    Sequencer.sequencer.colorize('fill', '#b5b7c9');
-    Sequencer.sequencer.colorize('mediumLight', '#61669e');
+  createInterval() {
+    Sequencer.destroyInterval();
 
     const handleStep = matrix => {
       if (!Sequencer.isRunning) {
@@ -91,8 +75,6 @@ const Sequencer = {
           multitude = octave * 12;
           key = i - multitude;
 
-          console.log('o', Sequencer.octaves - (octave + 1));
-
           activeInStep.push(
             `${Sequencer.notes[key]}${Sequencer.octaves - (octave + 1)}`
           );
@@ -102,7 +84,13 @@ const Sequencer = {
       if (activeInStep.length) Audio.play(activeInStep);
     };
 
-    Sequencer.interval = new Nexus.Interval(Controls.noteLength, () => {
+    Sequencer.interval = function() {
+      if (!Sequencer.interval) return;
+
+      // if (!Sequencer.isRunning) {
+      //   return window.setTimeout(Sequencer.interval, Audio.noteLength);
+      // }
+
       const matrix = [];
 
       for (let i = 0; i < Sequencer.sequencer.matrix.pattern.length; i++) {
@@ -123,8 +111,57 @@ const Sequencer = {
 
       setTimeout(() => {
         if (Sequencer.isRunning) Sequencer.sequencer.next();
-      }, Audio.lookAhead * 1000 + Controls.noteLength);
+      }, Audio.lookAhead * 1000 + Audio.noteLength);
+
+      window.setTimeout(Sequencer.interval, Audio.noteLength);
+    };
+
+    Sequencer.interval();
+  },
+
+  destroyInterval() {
+    Sequencer.interval = null;
+  },
+
+  restartInterval() {
+    Sequencer.destroyInterval();
+    Sequencer.createInterval();
+  },
+
+  render() {
+    if (isMobile()) {
+      const controlsWrapper = document.querySelector('.controls__wrapper');
+      const slideUpTriggers = document.querySelector(
+        '.slide-up-triggers__wrapper'
+      );
+
+      const takenRoom =
+        controlsWrapper.offsetHeight + slideUpTriggers.offsetHeight;
+
+      const freeRoom = window.screen.availHeight - takenRoom - 220;
+
+      Controls.sequencer.style.height = `${freeRoom}px`;
+    }
+
+    const offsetHeight = Sequencer.elem.offsetHeight / 12;
+
+    Sequencer.rows = Sequencer.notes.length * Sequencer.octaves;
+
+    Sequencer.sequencer = new Nexus.Sequencer('#sequencer', {
+      size: [
+        Sequencer.sequencerWrapperEl.offsetWidth,
+        Sequencer.rows * offsetHeight
+      ],
+      mode: 'toggle',
+      rows: Sequencer.rows,
+      columns: Sequencer.columns,
+      paddingRow: 0,
+      paddingColumn: 0
     });
+
+    Sequencer.sequencer.colorize('accent', '#505483');
+    Sequencer.sequencer.colorize('fill', '#b5b7c9');
+    Sequencer.sequencer.colorize('mediumLight', '#61669e');
 
     Sequencer.sequencer.next();
   }

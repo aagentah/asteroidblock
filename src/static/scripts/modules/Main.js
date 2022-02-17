@@ -3,10 +3,12 @@ import { detectAnyAdblocker } from 'just-detect-adblock';
 
 import Sequencer from './Sequencer';
 import Controls from './Controls';
-import Signal from './Signal';
+import Instrument from './Instrument';
+import Envelope from './Envelope';
 import Effects from './Effects';
 import Audio from './Audio';
 import Asteroid from './Asteroid';
+import Tooltips from './Tooltips';
 
 const Main = {
   main: document.querySelector('main'),
@@ -17,15 +19,7 @@ const Main = {
     this.render();
   },
 
-  render() {
-    Audio.setContext();
-    Effects.render();
-    Signal.render();
-    Audio.setInstruments();
-    Audio.setEffects();
-    Asteroid.render();
-    Sequencer.renderSequence();
-
+  handleAdBlock: async () => {
     detectAnyAdblocker().then(detected => {
       if (detected) {
         Main.blockWarning.classList.remove('dn');
@@ -33,14 +27,23 @@ const Main = {
       }
     });
 
-    const checkBrave = async () => {
-      if ((navigator.brave && (await navigator.brave.isBrave())) || false) {
-        Main.blockWarning.classList.remove('dn');
-        Main.blockWarning.classList.add('flex');
-      }
-    };
+    if ((navigator.brave && (await navigator.brave.isBrave())) || false) {
+      Main.blockWarning.classList.remove('dn');
+      Main.blockWarning.classList.add('flex');
+    }
+  },
 
-    checkBrave();
+  render() {
+    Audio.setContext();
+    Effects.render();
+    Instrument.render();
+    Envelope.render();
+    Audio.setInstruments();
+    Audio.setEffects();
+    Asteroid.render();
+    Sequencer.render();
+    Tooltips.render();
+    Main.handleAdBlock();
 
     setTimeout(() => {
       Main.main.classList.add('active');

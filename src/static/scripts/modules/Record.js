@@ -1,6 +1,7 @@
 /* eslint-disable new-cap, no-unused-vars */
 
 import Controls from './Controls';
+import Audio from './Audio';
 
 const Record = {
   // adapted from https://gist.github.com/also/900023
@@ -91,7 +92,7 @@ const Record = {
   },
 
   animateProgress() {
-    const fulltime = Controls.noteLength * 8;
+    const fulltime = Audio.noteLength * 8;
 
     const increaseVal = progressBar => {
       if (progressBar.value < 100) {
@@ -121,9 +122,13 @@ const Record = {
     Controls.stopEl.classList.add('disabled');
     Controls.resetEl.classList.add('disabled');
 
-    // wait for the notes to end and stop the recording
+    // stops a note later to account for reverb etc
     setTimeout(async () => {
       Controls.stopControls();
+    }, Audio.noteLength * 8);
+
+    // wait for the notes to end and stop the recording
+    setTimeout(async () => {
       Controls.startEl.classList.remove('disabled');
       Controls.stopEl.classList.remove('disabled');
       Controls.resetEl.classList.remove('disabled');
@@ -157,7 +162,7 @@ const Record = {
       anchor.download = 'asteroidblock.wav';
       anchor.href = URL.createObjectURL(wav);
       anchor.click();
-    }, Controls.noteLength * 8);
+    }, Audio.noteLength * 8 + Audio.noteLength);
   }
 };
 

@@ -19,3 +19,12 @@
 .fw9 {
   font-weight: 900;
 }
+
+@each $modifier, $breakpoint in $grid-breakpoints {
+  $infix: breakpoint-infix($modifier, $grid-breakpoints);
+  @include breakpoint-up($modifier, $grid-breakpoints) {
+    .fw7-#{$infix} {
+      font-weight: 700;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 // Vendor
 @import 'vendor/normalize';
+@import 'vendor/tippy';
 // @import 'vendor/flickity';
 // @import 'vendor/prism';
 
@@ -80,44 +81,16 @@ $grey-light: #e5e6e6;
 $grey-medium: #828484;
 $grey-dark: #6a6b6b;
 
-// Screen size
-
-.warning-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: palette(black);
-  color: palette(white);
-  z-index: 9999;
-  width: 100vw;
-  height: 100vh;
-  font-size: 18px;
-  text-align: center;
-  display: none;
-  display: block;
-
-  p {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    top: 50%;
-    text-align: center;
-    max-width: 300px;
-    @extend .lh-copy;
-  }
-}
-
-@include breakpoint-up(md) {
-  .warning-overlay {
-    display: none;
-  }
-}
-
 // Layout
 
 a {
   color: $purple-medium;
+}
+
+body,
+html {
+  position: fixed;
+  width: 100%;
 }
 
 main {
@@ -147,57 +120,87 @@ main.active {
 .wrapper {
   height: 100vh;
   z-index: 1;
-
-  // .flex {
-  //   display: none;
-  // }
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 .wrapper.active {
   .sequencer__notes__wrapper,
   .controls__wrapper,
   .effects__wrapper,
-  .signal__wrapper {
+  .slide-up-triggers__wrapper,
+  .logo--mobile {
     opacity: 1;
     pointer-events: auto;
   }
 }
 
+.slide-up-triggers__wrapper {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease-in-out opacity;
+}
+
 .sequencer__notes__wrapper,
 .controls__wrapper,
-.effects__wrapper,
-.signal__wrapper {
-  opacity: 0.5;
+.effects__wrapper {
+  opacity: 0;
   pointer-events: none;
   transition: 0.3s ease-in-out opacity;
 }
 
 .sequencer__notes__wrapper {
-  opacity: 0;
-  transition-delay: 0.3s;
-  background-color: $almost-white;
+  height: 300px;
 }
 
-.sequencer__intro__wrapper {
-  position: relative;
+@include breakpoint-up(md) {
+  .sequencer__notes__wrapper {
+    height: 90vh;
+    max-height: 800px;
+  }
+
+  .controls__wrapper,
+  .effects__wrapper {
+    opacity: 0.5;
+  }
+}
+
+.sequencer__notes__wrapper {
+  opacity: 0;
+  background-color: $almost-white;
 }
 
 .intro__wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
   opacity: 0;
   transition: 0.3s ease-in-out opacity;
+  z-index: 999;
+  width: 900px;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: auto;
+  position: absolute;
+  top: 30px;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  height: 475px;
 
-  @extend .ph3;
-  @extend .pb3;
+  @extend .ph2;
+  @extend .ph3-md;
+}
+
+@include breakpoint-up(md) {
+  .intro__wrapper {
+    top: 0;
+    bottom: 0;
+    height: 605px;
+  }
 }
 
 .intro__wrapper.active {
   opacity: 1;
-  max-height: calc(100vh - 100px);
 }
 
 .intro {
@@ -211,47 +214,107 @@ main.active {
 
 .sequencer__notes__wrapper {
   overflow-y: scroll;
-  height: 100vh;
-  max-height: calc(100vh - 100px);
-  @extend .ph3;
+  overflow-x: hidden;
+  @extend .ph2;
+  @extend .ph3-md;
 }
 
-.controls__wrapper {
-  max-height: 90vh;
-  @extend .ph3;
-  @extend .pb3;
+.controls__wrapper,
+.effects__wrapper {
+  @extend .ph2;
+  @extend .ph3-md;
 }
 
 .controls {
   background-color: $grey-light;
 
-  @extend .mb3;
   @extend .w-100;
   @extend .pa3;
   @extend .br4;
   @extend .shadow2;
 }
 
-.effects__wrapper {
+.arrow-btn {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  @extend .flex;
+  @extend .justify-center;
+
+  svg {
+    padding: 10px;
+    width: 40px;
+    transform: rotate(90deg);
+    background-color: $grey-light;
+    border-radius: 100%;
+    @extend .shadow2;
+
+    * {
+      fill: $purple-light;
+    }
+  }
+}
+
+.effects__fx {
+  width: 90vw;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -550px;
+  margin: 0 auto;
+  transition: bottom 0.3s ease-in-out;
+  z-index: 2;
   @extend .ph3;
-  @extend .pb3;
+  @extend .pt4;
+  @extend .pt3-md;
+}
+
+.effects__fx.active {
+  bottom: 0;
+}
+
+@include breakpoint-up(md) {
+  .effects__fx {
+    width: 100%;
+    position: relative;
+    left: auto;
+    right: auto;
+    margin: auto;
+    bottom: auto;
+  }
+}
+
+.effects__envelope {
+  width: 90vw;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: -200px;
+  transition: bottom 0.3s ease-in-out;
+  z-index: 2;
+  @extend .ph3;
+  @extend .pt4;
+  @extend .pt3-md;
+}
+
+.effects__envelope.active {
+  bottom: 0;
+}
+
+@include breakpoint-up(md) {
+  .effects__envelope {
+    position: relative;
+    left: auto;
+    right: auto;
+    margin: auto;
+    bottom: auto;
+  }
 }
 
 .effects {
-  background-color: $grey-light;
-
-  @extend .mb3;
-  @extend .w-100;
-  @extend .pa3;
-  @extend .br4;
-  @extend .shadow2;
-}
-
-.signal__wrapper {
-  @extend .pa3;
-}
-
-.signal {
   background-color: $grey-light;
 
   @extend .w-100;
@@ -267,7 +330,8 @@ main.active {
   color: $grey-dark;
   border-bottom: 3px solid $purple-dark;
   background-color: $almost-white;
-  @extend .f6;
+  @extend .f8;
+  @extend .f6-md;
   @extend .flex;
   @extend .align-center;
   @extend .justify-center;
@@ -280,10 +344,18 @@ main.active {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 82px;
+    left: 27px;
     width: 100%;
     border-bottom: 3px solid $purple-dark;
-    z-index: 999;
+    z-index: 1;
+  }
+}
+
+@include breakpoint-up(md) {
+  .notes__item__octave {
+    &:after {
+      left: 73px;
+    }
   }
 }
 
@@ -294,24 +366,32 @@ main.active {
 }
 
 .effect__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
+
   color: $grey-dark;
   font-weight: bold;
-
-  @extend .tac;
-  @extend .mla;
-  @extend .mra;
   @extend .f7;
   @extend .pb2;
   @extend .mb0;
 }
 
+@include breakpoint-up(md) {
+  .effect__title {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
 .effect__label {
   text-align: center;
   color: $purple-dark;
-
+  @extend .f7;
   @extend .pt2;
   @extend .mb0;
-  @extend .f7;
 }
 
 .envelope__wrapper {
@@ -344,12 +424,13 @@ main.active {
 
 .control__button {
   width: 100%;
-  height: 50px;
+  height: 25px;
   background: $almost-white;
   color: $purple-dark;
   border: 0;
   outline: 0;
   cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
 
   @extend .f7;
   @extend .flex;
@@ -359,9 +440,23 @@ main.active {
   @extend .br2;
   @extend .shadow2;
 
+  svg {
+    width: 12px;
+  }
+
   svg,
   svg * {
     fill: $purple-dark;
+  }
+}
+
+@include breakpoint-up(md) {
+  .control__button {
+    height: 50px;
+
+    svg {
+      width: 20px;
+    }
   }
 }
 
@@ -379,6 +474,13 @@ main.active {
 .intro__statistic {
   position: relative;
   height: 22px;
+
+  @extend .f7;
+  @extend .f6-md;
+  @extend .flex;
+  @extend .align-center;
+  @extend .justify-end;
+  @extend .justify-start-md;
 }
 
 .loading-icon {
@@ -403,8 +505,14 @@ main.active {
   left: 0;
   display: inline-block;
   width: 100%;
-  height: 5px;
+  height: 2px;
   background: transparent;
+}
+
+@include breakpoint-up(md) {
+  .progress {
+    height: 5px;
+  }
 }
 
 progress {
@@ -436,14 +544,50 @@ progress::-webkit-progress-bar {
 
 // UI
 
+.tempo__wrapper {
+  height: 2rem;
+}
+
+@include breakpoint-up(md) {
+  .tempo__wrapper {
+    height: 30px;
+  }
+}
+
+.instrument__wrapper {
+  //
+}
+
 #tempo,
 #tempo input {
   width: 100% !important;
+  font-size: 10px !important;
 }
 
 #instrument,
 #instrument select {
   width: 100% !important;
+  font-size: 10px !important;
+}
+
+@include breakpoint-up(md) {
+  #instrument select,
+  #tempo input {
+    font-size: 15px !important;
+  }
+}
+
+#asteroids-change,
+#asteroids-change select {
+  width: 100% !important;
+  font-size: 10px !important;
+}
+
+@include breakpoint-up(md) {
+  #asteroids-change,
+  #asteroids-change select {
+    font-size: 15px !important;
+  }
 }
 
 // Warning
@@ -452,11 +596,13 @@ progress::-webkit-progress-bar {
   color: #b30000;
 }
 
-.control__button {
-  transition: opacity 0.2s ease-in-out;
-}
-
 .disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+.logo--mobile {
+  opacity: 0;
+  transition: 0.3s ease-in-out opacity;
+  max-width: 10rem;
 }

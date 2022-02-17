@@ -6,12 +6,15 @@ import _ from 'lodash';
 
 import Controls from './Controls';
 import Effects from './Effects';
-import Signal from './Signal';
+import Instrument from './Instrument';
+import Envelope from './Envelope';
 
 const Audio = {
   lookAhead: 0.5,
   instruments: {},
   effect: {},
+  noteLength: 2000, // 120 BPM
+  tempo: 120,
 
   setContext() {
     const context = new Tone.Context({
@@ -23,11 +26,21 @@ const Audio = {
     Tone.setContext(context);
   },
 
+  updateTempo(v) {
+    const minute = 60000;
+    const tempo = v;
+    const quarterNote = minute / tempo;
+    const fullNote = quarterNote * 4;
+
+    Audio.tempo = tempo;
+    Audio.noteLength = fullNote;
+  },
+
   setInstruments() {
     let instrument;
 
-    for (let i = 0; i < Signal.instrumentTypes.length; i++) {
-      instrument = Signal.instrumentTypes[i];
+    for (let i = 0; i < Instrument.instrumentTypes.length; i++) {
+      instrument = Instrument.instrumentTypes[i];
       Audio.instruments[instrument] = Tone[instrument];
     }
   },
@@ -78,14 +91,14 @@ const Audio = {
 
     // Play tone
     const synth = new Tone.PolySynth(
-      Audio.instruments[Signal.currentInstrument]
+      Audio.instruments[Instrument.currentInstrument]
     );
 
-    const durationSecs = Controls.noteLength / 1000;
+    const durationSecs = Audio.noteLength / 1000;
     const divideBy = (divide, by) => divide / by;
-    const attackSecs = divideBy(Signal.envAttack, 1) * Signal.envHold;
-    const holdSecs = Signal.envHold;
-    const releaseSecs = divideBy(Signal.envRelease, 1) * Signal.envHold;
+    const attackSecs = divideBy(Envelope.envAttack, 1) * Envelope.envHold;
+    const holdSecs = Envelope.envHold;
+    const releaseSecs = divideBy(Envelope.envRelease, 1) * Envelope.envHold;
     const envelope = { attack: attackSecs, release: releaseSecs };
     const attackRelease = attackSecs + holdSecs + releaseSecs;
 

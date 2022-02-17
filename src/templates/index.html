@@ -11,22 +11,23 @@
 
 {% block content %}
 
-  <div class="warning-overlay">
-    <p>Sorry, this project is exclusively for desktop, please try with a bigger device/screen.</p>
-  </div>
-
   <!-- <div id="overlay"><img data-src="/static/images/bg.gif"/></div> -->
 
-  <section class="wrapper  pa4" id="your-element-selector">
-    <div class="flex  flex-wrap">
+  <section class="wrapper  pa2  pa4-md  flex  align-start  align-center-md" id="your-element-selector">
+    <div class="flex  flex-wrap  w-100">
+      <!-- Logo Mobile -->
+      <div class="col-24  df  dn-md">
+        <img class="logo--mobile  mla  mra" src="/static/images/logo-text.png" alt="">
+      </div>
+
       <!-- Controls -->
-      <div class="col-4  flex  flex-wrap  controls__wrapper">
-        <div class="col-24  controls">
-          <div class="flex  flex-wrap  mb3">
+      <div class="col-24  col-4-md  flex  flex-wrap  pt3  pt0-md  order-1  order-0-md  controls__wrapper">
+        <div class="col-24  flex  flex-wrap  controls  mb3">
+          <div class="col-24  flex-wrap  mb3  dn  df-md">
             <img class="w-100" src="/static/images/logo-text.png" alt="">
           </div>
 
-          <div class="flex  flex-wrap">
+          <div class="col-12  col-24-md  flex  flex-wrap">
             <div class="col-12  pr1">
               <div class="flex  flex-wrap">
                 <button id="start" class="control__button">
@@ -34,7 +35,7 @@
                 </button>
               </div>
             </div>
-            <div class="col-12  pl1">
+            <div class="col-12  pl1  pr1  pr0-md">
               <div class="flex  flex-wrap">
                 <button id="stop" class="control__button">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z"/></svg>
@@ -43,41 +44,46 @@
             </div>
           </div>
 
-          <div class="flex  flex-wrap">
+          <div class="col-6  col-24-md  flex  flex-wrap  ph1  ph0-md">
             <button id="record" class="control__button  relative">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.003 3h2.997v5h-2.997v-5zm8.997 1v20h-24v-24h20l4 4zm-19 5h14v-7h-14v7zm16 4h-18v9h18v-9z"/></svg>
 
               <progress class="progress" value="0" max="100"></progress>
             </button>
           </div>
-          <div class="flex  flex-wrap">
+          <div class="col-6  col-24-md  flex  flex-wrap  pl1  pl0-md">
             <button id="reset" class="control__button">
-              Reset MIDI
+              Reset&nbsp;<span class="dn  di-md">MIDI</span>
             </button>
           </div>
-
-          <!-- <audio controls></audio> -->
         </div>
 
-        <div class="col-24  controls">
-          <div class="flex  flex-wrap">
-            <div class="col-24  flex  flex-wrap  align-center  f7  fw7">
+        <div class="col-24  flex  flex-wrap  controls  mb3">
+          <div class="col-8  col-24-md  flex  flex-wrap  pr1  pr0-md">
+            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
               Tempo:
             </div>
-            <div class="col-24  flex  flex-wrap  align-center  h3">
+            <div class="col-24  flex  flex-wrap  align-center  tempo__wrapper">
               <div id="tempo"></div>
             </div>
           </div>
 
-          <div class="flex  flex-wrap">
-            <div class="flex  flex-wrap  mb2  fw7  f7  pt2">
+          <div class="col-8  col-24-md  flex  flex-wrap  pl1  pl0-md  instrument__wrapper">
+            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
               Select Synth:
             </div>
             <div id="instrument"></div>
           </div>
+
+          <div class="col-8  col-24-md  flex  flex-wrap  pl1  pl0-md  instrument__wrapper">
+            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
+              Change Asteroid:
+            </div>
+            <div id="asteroids-change"></div>
+          </div>
         </div>
 
-        <div class="col-24  controls">
+        <div class="col-24  controls  dn  df-md">
           <div class="flex  flex-wrap">
             <div class="col-24  flex  flex-wrap  pb3">
               <div class="col-24  f7  lh-copy">
@@ -85,165 +91,179 @@
               </div>
             </div>
 
-            <div class="col-24  flex  flex-wrap  pb3">
+            <div class="col-24  flex  flex-wrap">
               <div class="col-24  f7  lh-copy">
-                 <span class="fw7">Credits</span> (<a target="_blank" href="https://github.com/Tonejs/Tone.js">Tone</a>, <a target="_blank" href="https://github.com/nexus-js/ui">Nexus</a>, <a target="_blank" href="https://api.nasa.gov/">NASA</a>)
+                 <span class="fw7">Credits:</span> <a target="_blank" href="https://github.com/Tonejs/Tone.js">Tone</a>, <a target="_blank" href="https://github.com/nexus-js/ui">Nexus</a>, <a target="_blank" href="https://api.nasa.gov/">NASA</a>
               </div>
             </div>
 
             <div class="col-24  flex  flex-wrap">
               <div class="col-24  f7  lh-copy">
-                 <span class="fw7">Author</span> (<a target="_blank" href="https://soundcloud.com/aagentah">Aagentah</a> / <a target="_blank" href="https://www.holodan.io">holodan</a>)
+                 <span class="fw7">Author:</span> <a target="_blank" href="https://soundcloud.com/aagentah">Aagentah</a> / <a target="_blank" href="https://www.holodan.io">holodan</a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="col-13  col-16-md  flex  flex-wrap  sequencer__intro__wrapper">
-        <div class="col-24  flex  flex-wrap  sequencer__notes__wrapper">
-          <!-- Notes -->
-          <div class="col-2  notes__wrapper">
-            <div id="notes"></div>
-          </div>
-          <!-- Sequencer -->
-          <div class="col-22  sequencer__wrapper">
-            <div id="sequencer"></div>
-          </div>
+      <!-- Sequencer & Notes -->
+      <div class="col-16-md  flex  flex-wrap  sequencer__notes__wrapper">
+        <div class="col-2  notes__wrapper">
+          <div id="notes"></div>
         </div>
+        <div class="col-22  sequencer__wrapper">
+          <div id="sequencer"></div>
+        </div>
+      </div>
 
-        <div class="col-24  flex  flex-wrap  intro__wrapper  active">
-          <div class="intro">
-            <div class="flex  flex-wrap  justify-center  pv3">
-              <div class="col-8  flex  flex-wrap  justify-center  pb3">
-                <img class="mla  mra" src="/static/images/logo-text.png" alt="">
+      <!-- Intro -->
+      <div class="col-24  flex  flex-wrap  intro__wrapper  active">
+        <div class="intro">
+          <div class="flex  flex-wrap  justify-center  pv3">
+            <div class="col-24  pb0  pb3-md">
+              <img class="mla  mra  mw5" src="/static/images/logo-text.png" alt="">
+            </div>
+
+            <div class="col-24  flex  justify-center">
+              <div class="measure-wide">
+                <p class="tac  lh-copy  dn  db-md">
+                  asteroidblock.io is a web-based, interactive, atmospheric pad
+                  synthesizer which queries NASA's asteroid API, using
+                  live proximity data to throttle initial parameters
+                  of the synth.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex  flex-wrap">
+            <div class="col-24  col-12-md  ph3  pb3  pb0-md" id="asteroid-selects">
+              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
+                Select a real-world asteroid:
+              </div>
+              <div class="flex  flex-wrap">
+                <div id="asteroids" class="intro__statistic">
+                  {{loadingIcon}}
+                </div>
               </div>
 
-              <div class="col-24  flex  justify-center">
-                <div class="measure-wide">
-                  <p class="tac  lh-copy  dn  db-md">
-                    asteroidblock.io is a web-based, interactive, atmospheric pad
-                    synthesizer which queries NASA's asteroid API, using
-                    live proximity data to throttle initial parameters
-                    of the synth.
-                  </p>
+              <!-- <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
+                Select MIDI Sequence:
+              </div>
+              <div class="flex  flex-wrap">
+                <div id="midi-sequence" class="col-12  intro__statistic">
+                  {{loadingIcon}}
+                </div>
+              </div> -->
+            </div>
+
+            <div class="col-24  col-12-md  ph3" id="asteroid-data">
+              <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
+                Asteroid's Data:
+              </div>
+              <div class="flex  flex-wrap">
+                <div class="w-100">
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Name:</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Potentially Dangerous:</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7"><span class="dn  di-md">Close</span> Approach Date:</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Orbiting Body:</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Est. Diamater (km):</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7">Miss Distance (km):</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
+
+                  <div class="flex  flex-wrap  pb2">
+                    <div class="col-12">
+                      <span class="fw7"><span class="dn  di-md">Relative</span> Velocity (mph):</span>
+                    </div>
+                    <div class="col-12  intro__statistic">
+                      {{loadingIcon}}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="flex  flex-wrap">
-              <div class="col-24  col-12-md  ph3" id="asteroid-selects">
-                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
-                  Select a real-world asteroid:
-                </div>
-                <div class="flex  flex-wrap">
-                  <div id="asteroids" class="col-12  intro__statistic">
-                    {{loadingIcon}}
-                  </div>
-                </div>
-
-                <!-- <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  pt4">
-                  Select MIDI Sequence:
-                </div>
-                <div class="flex  flex-wrap">
-                  <div id="midi-sequence" class="col-12  intro__statistic">
-                    {{loadingIcon}}
-                  </div>
-                </div> -->
-              </div>
-
-              <div class="col-12  ph3  dn  db-md" id="asteroid-data">
-                <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
-                  Asteroid's Data:
-                </div>
-                <div class="flex  flex-wrap">
-                  <div class="w-100">
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Name:</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Potentially Dangerous:</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Close Approach Date:</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Orbiting Body:</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Est. Diamater (km):</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Miss Distance (km):</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-
-                    <div class="flex  flex-wrap  pb2">
-                      <div class="col-12">
-                        <span class="fw7">Relatice Velocity (mph):</span>
-                      </div>
-                      <div class="col-12  intro__statistic">
-                        {{loadingIcon}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="dn  flex-wrap  justify-center  pt4  w-100  f7  blockWarning">
+            <div class="dn  db-md  w-100">
+              <div class="dn  flex-wrap  justify-center  pt3  pt4-md  w-100  f8  f7-md  blockWarning">
                 Please note—using Adblockers, Privacy Badger, Decentraleyes, or Brave Browser will prevent the save/export feature from working.
               </div>
+            </div>
 
-              <div class="flex  flex-wrap  justify-center  pt3  w-100" id="asteroid-begin">
-                <button id="begin" class="control__button" disabled>
-                  Begin
-                </button>
-              </div>
+            <div class="flex  flex-wrap  justify-center  pt3  w-100" id="asteroid-begin">
+              <button id="begin" class="control__button" disabled>
+                Begin
+              </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile Effect & Envelope Triggers -->
+      <div class="w-100  df  dn-md  flex-wrap  order-2  slide-up-triggers__wrapper">
+        <div class="col-12  flex  align-center  justify-center  pl2  pr1">
+          <span class="effects-toggle  control__button">Effects</span>
+        </div>
+        <div class="col-12  flex  align-center  justify-center  pr2  pl1">
+          <span class="envelope-toggle  control__button">Envelope</span>
         </div>
       </div>
 
       <!-- Effects -->
-      <div class="col-7  col-4-md  flex  flex-wrap  effects__wrapper">
-        <div class="col-24  effects  flex  flex-wrap  align-center">
+      <div class="col-24  col-4-md  flex  flex-wrap  effects__wrapper">
+        <div class="col-24  effects  effects__fx  mb0  mb3-md  flex  flex-wrap  align-center">
+          <span class="effects-toggle  arrow-btn  db  dn-md">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/></svg>
+          </span>
+
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Chorus</div>
-            <div class="db  w-100  pt2" id="effect-Chorus">
+            <div class="db  w-100  pt3  pt2-md" id="effect-Chorus">
               <div class="col-24  flex  flex-wrap  justify-center">
                 <div class="col-8  flex  flex-wrap  justify-center  relative">
                   <div class="col-24  flex  justify-center">
@@ -275,7 +295,7 @@
 
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Reverb</div>
-            <div class="db  w-100  pt2" id="effect-Reverb">
+            <div class="db  w-100  pt3  pt2-md" id="effect-Reverb">
               <div class="col-24  flex  flex-wrap  justify-center">
                 <div class="col-8  flex  flex-wrap  justify-center  relative">
                   <div class="col-24  flex  justify-center">
@@ -299,7 +319,7 @@
 
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">BitCrusher</div>
-            <div class="db  w-100  pt2" id="effect-BitCrusher">
+            <div class="db  w-100  pt3  pt2-md" id="effect-BitCrusher">
               <div class="col-24  flex  flex-wrap  justify-center">
                 <div class="col-8  flex  flex-wrap  justify-center  relative">
                   <div class="col-24  flex  justify-center">
@@ -323,7 +343,7 @@
 
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Ping Pong Delay</div>
-            <div class="db  w-100  pt2" id="effect-PingPongDelay">
+            <div class="db  w-100  pt3  pt2-md" id="effect-PingPongDelay">
               <div class="col-24  flex  flex-wrap  justify-center">
                 <div class="col-8  flex  flex-wrap  justify-center  relative">
                   <div class="col-24  flex  justify-center">
@@ -356,7 +376,11 @@
           </div>
         </div>
 
-        <div class="col-24  effects  flex  flex-wrap  align-center">
+        <div class="col-24  effects  effects__envelope  flex  flex-wrap  align-center">
+          <span class="envelope-toggle  arrow-btn  db  dn-md">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/></svg>
+          </span>
+
           <div class="dn">
             <div id="envelope"></div>
             <div class="envelope__hold__label"></div>
@@ -397,57 +421,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="signal__wrapper">
-      <div class="flex  flex-wrap  signal">
-
-
-        <div class="col-6"></div>
-
-        <div class="col-7  envelope__wrapper  ph3">
-          <div id="envelope"></div>
-          <div class="envelope__hold__label"></div>
-        </div>
-
-        <div class="col-3  flex  flex-wrap  pr2">
-          <div class="col-24">
-            <div class="col-24  envelope__title">Envelope</div>
-          </div>
-
-          <div class="col-24  flex  flex-wrap">
-            <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center  ph2">
-                <div id="envelopeAttack"></div>
-              </div>
-              <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
-                Attack
-              </div>
-            </div>
-
-            <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center  ph2">
-                <div id="envelopeRelease"></div>
-              </div>
-              <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
-                Release
-              </div>
-            </div>
-
-            <div class="col-8  flex  flex-wrap">
-              <div class="col-24  flex  justify-center  ph2">
-                <div id="envelopeHold"></div>
-              </div>
-              <div class="col-24  flex  justify-center  align-center  f7  envelope__param__label">
-                Hold
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </section>
-
-
-
 
 {% endblock %}

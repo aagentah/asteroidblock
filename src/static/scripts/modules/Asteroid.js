@@ -5,13 +5,14 @@ import Cookies from 'js-cookie';
 import Main from './Main';
 import Sequencer from './Sequencer';
 import Controls from './Controls';
-import Signal from './Signal';
+import Instrument from './Instrument';
 import Effects from './Effects';
 import Audio from './Audio';
 
 import * as backup from '../data/backup.json';
 
 import { fetchAsync } from '../utils/fetchAsync';
+import { isMobile } from '../utils/isMobile';
 
 const Asteroid = {
   elem: document.querySelector('.intro__wrapper'),
@@ -169,68 +170,68 @@ const Asteroid = {
 
   renderInfo(i) {
     let html = `
-          <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+          <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
             Asteroid's Data:
           </div>
           <div class="flex  flex-wrap">
             <div class="w-100">
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="fw7">Name:</span>
+                  <span class="f7  f6-md  fw7">Name:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.name}
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="fw7">Potentially Dangerous:</span>
+                  <span class="f7  f6-md  fw7"><span class="dn  di-md">Potentially</span> Dangerous:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.hazardous}
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="fw7">Close Approach Date:</span>
+                  <span class="f7  f6-md  fw7"><span class="dn  di-md">Close</span> Approach Date:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.close_approach_date}
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="fw7">Orbiting Body:</span>
+                  <span class="f7  f6-md  fw7">Orbiting Body:</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.orbiting_body}
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="fw7">Est. Diamater (km):</span>
+                  <span class="f7  f6-md  fw7">Est. Diamater (km):</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.diameter}
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="fw7">Miss Distance (km):</span>
+                  <span class="f7  f6-md  fw7">Miss Distance (km):</span>
                 </div>
                 <div class="col-12  intro__statistic">
                   ${Asteroid.selected.miss_distance}
                 </div>
               </div>
 
-              <div class="flex  flex-wrap  pb2">
+              <div class="flex  flex-wrap  pb0  pb2-md">
                 <div class="col-12">
-                  <span class="fw7">Relatice Velocity (mph):</span>
+                  <span class="f7  f6-md  fw7"><span class="dn  di-md">Relative</span> Velocity (mph):</span>
                 </div>
                 <div class="col-12  intro__statistic">
                 ${Asteroid.selected.velocity}
@@ -297,11 +298,11 @@ const Asteroid = {
       let key;
       let multitude;
 
-      octave = Math.floor(i / Signal.instrumentTypes.length);
-      multitude = octave * Signal.instrumentTypes.length;
+      octave = Math.floor(i / Instrument.instrumentTypes.length);
+      multitude = octave * Instrument.instrumentTypes.length;
       key = i - multitude;
 
-      Signal.instrumentSelect.value = Signal.instrumentTypes[key];
+      Instrument.instrumentSelect.value = Instrument.instrumentTypes[key];
     };
 
     for (let i = 0; i < Effects.data.length; i++) {
@@ -317,11 +318,11 @@ const Asteroid = {
 
   eventListener() {
     let selectsHtml = `
-      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black">
+      <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
         Select a real-world asteroid:
       </div>
       <div class="flex  flex-wrap">
-        <div id="asteroids" class="col-12  intro__statistic"></div>
+        <div id="asteroids" class="intro__statistic"></div>
       </div>
     `;
 
@@ -345,9 +346,16 @@ const Asteroid = {
     Asteroid.asteroidBeginElem.insertAdjacentHTML('beforeend', buttonHtml);
 
     const beginEl = document.querySelector('#begin');
+    const selectWidth = isMobile() ? 200 : 300;
+    const selectHeight = isMobile() ? 20 : 30;
 
     const asteroidSelect = new Nexus.Select('#asteroids', {
-      size: [300, 30],
+      size: [selectWidth, 30],
+      options: Asteroid.asteroids.map(e => e.name)
+    });
+
+    const asteroidSelectChange = new Nexus.Select('#asteroids-change', {
+      size: [150, selectHeight],
       options: Asteroid.asteroids.map(e => e.name)
     });
 
@@ -357,6 +365,11 @@ const Asteroid = {
     // });
 
     asteroidSelect.on('change', e => {
+      Asteroid.selected = Asteroid.asteroids[e.index];
+      Asteroid.renderInfo(e.index);
+    });
+
+    asteroidSelectChange.on('change', e => {
       Asteroid.selected = Asteroid.asteroids[e.index];
       Asteroid.renderInfo(e.index);
     });
@@ -377,18 +390,21 @@ const Asteroid = {
           return;
         }
 
-        Main.wrapper.classList.add('active');
         Asteroid.elem.classList.remove('active');
 
         setTimeout(() => {
+          // Hide intro
           Asteroid.elem.classList.remove('flex');
           Asteroid.elem.classList.add('dn');
+
+          // Show new elements
+          Main.wrapper.classList.add('active');
+
+          Sequencer.renderNotes();
+          Controls.renderControls();
+
+          Asteroid.hasOpened = true;
         }, 300);
-
-        Sequencer.renderNotes();
-        Controls.renderControls();
-
-        Asteroid.hasOpened = true;
       },
       false
     );
