@@ -11,7 +11,7 @@ import Record from './Record';
 import { isMobile } from '../utils/isMobile';
 
 const Controls = {
-  startEl: document.querySelector('#start'),
+  startEl: document.querySelector('#play'),
   stopEl: document.querySelector('#stop'),
   recordEl: document.querySelector('#record'),
   resetEl: document.querySelector('#reset'),

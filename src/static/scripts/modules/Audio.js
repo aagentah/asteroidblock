@@ -73,6 +73,9 @@ const Audio = {
   },
 
   play: async notes => {
+    const audioContext = new AudioContext();
+    audioContext.resume();
+
     let effectParams = {};
     let effect, param;
 
