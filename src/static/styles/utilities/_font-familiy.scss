@@ -1,31 +1,3 @@
-@font-face {
-  font-family: 'Akkurat-Mono';
-  src: url('/static/fonts/Akkurat-Mono.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'GraphikLC';
-  src: url('/static/fonts/GraphikLC-Light-Web.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'GraphikLC';
-  src: url('/static/fonts/GraphikLC-Regular-Web.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'GraphikLC';
-  src: url('/static/fonts/GraphikLC-Medium-Web.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-}
-
 .system-sans {
   font-family: $system-sans;
 }
