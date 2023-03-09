@@ -67,10 +67,15 @@
 @import 'modules/accordion';
 @import 'modules/modal';
 
-// [nexus-ui] {
-//   height: 80vh;
-//   width: 100vw;
-// }
+[nexus-ui='dial'] {
+  transform: scale(0.95);
+}
+
+@include breakpoint-up(md) {
+  [nexus-ui='dial'] {
+    transform: scale(0.9);
+  }
+}
 
 $purple-light: #b5b7c9;
 $purple-medium: #5b628d;
@@ -83,6 +88,10 @@ $grey-dark: #6a6b6b;
 
 // Layout
 
+.of-contain {
+  object-fit: contain;
+}
+
 a {
   color: $purple-medium;
 }
@@ -91,11 +100,16 @@ body,
 html {
   position: fixed;
   width: 100%;
+  background-color: palette($almost-white);
 }
 
 main {
   opacity: 0;
   // background-color: $almost-white;
+  @include breakpoint-up(md) {
+    transform: scale(0.95);
+    transform-origin: center;
+  }
 }
 
 main.active {
@@ -151,6 +165,7 @@ main.active {
 
 .sequencer__notes__wrapper {
   height: 300px;
+  border-radius: 1rem;
 }
 
 @include breakpoint-up(md) {
@@ -176,7 +191,7 @@ main.active {
   opacity: 0;
   transition: 0.3s ease-in-out opacity;
   z-index: 999;
-  width: 900px;
+  width: 800px;
   max-width: 90vw;
   max-height: 90vh;
   margin: auto;
@@ -262,7 +277,7 @@ main.active {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: -550px;
+  bottom: -650px;
   margin: 0 auto;
   transition: bottom 0.3s ease-in-out;
   z-index: 2;
@@ -282,6 +297,7 @@ main.active {
     left: auto;
     right: auto;
     margin: auto;
+    margin-bottom: 1rem;
     bottom: auto;
   }
 }
@@ -366,28 +382,53 @@ main.active {
 }
 
 .effect__title {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   text-align: left;
-
   color: $grey-dark;
+  z-index: 90;
   font-weight: bold;
+  overflow: hidden;
+  text-align: center;
   @extend .f7;
   @extend .pb2;
   @extend .mb0;
+
+  &:before,
+  &:after {
+    background-color: $grey-dark;
+    opacity: 0.5;
+    content: '';
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+  &:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+
+  &:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
 }
 
 @include breakpoint-up(md) {
   .effect__title {
-    position: relative;
     text-align: center;
     margin: 0 auto;
+    border: 0;
   }
 }
 
 .effect__label {
   text-align: center;
+  overflow: hidden;
   color: $purple-dark;
   @extend .f7;
   @extend .pt2;
@@ -406,12 +447,35 @@ main.active {
 .envelope__title {
   color: $grey-dark;
   font-weight: bold;
+  overflow: hidden;
 
   @extend .tac;
   @extend .mla;
   @extend .mra;
   @extend .f7;
   @extend .mb3;
+
+  &:before,
+  &:after {
+    background-color: $grey-dark;
+    opacity: 0.5;
+    content: '';
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+  &:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+
+  &:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
 }
 
 .envelope__hold__label {
@@ -551,6 +615,34 @@ progress::-webkit-progress-bar {
 @include breakpoint-up(md) {
   .tempo__wrapper {
     height: 30px;
+  }
+}
+
+.controls__title {
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    background-color: $grey-dark;
+    opacity: 0.5;
+    content: '';
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+  &:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+
+  &:after {
+    left: 0.5em;
+    margin-right: -50%;
   }
 }
 

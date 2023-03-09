@@ -164,6 +164,9 @@ const Sequencer = {
     Sequencer.sequencer.colorize('mediumLight', '#61669e');
 
     Sequencer.sequencer.next();
+
+    // Sets initial scroll position
+    Sequencer.elem.scrollTop += Sequencer.elem.offsetHeight * 2;
   }
 };
 

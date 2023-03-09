@@ -21,10 +21,10 @@
       </div>
 
       <!-- Controls -->
-      <div class="col-24  col-4-md  flex  flex-wrap  pt3  pt0-md  order-1  order-0-md  controls__wrapper">
+      <div class="col-24  col-5-md  flex  flex-wrap  pt3  pt0-md  order-1  order-0-md  controls__wrapper">
         <div class="col-24  flex  flex-wrap  controls  mb3">
           <div class="col-24  flex-wrap  mb3  dn  df-md">
-            <img class="w-100" src="/static/images/logo-text.png" alt="">
+            <img class="w-100  of-contain" src="/static/images/logo-text.png" alt="">
           </div>
 
           <div class="col-12  col-24-md  flex  flex-wrap">
@@ -60,8 +60,8 @@
 
         <div class="col-24  flex  flex-wrap  controls  mb3">
           <div class="col-8  col-24-md  flex  flex-wrap  pr1  pr0-md">
-            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
-              Tempo:
+            <div class="controls__title  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
+              Tempo
             </div>
             <div class="col-24  flex  flex-wrap  align-center  tempo__wrapper">
               <div id="tempo"></div>
@@ -69,15 +69,15 @@
           </div>
 
           <div class="col-8  col-24-md  flex  flex-wrap  pl1  pl0-md  instrument__wrapper">
-            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
-              Select Synth:
+            <div class="controls__title  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
+              Select Synth
             </div>
             <div id="instrument"></div>
           </div>
 
           <div class="col-8  col-24-md  flex  flex-wrap  pl1  pl0-md  instrument__wrapper">
-            <div class="flex  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
-              Change Asteroid:
+            <div class="controls__title  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
+              Change Asteroid
             </div>
             <div id="asteroids-change"></div>
           </div>
@@ -85,21 +85,33 @@
 
         <div class="col-24  controls  dn  df-md">
           <div class="flex  flex-wrap">
-            <div class="col-24  flex  flex-wrap  pb3">
-              <div class="col-24  f7  lh-copy">
-                This project serves as a personal challenge to address the capabilities of audio on the web.
+            <div class="col-24  flex  flex-wrap  align-center">
+              <div class="col-24  f8  lh-copy">
+                <span class="controls__title  fw7  db  pb2">Created by Daniel Aagentah</span> 
+              </div>
+
+              <div class="col-24  flex  flex-wrap  justify-around">
+                <a class="db  lh-copy" target="_blank" href="https://www.instagram.com/daniel.aagentah/">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a class="db  lh-copy" target="_blank" href="https://soundcloud.com/aagentah">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7 17.939h-1v-8.068c.308-.231.639-.429 1-.566v8.634zm3 0h1v-9.224c-.229.265-.443.548-.621.857l-.379-.184v8.551zm-2 0h1v-8.848c-.508-.079-.623-.05-1-.01v8.858zm-4 0h1v-7.02c-.312.458-.555.971-.692 1.535l-.308-.182v5.667zm-3-5.25c-.606.547-1 1.354-1 2.268 0 .914.394 1.721 1 2.268v-4.536zm18.879-.671c-.204-2.837-2.404-5.079-5.117-5.079-1.022 0-1.964.328-2.762.877v10.123h9.089c1.607 0 2.911-1.393 2.911-3.106 0-2.233-2.168-3.772-4.121-2.815zm-16.879-.027c-.302-.024-.526-.03-1 .122v5.689c.446.143.636.138 1 .138v-5.949z"/></svg>
+                </a>
+                <a class="db  lh-copy" target="_blank" href="https://www.youtube.com/@daniel.aagentah">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                </a>
+                <a class="db  lh-copy" target="_blank" href="https://github.com/aagentah">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a class="db  lh-copy" target="_blank" href="https://daniel.aagentah.tech/">
+                  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 24 24"><path d="M14.851 11.923c-.179-.641-.521-1.246-1.025-1.749-1.562-1.562-4.095-1.563-5.657 0l-4.998 4.998c-1.562 1.563-1.563 4.095 0 5.657 1.562 1.563 4.096 1.561 5.656 0l3.842-3.841.333.009c.404 0 .802-.04 1.189-.117l-4.657 4.656c-.975.976-2.255 1.464-3.535 1.464-1.28 0-2.56-.488-3.535-1.464-1.952-1.951-1.952-5.12 0-7.071l4.998-4.998c.975-.976 2.256-1.464 3.536-1.464 1.279 0 2.56.488 3.535 1.464.493.493.861 1.063 1.105 1.672l-.787.784zm-5.703.147c.178.643.521 1.25 1.026 1.756 1.562 1.563 4.096 1.561 5.656 0l4.999-4.998c1.563-1.562 1.563-4.095 0-5.657-1.562-1.562-4.095-1.563-5.657 0l-3.841 3.841-.333-.009c-.404 0-.802.04-1.189.117l4.656-4.656c.975-.976 2.256-1.464 3.536-1.464 1.279 0 2.56.488 3.535 1.464 1.951 1.951 1.951 5.119 0 7.071l-4.999 4.998c-.975.976-2.255 1.464-3.535 1.464-1.28 0-2.56-.488-3.535-1.464-.494-.495-.863-1.067-1.107-1.678l.788-.785z"/></svg>
+                </a>
               </div>
             </div>
 
-            <div class="col-24  flex  flex-wrap">
-              <div class="col-24  f7  lh-copy">
-                 <span class="fw7">Credits</span> <a target="_blank" href="https://github.com/Tonejs/Tone.js">Tone</a>, <a target="_blank" href="https://github.com/nexus-js/ui">Nexus</a>, <a target="_blank" href="https://api.nasa.gov/">NASA</a>
-              </div>
-            </div>
-
-            <div class="col-24  flex  flex-wrap">
-              <div class="col-24  f7  lh-copy">
-                 <span class="fw7">Author</span> <a target="_blank" href="https://soundcloud.com/aagentah">Aagentah</a> / <a target="_blank" href="https://www.holodan.io">holodan</a>
+            <div class="col-24  flex  flex-wrap  align-center">
+              <div class="col-24  f8  lh-copy  tac">
+                 <span>Credits</span> <a target="_blank" href="https://github.com/Tonejs/Tone.js">Tone</a>, <a target="_blank" href="https://github.com/nexus-js/ui">Nexus</a>, <a target="_blank" href="https://api.nasa.gov/">NASA</a>
               </div>
             </div>
           </div>
@@ -107,7 +119,7 @@
       </div>
 
       <!-- Sequencer & Notes -->
-      <div class="col-16-md  flex  flex-wrap  sequencer__notes__wrapper">
+      <div class="col-14-md  flex  flex-wrap  sequencer__notes__wrapper">
         <div class="col-2  notes__wrapper">
           <div id="notes"></div>
         </div>
@@ -255,7 +267,7 @@
       </div>
 
       <!-- Effects -->
-      <div class="col-24  col-4-md  flex  flex-wrap  effects__wrapper">
+      <div class="col-24  col-5-md  flex  flex-wrap  effects__wrapper">
         <div class="col-24  effects  effects__fx  mb0  mb3-md  flex  flex-wrap  align-center">
           <span class="effects-toggle  arrow-btn  db  dn-md">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/></svg>

@@ -155,7 +155,7 @@ const Effects = {
 
   render() {
     let rackEl, effect, dialEl, dial, effectParams;
-    const dialSize = isMobile() ? 55 : 43;
+    const dialSize = isMobile() ? [55, 55] : null;
 
     for (let i = 0; i < Effects.data.length; i++) {
       effect = Effects.data[i];
@@ -167,7 +167,7 @@ const Effects = {
 
         if (dialEl) {
           dial = new Nexus.Dial(dialEl, {
-            size: [dialSize, dialSize],
+            size: dialSize,
             min: effectParams.range[0],
             max: effectParams.range[1],
             value: effectParams.value,
