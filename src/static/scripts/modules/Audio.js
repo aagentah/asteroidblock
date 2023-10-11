@@ -15,6 +15,8 @@ const Audio = {
   effect: {},
   noteLength: 2000, // 120 BPM
   tempo: 120,
+  audioCtx: null, // Initialized to null
+  synth: null, // Initialized to null
 
   setContext() {
     const context = new Tone.Context({
@@ -86,13 +88,18 @@ const Audio = {
   },
 
   play: async notes => {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    Audio.unlockAudioContext(audioCtx);
+    if (!Audio.audioCtx) {
+      Audio.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      Audio.unlockAudioContext(Audio.audioCtx);
+    }
+
+    if (!Audio.synth) {
+      Audio.synth = new Tone.PolySynth();
+    }
 
     let effectParams = {};
     let effect, param;
 
-    // Tweaks all Tone Effects based on Effects.js data object
     for (let i = 0; i < Effects.data.length; i++) {
       effectParams = [];
       effect = Effects.data[i];
@@ -105,28 +112,22 @@ const Audio = {
       Audio.effect[effect.name].set({ ...effectParams });
     }
 
-    // Play tone
-    const synth = new Tone.PolySynth(
-      Audio.instruments[Instrument.currentInstrument]
-    );
-
     const durationSecs = Audio.noteLength / 1000;
-    const divideBy = (divide, by) => divide / by;
-    const attackSecs = divideBy(Envelope.envAttack, 1) * Envelope.envHold;
+    const attackSecs = (Envelope.envAttack / 1) * Envelope.envHold;
     const holdSecs = Envelope.envHold;
-    const releaseSecs = divideBy(Envelope.envRelease, 1) * Envelope.envHold;
+    const releaseSecs = (Envelope.envRelease / 1) * Envelope.envHold;
     const envelope = { attack: attackSecs, release: releaseSecs };
     const attackRelease = attackSecs + holdSecs + releaseSecs;
 
-    synth.chain(..._.values(Audio.effect), Tone.getContext().destination);
-    synth.set({ envelope });
-    synth.triggerAttackRelease(notes, attackRelease);
+    if (!Audio.synth.isConnected) {
+      Audio.synth.chain(
+        ..._.values(Audio.effect),
+        Tone.getContext().destination
+      );
+    }
 
-    // Clean up
-    setTimeout(() => {
-      synth.disconnect();
-      synth.dispose();
-    }, (attackRelease + releaseSecs) * 1000 + Audio.lookAhead * 1000);
+    Audio.synth.set({ envelope });
+    Audio.synth.triggerAttackRelease(notes, attackRelease);
   }
 };
 
