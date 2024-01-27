@@ -1,1 +1,1 @@
-asteroidblock.io
+asteroidblock
