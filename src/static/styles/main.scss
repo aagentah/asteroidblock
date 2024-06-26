@@ -88,6 +88,13 @@ $grey-dark: #6a6b6b;
 
 // Layout
 
+h1 {
+  font-family: monospace;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
 .of-contain {
   object-fit: contain;
 }
