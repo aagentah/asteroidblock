@@ -7,7 +7,7 @@ asteroidblock is a web-based, interactive, atmospheric pad synthesizer which que
 - **Interactive Synthesizer**: Create atmospheric pad sounds with real-time interaction.
 - **NASA Asteroid API Integration**: Utilizes live asteroid proximity data to influence synth parameters.
 - **Web-Based**: Accessible from any modern web browser.
-- **Dynamic Soundscapes**: Ever-changing sounds based on real-time space data.
+- **Dynamic Soundscapes**: Paramater-based effects based on real-time space data.
 
 ## Requirements
 
@@ -18,25 +18,25 @@ asteroidblock is a web-based, interactive, atmospheric pad synthesizer which que
 To get started, follow these steps:
 
 1. **Clone the Repository**:
-   \`\`\`sh
-   git clone <repository_url>
+   ```sh
+   git clone https://github.com/aagentah/asteroidblock
    cd asteroidblock
-   \`\`\`
+   ```
 
 2. **Install Dependencies**:
-   \`\`\`sh
+   ```sh
    npm install
-   \`\`\`
+   ```
 
 3. **Build the Project**:
-   \`\`\`sh
+   ```sh
    npm run build
-   \`\`\`
+   ```
 
 4. **Start the Development Server**:
-   \`\`\`sh
+   ```sh
    npm run watch
-   \`\`\`
+   ```
 
 ## Usage
 
