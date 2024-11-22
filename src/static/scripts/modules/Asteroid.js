@@ -334,7 +334,7 @@ const Asteroid = {
     // </div>
 
     let buttonHtml = `
-      <button id="begin" class="control__button">
+      <button id="begin" class="control__button--inverse">
         Begin
       </button>
     `;

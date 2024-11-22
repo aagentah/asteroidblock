@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-24  flex  flex-wrap  controls  mb3">
-          <div class="col-8  col-24-md  flex  flex-wrap  pr1  pr0-md">
+          <div class="col-8  col-24-md  flex  flex-wrap  pr2  pr0-md">
             <div class="controls__title  flex-wrap  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
               Tempo
             </div>
@@ -68,14 +68,14 @@
             </div>
           </div>
 
-          <div class="col-8  col-24-md  flex  flex-wrap  pl1  pl0-md  instrument__wrapper">
+          <div class="col-8  col-24-md  flex  flex-wrap  pl0-md  instrument__wrapper">
             <div class="controls__title  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
               Select Synth
             </div>
             <div id="instrument"></div>
           </div>
 
-          <div class="col-8  col-24-md  flex  flex-wrap  pl1  pl0-md  instrument__wrapper">
+          <div class="col-8  col-24-md  flex  flex-wrap  pl2  pl0-md  instrument__wrapper">
             <div class="controls__title  mb2  fw3  fw7-md  f8  f7-md  pt2-md">
               Change Asteroid
             </div>
@@ -149,7 +149,7 @@
           </div>
 
           <div class="flex  flex-wrap">
-            <div class="col-24  col-12-md  ph3  pb3  pb0-md" id="asteroid-selects">
+            <div class="col-24  ph3  pb3  pb4-md" id="asteroid-selects">
               <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
                 Select a real-world asteroid:
               </div>
@@ -169,7 +169,7 @@
               </div> -->
             </div>
 
-            <div class="col-24  col-12-md  ph3 pt3 pt0-md" id="asteroid-data">
+            <div class="col-24  ph3 pt3 pt0-md" id="asteroid-data">
               <div class="flex  flex-wrap  pb3  mb3  bb  bc-black  f6">
                 Asteroid's Data:
               </div>
@@ -248,8 +248,8 @@
             </div>
           </div>
 
-          <div class="flex  flex-wrap  justify-center  pv4  w-100" id="asteroid-begin">
-            <button id="begin" class="control__button" disabled>
+          <div class="flex  flex-wrap  pv4  ph3  w-100" id="asteroid-begin">
+            <button id="begin" class="control__button--inverse" disabled>
               Begin
             </button>
           </div>
@@ -268,10 +268,10 @@
 
       <!-- Effects -->
       <div class="col-24  col-5-md  flex  flex-wrap  effects__wrapper">
-        <div class="col-24  effects  effects__fx  mb0  mb3-md  flex  flex-wrap  align-center">
-          <span class="effects-toggle  arrow-btn  db  dn-md">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 3.795l2.995-2.98 11.132 11.185-11.132 11.186-2.995-2.981 8.167-8.205-8.167-8.205zm18.04 8.205l-8.167 8.205 2.995 2.98 11.132-11.185-11.132-11.186-2.995 2.98 8.167 8.206z"/></svg>
-          </span>
+        <div class="col-24  effects  effects__fx  mb0  mb3-md  db df-md  flex-wrap  align-center">
+          <div class="db  dn-md  mb4">
+            <span class="effects-toggle  arrow-btn  control__button ">Close</span>
+          </div>
 
           <div class="col-24  flex  flex-wrap  effect__wrapper">
             <div class="col-24  effect__title">Chorus</div>

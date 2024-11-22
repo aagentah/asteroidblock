@@ -135,6 +135,7 @@ html {
   position: fixed;
   width: 100%;
   background-color: $grey-light;
+  text-wrap: balance;
 }
 
 main {
@@ -167,7 +168,7 @@ main.active {
 }
 
 .wrapper {
-  height: 100vh;
+  height: 100dvh;
   z-index: 1;
   max-width: 1800px;
   margin: 0 auto;
@@ -215,13 +216,13 @@ main.active {
 
 @include breakpoint-up(md) {
   .sequencer__notes__wrapper {
-    height: 90vh;
+    height: 90dvh;
     max-height: 800px;
   }
 
   .controls__wrapper,
   .effects__wrapper {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 }
 
@@ -236,7 +237,7 @@ main.active {
   position: absolute;
   width: 800px;
   max-width: 90vw;
-  max-height: 90vh;
+  max-height: 90dvh;
   margin: auto;
   top: 30px;
   left: 0;
@@ -264,7 +265,7 @@ main.active {
   flex-direction: column;
   justify-content: space-between;
   background-color: $grey-light;
-  border: 2px solid $foreground2;
+  border: 1px solid $foreground;
   height: auto;
   @extend .w-100;
   @extend .pa3;
@@ -302,38 +303,38 @@ main.active {
   // @extend .shadow2;
 }
 
-.arrow-btn {
-  // position: absolute;
-  // top: -20px;
-  // left: 0;
-  // right: 0;
-  margin: 0 auto;
-  @extend .flex;
-  @extend .justify-center;
-  @extend .pb3;
+// .arrow-btn {
+//   // position: absolute;
+//   // top: -20px;
+//   // left: 0;
+//   // right: 0;
+//   margin: 0 auto;
+//   @extend .flex;
+//   @extend .justify-center;
+//   @extend .pb3;
 
-  svg {
-    padding: 10px;
-    width: 40px;
-    transform: rotate(90deg);
-    background-color: $foreground2;
-    border-radius: 100%;
-    @extend .shadow2;
+//   svg {
+//     padding: 10px;
+//     width: 40px;
+//     transform: rotate(90deg);
+//     background-color: $foreground2;
+//     border-radius: 100%;
+//     @extend .shadow2;
 
-    * {
-      fill: $foreground;
-    }
-  }
-}
+//     * {
+//       fill: $foreground;
+//     }
+//   }
+// }
 
 .effects__fx {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
 
   position: fixed;
   left: 0;
   right: 0;
-  bottom: -100vh;
+  bottom: -100dvh;
   margin: 0 auto;
   transition: bottom 0.3s ease-in-out;
   z-index: 2;
@@ -457,8 +458,8 @@ main.active {
 
   &:before,
   &:after {
-    background-color: $foreground;
-    opacity: 0.5;
+    background-color: $grey-dark;
+    opacity: 0.3;
     content: '';
     display: inline-block;
     height: 1px;
@@ -490,7 +491,7 @@ main.active {
   text-align: center;
   overflow: hidden;
   color: $foreground;
-  opacity: 0.5;
+  opacity: 0.3;
   @extend .f7;
   @extend .pt2;
   @extend .mb0;
@@ -519,7 +520,7 @@ main.active {
   &:before,
   &:after {
     background-color: $grey-dark;
-    opacity: 0.5;
+    opacity: 0.3;
     content: '';
     display: inline-block;
     height: 1px;
@@ -547,13 +548,6 @@ main.active {
   margin: 0 auto;
 }
 
-#asteroid-begin {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
 .control__button {
   width: 100%;
   margin: 0 auto;
@@ -561,6 +555,35 @@ main.active {
   background: transparent;
   border: 1px solid $foreground;
   color: $foreground;
+  outline: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+
+  @extend .f7;
+  @extend .flex;
+  @extend .justify-center;
+  @extend .align-center;
+  @extend .mb2;
+  @extend .br2;
+  @extend .shadow2;
+
+  svg {
+    width: 12px;
+  }
+
+  svg,
+  svg * {
+    fill: $purple-dark;
+  }
+}
+
+.control__button--inverse {
+  width: 100%;
+  max-width: 200px;
+  height: 45px;
+  background: $foreground;
+  border: 1px solid $foreground;
+  color: $background;
   outline: 0;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
@@ -595,7 +618,7 @@ main.active {
 
 .control__button:disabled {
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 .envelope__param__label {
@@ -695,7 +718,7 @@ progress::-webkit-progress-bar {
   &:before,
   &:after {
     background-color: $grey-dark;
-    opacity: 0.5;
+    opacity: 0.3;
     content: '';
     display: inline-block;
     height: 1px;
