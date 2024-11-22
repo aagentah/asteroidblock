@@ -263,13 +263,19 @@ main.active {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
   background-color: $grey-light;
   border: 2px solid $foreground2;
+  height: auto;
   @extend .w-100;
   @extend .pa3;
   @extend .br4;
   @extend .shadow2;
+}
+
+@include breakpoint-up(md) {
+  .intro {
+    height: 100%;
+  }
 }
 
 .sequencer__notes__wrapper {

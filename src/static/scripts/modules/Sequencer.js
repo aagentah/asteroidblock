@@ -138,7 +138,7 @@ const Sequencer = {
       const takenRoom =
         controlsWrapper.offsetHeight + slideUpTriggers.offsetHeight;
 
-      const freeRoom = window.screen.availHeight - takenRoom - 220;
+      const freeRoom = window.screen.availHeight - takenRoom - 350;
 
       Controls.sequencer.style.height = `${freeRoom}px`;
     }
