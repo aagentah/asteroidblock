@@ -77,9 +77,9 @@
   }
 }
 
-$purple-light: #cc0000;
-$purple-medium: #cc0000;
-$purple-dark: #cc0000;
+$purple-light: #990000;
+$purple-medium: #990000;
+$purple-dark: #990000;
 
 $almost-white: #fafafa;
 $grey-light: #171717;
@@ -191,11 +191,6 @@ main.active {
   transition: 0.3s ease-in-out opacity;
 }
 
-.sequencer__wrapper {
-  background-color: $foreground2;
-  outline: 2px solid $foreground2;
-}
-
 #sequencer {
   background-color: $foreground2;
   outline: 2px solid $foreground2;
@@ -212,7 +207,6 @@ main.active {
 .sequencer__notes__wrapper {
   height: 300px;
   border-radius: 1rem;
-  outline: 1px solid $almost-white;
   overflow: hidden;
 }
 
@@ -284,8 +278,9 @@ main.active {
 .sequencer__notes__wrapper {
   overflow-y: scroll;
   overflow-x: hidden;
-  @extend .ph2;
-  @extend .ph0-md;
+  outline: 1px solid $foreground;
+  @extend .mh3;
+  @extend .mh0-md;
 }
 
 .controls__wrapper,
