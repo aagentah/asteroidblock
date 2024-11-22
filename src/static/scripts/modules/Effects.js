@@ -174,8 +174,8 @@ const Effects = {
             interaction: 'vertical'
           });
 
-          dial.colorize('accent', '#505483');
-          dial.colorize('fill', '#fafafa');
+          dial.colorize('accent', '#cc0000');
+          dial.colorize('fill', '#262626');
 
           // Set event listener to update object store
           dial.on('change', v => {

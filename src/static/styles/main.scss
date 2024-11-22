@@ -77,14 +77,41 @@
   }
 }
 
-$purple-light: #b5b7c9;
-$purple-medium: #5b628d;
-$purple-dark: #505483;
+$purple-light: #cc0000;
+$purple-medium: #cc0000;
+$purple-dark: #cc0000;
 
 $almost-white: #fafafa;
-$grey-light: #e5e6e6;
+$grey-light: #171717;
 $grey-medium: #828484;
 $grey-dark: #6a6b6b;
+
+$foreground: #fafafa;
+$foreground2: #262626;
+$background: #171717;
+
+* {
+  color: $foreground;
+}
+
+input,
+select {
+  background-color: $grey-light !important;
+  border: 1px solid $foreground !important;
+  border-radius: 5px !important;
+  color: $foreground !important;
+  height: 35px !important;
+  padding: 0 5px !important;
+}
+
+select {
+  /* Hide the default caret */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none;
+  position: relative;
+}
 
 // Layout
 
@@ -107,12 +134,13 @@ body,
 html {
   position: fixed;
   width: 100%;
-  background-color: palette($almost-white);
+  background-color: $grey-light;
 }
 
 main {
   opacity: 0;
-  // background-color: $almost-white;
+  background-color: $grey-light;
+
   @include breakpoint-up(md) {
     transform: scale(0.95);
     transform-origin: center;
@@ -162,6 +190,16 @@ main.active {
   transition: 0.3s ease-in-out opacity;
 }
 
+.sequencer__wrapper {
+  background-color: $foreground;
+  outline: 2px solid $foreground;
+}
+
+#sequencer {
+  background-color: $foreground;
+  outline: 2px solid $foreground;
+}
+
 .sequencer__notes__wrapper,
 .controls__wrapper,
 .effects__wrapper {
@@ -189,7 +227,7 @@ main.active {
 
 .sequencer__notes__wrapper {
   opacity: 0;
-  background-color: $almost-white;
+  background-color: $background;
 }
 
 .intro__wrapper {
@@ -203,7 +241,7 @@ main.active {
   top: 30px;
   left: 0;
   right: 0;
-  height: 475px;
+  height: 100%;
 
   @extend .ph2;
   @extend .ph3-md;
@@ -227,6 +265,7 @@ main.active {
   justify-content: space-between;
   height: 100%;
   background-color: $grey-light;
+  border: 2px solid $foreground2;
   @extend .w-100;
   @extend .pa3;
   @extend .br4;
@@ -237,7 +276,7 @@ main.active {
   overflow-y: scroll;
   overflow-x: hidden;
   @extend .ph2;
-  @extend .ph3-md;
+  @extend .ph0-md;
 }
 
 .controls__wrapper,
@@ -248,42 +287,47 @@ main.active {
 
 .controls {
   background-color: $grey-light;
+  // border: 2px solid $foreground2;
 
   @extend .w-100;
-  @extend .pa3;
-  @extend .br4;
-  @extend .shadow2;
+  @extend .ph3;
+  // @extend .pa3;
+  // @extend .br4;
+  // @extend .shadow2;
 }
 
 .arrow-btn {
-  position: absolute;
-  top: -20px;
-  left: 0;
-  right: 0;
+  // position: absolute;
+  // top: -20px;
+  // left: 0;
+  // right: 0;
   margin: 0 auto;
   @extend .flex;
   @extend .justify-center;
+  @extend .pb3;
 
   svg {
     padding: 10px;
     width: 40px;
     transform: rotate(90deg);
-    background-color: $grey-light;
+    background-color: $foreground2;
     border-radius: 100%;
     @extend .shadow2;
 
     * {
-      fill: $purple-light;
+      fill: $foreground;
     }
   }
 }
 
 .effects__fx {
-  width: 90vw;
+  width: 100vw;
+  height: 100vh;
+
   position: fixed;
   left: 0;
   right: 0;
-  bottom: -650px;
+  bottom: -100vh;
   margin: 0 auto;
   transition: bottom 0.3s ease-in-out;
   z-index: 2;
@@ -340,20 +384,22 @@ main.active {
 
 .effects {
   background-color: $grey-light;
+  // border: 2px solid $foreground2;
 
   @extend .w-100;
-  @extend .pa3;
-  @extend .br4;
-  @extend .shadow2;
+  @extend .ph3;
+  // @extend .pa3;
+  // @extend .br4;
+  // @extend .shadow2;
 }
 
 //
 
 .notes__item {
   position: relative;
-  color: $grey-dark;
-  border-bottom: 3px solid $purple-dark;
-  background-color: $almost-white;
+  color: $foreground;
+  border-bottom: 3px solid $foreground;
+  background-color: $background;
   @extend .f8;
   @extend .f6-md;
   @extend .flex;
@@ -370,7 +416,7 @@ main.active {
     bottom: 0;
     left: 27px;
     width: 100%;
-    border-bottom: 3px solid $purple-dark;
+    border-bottom: 3px solid $background;
     z-index: 1;
   }
 }
@@ -394,7 +440,7 @@ main.active {
   top: 0;
   left: 0;
   text-align: left;
-  color: $grey-dark;
+  color: $foreground;
   z-index: 90;
   font-weight: bold;
   overflow: hidden;
@@ -405,7 +451,7 @@ main.active {
 
   &:before,
   &:after {
-    background-color: $grey-dark;
+    background-color: $foreground;
     opacity: 0.5;
     content: '';
     display: inline-block;
@@ -437,7 +483,8 @@ main.active {
 .effect__label {
   text-align: center;
   overflow: hidden;
-  color: $purple-dark;
+  color: $foreground;
+  opacity: 0.5;
   @extend .f7;
   @extend .pt2;
   @extend .mb0;
@@ -503,12 +550,11 @@ main.active {
 
 .control__button {
   width: 100%;
-  max-width: 200px;
   margin: 0 auto;
-  height: 25px;
-  background: $almost-white;
-  color: $purple-dark;
-  border: 0;
+  height: 35px;
+  background: transparent;
+  border: 1px solid $foreground;
+  color: $foreground;
   outline: 0;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
@@ -619,7 +665,7 @@ progress::-webkit-progress-bar {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: $purple-dark;
+  background-color: $foreground;
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -714,4 +760,8 @@ progress::-webkit-progress-bar {
   opacity: 0;
   transition: 0.3s ease-in-out opacity;
   max-width: 10rem;
+}
+
+.bc-black {
+  border-color: $foreground2;
 }
