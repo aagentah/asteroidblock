@@ -33,7 +33,7 @@ const Envelope = {
     });
 
     const holdDial = new Nexus.Multislider('#envelopeHold', {
-      values: [3],
+      values: [2],
       numberOfSliders: 1,
       size: [28, 48],
       min: 0.3,

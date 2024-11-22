@@ -87,7 +87,7 @@ $grey-medium: #828484;
 $grey-dark: #6a6b6b;
 
 $foreground: #fafafa;
-$foreground2: #262626;
+$foreground2: #6a6b6b;
 $background: #171717;
 
 * {
@@ -192,13 +192,13 @@ main.active {
 }
 
 .sequencer__wrapper {
-  background-color: $foreground;
-  outline: 2px solid $foreground;
+  background-color: $foreground2;
+  outline: 2px solid $foreground2;
 }
 
 #sequencer {
-  background-color: $foreground;
-  outline: 2px solid $foreground;
+  background-color: $foreground2;
+  outline: 2px solid $foreground2;
 }
 
 .sequencer__notes__wrapper,
@@ -212,6 +212,8 @@ main.active {
 .sequencer__notes__wrapper {
   height: 300px;
   border-radius: 1rem;
+  outline: 1px solid $almost-white;
+  overflow: hidden;
 }
 
 @include breakpoint-up(md) {
@@ -404,9 +406,11 @@ main.active {
 
 .notes__item {
   position: relative;
-  color: $foreground;
-  border-bottom: 3px solid $foreground;
+  color: #fafafa;
+  outline: 2px solid $almost-white;
+  transform: translateY(1px);
   background-color: $background;
+
   @extend .f8;
   @extend .f6-md;
   @extend .flex;
@@ -694,7 +698,7 @@ progress::-webkit-progress-bar {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: $foreground;
+  background-color: $foreground2;
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 

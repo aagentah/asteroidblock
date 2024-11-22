@@ -159,9 +159,9 @@ const Sequencer = {
       paddingColumn: 0
     });
 
-    Sequencer.sequencer.colorize('accent', '#cc0000');
+    Sequencer.sequencer.colorize('accent', '#990000');
     Sequencer.sequencer.colorize('fill', '#171717');
-    Sequencer.sequencer.colorize('mediumLight', '#cc0000');
+    Sequencer.sequencer.colorize('mediumLight', '#990000');
 
     Sequencer.sequencer.next();
 
