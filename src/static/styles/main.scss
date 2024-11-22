@@ -193,18 +193,14 @@ main.active {
 }
 
 .intro__wrapper {
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  width: 100%;
-  opacity: 0;
-  transition: 0.3s ease-in-out opacity;
-  z-index: 999;
   width: 800px;
   max-width: 90vw;
   max-height: 90vh;
   margin: auto;
-  position: absolute;
   top: 30px;
-  bottom: auto;
   left: 0;
   right: 0;
   height: 475px;
@@ -217,7 +213,7 @@ main.active {
   .intro__wrapper {
     top: 0;
     bottom: 0;
-    height: 605px;
+    height: 100%;
   }
 }
 
@@ -226,8 +222,11 @@ main.active {
 }
 
 .intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   background-color: $grey-light;
-
   @extend .w-100;
   @extend .pa3;
   @extend .br4;
@@ -300,6 +299,7 @@ main.active {
 @include breakpoint-up(md) {
   .effects__fx {
     width: 100%;
+    height: 100%;
     position: relative;
     left: auto;
     right: auto;
@@ -310,6 +310,7 @@ main.active {
 }
 
 .effects__envelope {
+  display: none;
   width: 90vw;
   position: fixed;
   left: 0;
@@ -493,8 +494,17 @@ main.active {
   margin: 0 auto;
 }
 
+#asteroid-begin {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .control__button {
   width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
   height: 25px;
   background: $almost-white;
   color: $purple-dark;

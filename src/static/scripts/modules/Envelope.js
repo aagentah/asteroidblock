@@ -17,7 +17,7 @@ const Envelope = {
 
   render() {
     const attackDial = new Nexus.Multislider('#envelopeAttack', {
-      values: [0.25],
+      values: [0.7],
       numberOfSliders: 1,
       size: [28, 48],
       min: 0,
@@ -25,7 +25,7 @@ const Envelope = {
     });
 
     const releaseDial = new Nexus.Multislider('#envelopeRelease', {
-      values: [0.75],
+      values: [0.7],
       numberOfSliders: 1,
       size: [28, 48],
       min: 0,
@@ -33,7 +33,7 @@ const Envelope = {
     });
 
     const holdDial = new Nexus.Multislider('#envelopeHold', {
-      values: [1],
+      values: [3],
       numberOfSliders: 1,
       size: [28, 48],
       min: 0.3,
