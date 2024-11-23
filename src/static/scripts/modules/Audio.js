@@ -20,22 +20,61 @@ const Audio = {
 
   setContext() {
     const context = new Tone.Context({
-      latencyHint: 'playback',
+      latencyHint: 'interactive',
       lookAhead: Audio.lookAhead,
-      sampleRate: 8000
+      updateInterval: 1 / 60
     });
 
     Tone.setContext(context);
+    // Set initial Transport tempo
+    Tone.Transport.bpm.value = Audio.tempo;
   },
 
   updateTempo(v) {
-    const minute = 60000;
     const tempo = v;
-    const quarterNote = minute / tempo;
-    const fullNote = quarterNote * 4;
-
     Audio.tempo = tempo;
-    Audio.noteLength = fullNote;
+    // Calculate quarter note length in milliseconds
+    Audio.noteLength = (60 / tempo) * 1000;
+    // Update Transport tempo
+    Tone.Transport.bpm.value = tempo;
+  },
+
+  play(notes, time) {
+    if (!Audio.synth) {
+      Audio.synth = new Tone.PolySynth(Tone[Instrument.currentInstrument]);
+      Audio.synth.chain(
+        ..._.values(Audio.effect),
+        Tone.getContext().destination
+      );
+    }
+
+    // Update effect parameters
+    _.forEach(Effects.data, (effect, i) => {
+      const effectParams = {};
+      effect.paramaters.forEach(param => {
+        effectParams[param.name] = param.value;
+      });
+      Audio.effect[effect.name].set(effectParams);
+    });
+
+    // Calculate envelope timings based on tempo
+    const quarterNote = 60 / Audio.tempo; // Duration of quarter note in seconds
+    const attackSecs =
+      (Envelope.envAttack / 1) * Envelope.envHold * quarterNote;
+    const holdSecs = Envelope.envHold * quarterNote;
+    const releaseSecs =
+      (Envelope.envRelease / 1) * Envelope.envHold * quarterNote;
+
+    // Update synth envelope
+    Audio.synth.set({
+      envelope: {
+        attack: attackSecs,
+        release: releaseSecs
+      }
+    });
+
+    // Play the notes for one quarter note duration
+    Audio.synth.triggerAttackRelease(notes, quarterNote, time);
   },
 
   setInstruments() {
@@ -85,49 +124,6 @@ const Audio = {
     function clean() {
       events.forEach(e => b.removeEventListener(e, unlock));
     }
-  },
-
-  play: async notes => {
-    if (!Audio.audioCtx) {
-      Audio.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      Audio.unlockAudioContext(Audio.audioCtx);
-    }
-
-    if (!Audio.synth) {
-      Audio.synth = new Tone.PolySynth();
-    }
-
-    let effectParams = {};
-    let effect, param;
-
-    for (let i = 0; i < Effects.data.length; i++) {
-      effectParams = [];
-      effect = Effects.data[i];
-
-      for (let ii = 0; ii < effect.paramaters.length; ii++) {
-        param = effect.paramaters[ii];
-        effectParams[param.name] = param.value;
-      }
-
-      Audio.effect[effect.name].set({ ...effectParams });
-    }
-
-    const durationSecs = Audio.noteLength / 1000;
-    const attackSecs = (Envelope.envAttack / 1) * Envelope.envHold;
-    const holdSecs = Envelope.envHold;
-    const releaseSecs = (Envelope.envRelease / 1) * Envelope.envHold;
-    const envelope = { attack: attackSecs, release: releaseSecs };
-    const attackRelease = attackSecs + holdSecs + releaseSecs;
-
-    if (!Audio.synth.isConnected) {
-      Audio.synth.chain(
-        ..._.values(Audio.effect),
-        Tone.getContext().destination
-      );
-    }
-
-    Audio.synth.set({ envelope });
-    Audio.synth.triggerAttackRelease(notes, attackRelease);
   }
 };
 

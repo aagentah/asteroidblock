@@ -1,5 +1,4 @@
 /* eslint-disable new-cap, no-unused-vars */
-
 import Nexus from 'nexusui';
 import * as Tone from 'tone';
 import _ from 'lodash';
@@ -7,7 +6,6 @@ import _ from 'lodash';
 import Audio from './Audio';
 import Sequencer from './Sequencer';
 import Record from './Record';
-
 import { isMobile } from '../utils/isMobile';
 
 const Controls = {
@@ -26,12 +24,20 @@ const Controls = {
       return;
     }
 
-    await Tone.start();
-    Nexus.context.resume();
-    Sequencer.isRunning = true;
-    Sequencer.restartInterval();
-    Controls.recordEl.classList.add('disabled');
-    Controls.startEl.classList.add('disabled');
+    try {
+      // Start audio context
+      await Tone.start();
+      Nexus.context.resume();
+
+      // Start transport-based sequencer
+      Sequencer.startTransport();
+
+      // Update UI
+      Controls.recordEl.classList.add('disabled');
+      Controls.startEl.classList.add('disabled');
+    } catch (error) {
+      console.error('Error starting playback:', error);
+    }
   },
 
   recordControls: async () => {
@@ -39,12 +45,19 @@ const Controls = {
       return;
     }
 
-    const recorder = new Tone.Recorder();
+    try {
+      const recorder = new Tone.Recorder();
 
-    Tone.getContext().destination.connect(recorder);
-    recorder.start();
-    Controls.playControls();
-    Record.init(recorder);
+      // Connect recorder to main output
+      Tone.getContext().destination.connect(recorder);
+      recorder.start();
+
+      // Start playback with transport
+      await Controls.playControls();
+      Record.init(recorder);
+    } catch (error) {
+      console.error('Error starting recording:', error);
+    }
   },
 
   stopControls() {
@@ -52,38 +65,41 @@ const Controls = {
       return;
     }
 
-    Sequencer.isRunning = false;
-    Sequencer.destroyInterval();
+    // Stop transport-based sequencer
+    Sequencer.stopTransport();
+
+    // Update UI
     Controls.recordEl.classList.remove('disabled');
     Controls.startEl.classList.remove('disabled');
-
-    for (let i = 0; i < 10; i++) {
-      if (Sequencer.sequencer.stepper.value !== 0) Sequencer.sequencer.next();
-    }
-
-    Sequencer.currentColumn = 0;
   },
 
   resetControls() {
     const emptySequence = [];
     let emptyRow = [];
 
+    // Create empty sequence matrix
     for (let i = 0; i < Sequencer.rows; i++) {
       emptyRow = [];
-
       for (let ii = 0; ii < Sequencer.columns; ii++) {
         emptyRow.push(0);
       }
-
       emptySequence.push(emptyRow);
     }
 
+    // Reset sequencer state
     Sequencer.sequencer.matrix.set.all(emptySequence);
+
+    // Ensure transport is stopped and reset
+    if (Sequencer.isRunning) {
+      Controls.stopControls();
+    }
+    Tone.Transport.position = 0;
   },
 
   renderControls() {
     const tempoHeight = isMobile() ? 20 : 30;
 
+    // Create tempo control
     const number = new Nexus.Number('#tempo', {
       size: [120, tempoHeight],
       value: Audio.tempo,
@@ -95,25 +111,31 @@ const Controls = {
     number.colorize('accent', '#505483');
     number.colorize('fill', '#d8dada');
 
+    // Handle tempo changes
     number.on('change', v => {
       Audio.updateTempo(v);
     });
 
+    // Play button handler
     Controls.startEl.addEventListener(
       'click',
       () => {
-        if (Tone.context.state !== 'running') Tone.context.resume();
+        if (Tone.context.state !== 'running') {
+          Tone.context.resume();
+        }
         Controls.playControls();
       },
       false
     );
 
+    // Stop button handler
     Controls.stopEl.addEventListener(
       'click',
       () => Controls.stopControls(),
       false
     );
 
+    // Spacebar handler
     document.body.onkeyup = e => {
       if (e.keyCode == 32) {
         e.preventDefault();
@@ -126,21 +148,26 @@ const Controls = {
       }
     };
 
+    // Reset button handler
     Controls.resetEl.addEventListener(
       'click',
       () => Controls.resetControls(),
       false
     );
 
+    // Record button handler
     Controls.recordEl.addEventListener(
       'click',
       () => {
-        if (Tone.context.state !== 'running') Tone.context.resume();
+        if (Tone.context.state !== 'running') {
+          Tone.context.resume();
+        }
         Controls.recordControls();
       },
       false
     );
 
+    // Effects toggle handlers
     for (let i = 0; i < Controls.effectsToggle.length; i++) {
       Controls.effectsToggle[i].addEventListener(
         'click',
@@ -151,6 +178,7 @@ const Controls = {
       );
     }
 
+    // Envelope toggle handlers
     for (let i = 0; i < Controls.envelopeToggle.length; i++) {
       Controls.envelopeToggle[i].addEventListener(
         'click',
