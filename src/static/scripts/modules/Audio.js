@@ -1,5 +1,3 @@
-/* eslint-disable new-cap, no-unused-vars */
-
 import Nexus from 'nexusui';
 import * as Tone from 'tone';
 import _ from 'lodash';
@@ -15,8 +13,8 @@ const Audio = {
   effect: {},
   noteLength: 2000, // 120 BPM
   tempo: 120,
-  audioCtx: null, // Initialized to null
-  synth: null, // Initialized to null
+  audioCtx: null,
+  synth: null,
 
   setContext() {
     const context = new Tone.Context({
@@ -39,13 +37,28 @@ const Audio = {
     Tone.Transport.bpm.value = tempo;
   },
 
+  createSynth() {
+    // Dispose of the old synth if it exists
+    if (Audio.synth) {
+      Audio.synth.dispose();
+    }
+
+    // Create new synth with current instrument type
+    Audio.synth = new Tone.PolySynth(Tone[Instrument.currentInstrument]);
+
+    // Connect to effects chain
+    Audio.synth.chain(..._.values(Audio.effect), Tone.getContext().destination);
+
+    return Audio.synth;
+  },
+
   play(notes, time) {
-    if (!Audio.synth) {
-      Audio.synth = new Tone.PolySynth(Tone[Instrument.currentInstrument]);
-      Audio.synth.chain(
-        ..._.values(Audio.effect),
-        Tone.getContext().destination
-      );
+    // Create or recreate synth if instrument type changed
+    if (
+      !Audio.synth ||
+      Audio.synth.name !== `poly${Instrument.currentInstrument}`
+    ) {
+      Audio.createSynth();
     }
 
     // Update effect parameters
@@ -128,5 +141,3 @@ const Audio = {
 };
 
 export default Audio;
-
-/* eslint-enable */
