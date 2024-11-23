@@ -48,11 +48,19 @@ const Audio = {
     // Create new synth with current instrument type
     Audio.synth = new Tone.PolySynth(Tone[Instrument.currentInstrument], {
       envelope: {
-        attack: 2.0, // 2 second attack
-        decay: 1.5, // 1.5 second decay
-        sustain: 0.8, // 80% sustain level
-        release: 3.0 // 3 second release
-      }
+        attack: 2.0,
+        decay: 1.5,
+        sustain: 0.8,
+        release: 3.0
+      },
+      // Add these specific settings for DuoSynth
+      ...(Instrument.currentInstrument === 'DuoSynth'
+        ? {
+            volume: -8,
+            voice0: { volume: -8 },
+            voice1: { volume: -8 }
+          }
+        : {})
     });
 
     // Connect to effects chain
