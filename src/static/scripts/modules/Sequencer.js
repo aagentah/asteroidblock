@@ -117,6 +117,9 @@ const Sequencer = {
     Tone.Transport.stop();
     Sequencer.currentColumn = 0;
 
+    // Release all voices when stopping
+    Audio.releaseAllVoices();
+
     // Reset visual sequencer position
     for (let i = 0; i < 10; i++) {
       if (Sequencer.sequencer.stepper.value !== 0) {

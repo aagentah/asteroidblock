@@ -6,11 +6,11 @@ const Instrument = {
   currentInstrument: 'AMSynth',
   instrumentSelect: null,
   instrumentTypes: [
+    'MembraneSynth',
     'AMSynth',
     'FMSynth',
-    'DuoSynth',
-    'MetalSynth',
-    'MembraneSynth'
+    'DuoSynth'
+    // 'MetalSynth',
   ],
 
   init() {

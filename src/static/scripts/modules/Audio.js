@@ -11,10 +11,12 @@ const Audio = {
   lookAhead: 0.5,
   instruments: {},
   effect: {},
-  noteLength: 2000, // 120 BPM
-  tempo: 120,
+  noteLength: 4000, // 120 BPM
+  tempo: 60,
   audioCtx: null,
   synth: null,
+  activeVoices: new Set(), // Track currently playing notes
+  activeNotes: new Map(), // Track notes and their scheduled release times
 
   setContext() {
     const context = new Tone.Context({
@@ -44,7 +46,14 @@ const Audio = {
     }
 
     // Create new synth with current instrument type
-    Audio.synth = new Tone.PolySynth(Tone[Instrument.currentInstrument]);
+    Audio.synth = new Tone.PolySynth(Tone[Instrument.currentInstrument], {
+      envelope: {
+        attack: 2.0, // 2 second attack
+        decay: 1.5, // 1.5 second decay
+        sustain: 0.8, // 80% sustain level
+        release: 3.0 // 3 second release
+      }
+    });
 
     // Connect to effects chain
     Audio.synth.chain(..._.values(Audio.effect), Tone.getContext().destination);
@@ -72,22 +81,64 @@ const Audio = {
 
     // Calculate envelope timings based on tempo
     const quarterNote = 60 / Audio.tempo; // Duration of quarter note in seconds
-    const attackSecs =
-      (Envelope.envAttack / 1) * Envelope.envHold * quarterNote;
-    const holdSecs = Envelope.envHold * quarterNote;
-    const releaseSecs =
-      (Envelope.envRelease / 1) * Envelope.envHold * quarterNote;
+    const attackSecs = 2.0; // Fixed 2 second attack
+    const decaySecs = 1.5; // Fixed 1.5 second decay
+    const releaseSecs = 3.0; // Fixed 3 second release
+
+    // Calculate total note duration (much longer than step duration)
+    const totalNoteDuration = attackSecs + decaySecs + releaseSecs;
 
     // Update synth envelope
     Audio.synth.set({
       envelope: {
         attack: attackSecs,
+        decay: decaySecs,
+        sustain: 0.8,
         release: releaseSecs
       }
     });
 
-    // Play the notes for one quarter note duration
-    Audio.synth.triggerAttackRelease(notes, quarterNote, time);
+    // Get current time from Tone.js
+    const now = Tone.now();
+
+    // Release notes that are no longer in the current step
+    const currentNotes = new Set(notes);
+    Audio.activeNotes.forEach((releaseTime, note) => {
+      if (!currentNotes.has(note)) {
+        Audio.synth.triggerRelease(note, time);
+        Audio.activeNotes.delete(note);
+      }
+    });
+
+    // Play new notes with extended duration
+    notes.forEach(note => {
+      // Only trigger if note isn't already playing
+      if (!Audio.activeNotes.has(note)) {
+        // Calculate when this note should finish (well after the step duration)
+        const releaseTime = time + totalNoteDuration;
+
+        // Start the note
+        Audio.synth.triggerAttack(note, time);
+        Audio.activeNotes.set(note, releaseTime);
+
+        // Schedule the release
+        Tone.Transport.schedule(t => {
+          // Only release if the note isn't being held by a subsequent step
+          if (Audio.activeNotes.get(note) === releaseTime) {
+            Audio.synth.triggerRelease(note, t);
+            Audio.activeNotes.delete(note);
+          }
+        }, releaseTime);
+      }
+    });
+  },
+
+  releaseAllVoices() {
+    if (Audio.synth) {
+      const now = Tone.now();
+      Audio.synth.releaseAll(now);
+      Audio.activeNotes.clear();
+    }
   },
 
   setInstruments() {
