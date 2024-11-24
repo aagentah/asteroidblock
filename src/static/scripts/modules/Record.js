@@ -1,96 +1,98 @@
 /* eslint-disable new-cap, no-unused-vars */
 
+import * as Tone from 'tone';
 import Controls from './Controls';
 import Audio from './Audio';
+import Sequencer from './Sequencer';
 
 const Record = {
-  // adapted from https://gist.github.com/also/900023
-  // returns Uint8Array of WAV header bytes
-  getWavHeader(options) {
-    const numFrames = options.numFrames;
-    const numChannels = options.numChannels || 2;
-    const sampleRate = options.sampleRate || 44100;
-    const bytesPerSample = options.isFloat ? 4 : 2;
-    const format = options.isFloat ? 3 : 1;
+  recorder: null,
+  isRecording: false,
 
-    const blockAlign = numChannels * bytesPerSample;
-    const byteRate = sampleRate * blockAlign;
-    const dataSize = numFrames * blockAlign;
+  /**
+   * Initialize and start recording session
+   * @param {Tone.Recorder} recorder - Tone.js recorder instance
+   */
+  async init(recorder) {
+    try {
+      Record.recorder = recorder;
+      Record.isRecording = true;
 
-    const buffer = new ArrayBuffer(44);
-    const dv = new DataView(buffer);
+      // Start progress animation
+      Record.animateProgress();
 
-    let p = 0;
+      // Disable controls during recording
+      Record.toggleControls(true);
 
-    function writeString(s) {
-      for (let i = 0; i < s.length; i++) {
-        dv.setUint8(p + i, s.charCodeAt(i));
+      // Start recording
+      await recorder.start();
+
+      // Reset sequencer position
+      Sequencer.currentColumn = 0;
+
+      // Start transport-based sequencer
+      await Sequencer.startTransport();
+    } catch (error) {
+      console.error('Error starting recording:', error);
+      Record.toggleControls(false);
+      Record.isRecording = false;
+    }
+  },
+
+  /**
+   * Stop recording and trigger download
+   */
+  async stopAndDownload() {
+    if (!Record.isRecording || !Record.recorder) {
+      return;
+    }
+
+    try {
+      // Re-enable controls
+      Record.toggleControls(false);
+
+      // Stop recorder and get blob
+      const recordingBlob = await Record.recorder.stop();
+
+      // Create download link
+      const url = URL.createObjectURL(recordingBlob);
+      const anchor = document.createElement('a');
+      anchor.download = 'asteroidblock.wav';
+      anchor.href = url;
+
+      // Trigger download
+      anchor.click();
+
+      // Cleanup
+      URL.revokeObjectURL(url);
+      Record.recorder = null;
+      Record.isRecording = false;
+    } catch (error) {
+      console.error('Error stopping recording:', error);
+      Record.toggleControls(false);
+      Record.isRecording = false;
+    }
+  },
+
+  /**
+   * Toggle control buttons enabled state
+   * @param {boolean} disabled - Whether to disable controls
+   */
+  toggleControls(disabled) {
+    const controls = [Controls.startEl, Controls.stopEl, Controls.resetEl];
+
+    controls.forEach(control => {
+      if (disabled) {
+        control.classList.add('disabled');
+      } else {
+        control.classList.remove('disabled');
       }
-      p += s.length;
-    }
-
-    function writeUint32(d) {
-      dv.setUint32(p, d, true);
-      p += 4;
-    }
-
-    function writeUint16(d) {
-      dv.setUint16(p, d, true);
-      p += 2;
-    }
-
-    writeString('RIFF'); // ChunkID
-    writeUint32(dataSize + 36); // ChunkSize
-    writeString('WAVE'); // Format
-    writeString('fmt '); // Subchunk1ID
-    writeUint32(16); // Subchunk1Size
-    writeUint16(format); // AudioFormat
-    writeUint16(numChannels); // NumChannels
-    writeUint32(sampleRate); // SampleRate
-    writeUint32(byteRate); // ByteRate
-    writeUint16(blockAlign); // BlockAlign
-    writeUint16(bytesPerSample * 8); // BitsPerSample
-    writeString('data'); // Subchunk2ID
-    writeUint32(dataSize); // Subchunk2Size
-
-    return new Uint8Array(buffer);
-  },
-
-  // Returns Uint8Array of WAV bytes
-  getWavBytes(buffer, options) {
-    const type = options.isFloat ? Float32Array : Uint16Array;
-    const numFrames = buffer.byteLength / type.BYTES_PER_ELEMENT;
-
-    const headerBytes = Record.getWavHeader(
-      Object.assign({}, options, { numFrames })
-    );
-    const wavBytes = new Uint8Array(headerBytes.length + buffer.byteLength);
-
-    // prepend header, then add pcmBytes
-    wavBytes.set(headerBytes, 0);
-    wavBytes.set(new Uint8Array(buffer), headerBytes.length);
-
-    return wavBytes;
-  },
-
-  convertBlobToAudioBuffer(myBlob) {
-    return new Promise((resolve, reject) => {
-      const audioContext = new AudioContext();
-      const fileReader = new FileReader();
-
-      fileReader.onloadend = () => {
-        let myArrayBuffer = fileReader.result;
-
-        audioContext.decodeAudioData(myArrayBuffer, audioBuffer => {
-          resolve(audioBuffer);
-        });
-      };
-
-      // Load blob
-      fileReader.readAsArrayBuffer(myBlob);
     });
   },
 
+  /**
+   * Animate progress bar during recording
+   */
   animateProgress() {
     const fulltime = Audio.noteLength * 8;
 
@@ -105,64 +107,12 @@ const Record = {
 
     const progressBars = document.getElementsByClassName('progress');
     for (let i = 0; i < progressBars.length; i++) {
-      //call increaseVal function and wait 50ms before each call
-      //the third argument is the argument that i want to pass to the increaseVal function
-      //read https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval
       progressBars[i].interval = setInterval(
         increaseVal,
         fulltime / 100,
         progressBars[i]
       );
     }
-  },
-
-  init(recorder) {
-    Record.animateProgress();
-    Controls.startEl.classList.add('disabled');
-    Controls.stopEl.classList.add('disabled');
-    Controls.resetEl.classList.add('disabled');
-
-    // stops a note later to account for reverb etc
-    setTimeout(async () => {
-      Controls.stopControls();
-    }, Audio.noteLength * 8);
-
-    // wait for the notes to end and stop the recording
-    setTimeout(async () => {
-      Controls.startEl.classList.remove('disabled');
-      Controls.stopEl.classList.remove('disabled');
-      Controls.resetEl.classList.remove('disabled');
-
-      const recording = await recorder.stop();
-      const audioBuffer = await Record.convertBlobToAudioBuffer(recording);
-
-      // Float32Array samples
-      const [left, right] = [
-        audioBuffer.getChannelData(0),
-        audioBuffer.getChannelData(1)
-      ];
-
-      // interleaved
-      const interleaved = new Float32Array(left.length + right.length);
-      for (let src = 0, dst = 0; src < left.length; src++, dst += 2) {
-        interleaved[dst] = left[src];
-        interleaved[dst + 1] = right[src];
-      }
-
-      // get WAV file bytes and audio params of your audio source
-      const wavBytes = Record.getWavBytes(interleaved.buffer, {
-        isFloat: true, // floating point or 16-bit integer
-        numChannels: 2,
-        sampleRate: 48000
-      });
-
-      const wav = new Blob([wavBytes], { type: 'audio/wav' });
-
-      const anchor = document.createElement('a');
-      anchor.download = 'asteroidblock.wav';
-      anchor.href = URL.createObjectURL(wav);
-      anchor.click();
-    }, Audio.noteLength * 8 + Audio.noteLength);
   }
 };
 

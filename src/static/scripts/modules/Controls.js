@@ -48,9 +48,14 @@ const Controls = {
     try {
       const recorder = new Tone.Recorder();
 
-      // Connect recorder to main output
-      Tone.getContext().destination.connect(recorder);
-      recorder.start();
+      // Connect the last effect in the chain to the recorder
+      const lastEffect = _.last(_.values(Audio.effect));
+      if (lastEffect) {
+        lastEffect.connect(recorder);
+      } else {
+        // If no effects, connect synth directly
+        Audio.synth.connect(recorder);
+      }
 
       // Start playback with transport
       await Controls.playControls();

@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import Audio from './Audio';
 import Controls from './Controls';
+import Record from './Record';
 import { isMobile } from '../utils/isMobile';
 
 const Sequencer = {
@@ -97,6 +98,13 @@ const Sequencer = {
       // Update column counter
       Sequencer.currentColumn =
         (Sequencer.currentColumn + 1) % Sequencer.columns;
+
+      // If we're recording and completed a full sequence, stop and export
+      // Only trigger when we've completed one full loop and are back at the start
+      if (Record.isRecording && Sequencer.currentColumn === 0) {
+        Controls.stopControls();
+        setTimeout(() => Record.stopAndDownload(), Audio.noteLength / 2);
+      }
     };
 
     // Schedule the repeat function - '2n' means half note
