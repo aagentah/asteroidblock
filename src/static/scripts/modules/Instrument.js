@@ -6,9 +6,9 @@ const Instrument = {
   currentInstrument: 'AMSynth',
   instrumentSelect: null,
   instrumentTypes: [
-    'MembraneSynth',
     'AMSynth',
     'FMSynth',
+    'MembraneSynth',
     'DuoSynth'
     // 'MetalSynth',
   ],
