@@ -8,6 +8,9 @@
     "type": "git",
     "url": ""
   },
+  "engines": {
+    "node": "^18.0.0"
+  },
   "homepage": "",
   "bugs": "",
   "scripts": {
